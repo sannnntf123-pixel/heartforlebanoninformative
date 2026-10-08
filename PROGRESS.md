@@ -32,7 +32,7 @@ Source design: `~/Downloads/heart-of-lebanon 5/danbox/en-home.html` and `ar-home
 - Unconfirmed content (amounts, event details, testimonials, volunteer names, address,
   phone, hours) stays as visible `[placeholder]` chips like the design, driven by `null` data.
 - Links to `en-about.html` / `en-activities.html` point to in-page anchors (`#about`, `#news`)
-  until those pages exist — change in `src/config/site.ts` (`routes`).
+  until those pages exist — change in `src/config/brand.ts` (`sections`).
 
 ### Checklist
 - [x] Extract and name assets → `public/images/`
@@ -47,7 +47,7 @@ Source design: `~/Downloads/heart-of-lebanon 5/danbox/en-home.html` and `ar-home
 - [x] Verified EN + AR (desktop + mobile), lint (0 errors), typecheck, production build
 - [ ] **English font: Brando** — waiting for licensed font files (woff2, weights 400/500/600/700).
       Swap point: `src/app/[locale]/fonts.ts` (`latinFont`). IBM Plex Sans is the stand-in.
-- [ ] Push to https://github.com/sannnntf123-pixel/heartforlebanoninformative.git
+- [x] Pushed to https://github.com/sannnntf123-pixel/heartforlebanoninformative (branch `main`)
 
 ### Where things live
 | What | Where |
