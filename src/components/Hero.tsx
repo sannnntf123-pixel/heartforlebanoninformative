@@ -5,7 +5,7 @@ export const Hero2 = () => {
     <section className="hero-section hero-1 style-hero-3">
       <div
         className="hero-image bg-cover"
-        style={{ backgroundImage: 'url("assets/img/hero/hero-8.jpg")' }}
+        style={{ backgroundImage: 'url("/assets/img/hero/hero-8.jpg")' }}
       />
       <div className="container">
         <div className="row g-4 align-items-center justify-content-between">
@@ -38,7 +38,7 @@ export const Hero2 = () => {
           <div className="col-xl-5 col-lg-6 wow fadeInUp" data-wow-delay=".4s">
             <div className="hero-form">
               <div className="hero-title">
-                <h6>We're Near to Our</h6>
+                <h6>We&apos;re Near to Our</h6>
                 <h2>Donate Today</h2>
                 <p>
                   Lorem ipsum dolor sit amet con sed do eiusmod tempor

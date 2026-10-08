@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 
+const PRELOADER_TEXT = "HEART";
+
 const Preloader = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [shouldHide, setShouldHide] = useState(false);
@@ -34,7 +36,7 @@ const Preloader = () => {
       <div className="animation-preloader">
         <div className="spinner"></div>
         <div className="txt-loading">
-          {["D", "A", "N", "B", "O", "X"].map((letter, index) => (
+          {PRELOADER_TEXT.split("").map((letter, index) => (
             <span
               key={index}
               data-text-preloader={letter}

@@ -1,9 +1,9 @@
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 
 const CausesPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="Contact Us" />
       <section className="contact-page-wrap section-padding">
         <div className="container">
@@ -171,7 +171,7 @@ const CausesPage = () => {
           </div>
         </div>
       </section>
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

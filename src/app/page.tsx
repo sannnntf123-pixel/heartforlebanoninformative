@@ -9,11 +9,11 @@ import { News1 } from "@/components/News";
 import { Service1 } from "@/components/Service";
 import { Team1 } from "@/components/Team";
 import { Testimonial1 } from "@/components/Testimonial";
-import DanboxLayout from "@layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 
 const page = () => {
   return (
-    <DanboxLayout header={1} footer={1}>
+    <SiteLayout header={1} footer={1}>
       <HeroSlider1 />
       <About1 />
       <Service1 />
@@ -25,7 +25,7 @@ const page = () => {
       <Team1 />
       <News1 />
       <Contact1 />
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

@@ -1,6 +1,6 @@
 import BlogSidebar from "@/components/BlogSidebar";
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 import Link from "next/link";
 
 const CausesPage = () => {
@@ -19,47 +19,47 @@ const CausesPage = () => {
 
   const blogPosts: BlogPost[] = [
     {
-      image: "assets/img/news/post1.jpg",
+      image: "/assets/img/news/post1.jpg",
       category: "Charity",
       title: "Save the Children’s Role in Fight Against Malnutrition Hailed",
       comments: "35 Comments",
       date: "24th March 2024",
       author: "Hetmayar",
-      authorImage: "assets/img/news/author_img.jpg",
+      authorImage: "/assets/img/news/author_img.jpg",
       excerpt:
         "With the cargo business blasting, financier firms are bouncing from organization to organization quickly, prompting high paces of turnover. Regularly, agents are beginning the work with the...",
     },
     {
-      image: "assets/img/news/post2.jpg",
+      image: "/assets/img/news/post2.jpg",
       category: "Charity",
       title: "Back to the future: Quality education through.",
       comments: "35 Comments",
       date: "17th July 2024",
       author: "Hetmayar",
-      authorImage: "assets/img/news/author_img.jpg",
+      authorImage: "/assets/img/news/author_img.jpg",
       excerpt:
         "We commit ourselves to complete all projects within the timeline set with our honorable clients. ex ea commodo consequat. We have a proven record of best result of building and reputable company in the United States.",
     },
     {
-      image: "assets/img/news/post3.jpg",
+      image: "/assets/img/news/post3.jpg",
       videoUrl: "https://www.youtube.com/watch?v=E1xkXZs0cAQ",
       category: "Charity",
       title: "Condolences to Families Effected By Flash Floods",
       comments: "35 Comments",
       date: "17th July 2024",
       author: "Hetmayar",
-      authorImage: "assets/img/news/author_img.jpg",
+      authorImage: "/assets/img/news/author_img.jpg",
       excerpt:
         "We commit ourselves to complete all projects within the timeline set with our honorable clients. ex ea commodo consequat. We have a proven record of best result of building and reputable company in the United States.",
     },
     {
-      image: "assets/img/news/post4.jpg",
+      image: "/assets/img/news/post4.jpg",
       category: "Charity",
       title: "Take Care Of The Elderly Without Home.",
       comments: "35 Comments",
       date: "24th March 2024",
       author: "Hetmayar",
-      authorImage: "assets/img/news/author_img.jpg",
+      authorImage: "/assets/img/news/author_img.jpg",
       excerpt:
         "We have a proven record of best result of building and reputable company in the United States. Thousands of successful projects we are one of the most trusted construction companies. We have a proven record of best result of building and reputable company in the United States.",
     },
@@ -75,7 +75,7 @@ const CausesPage = () => {
   ];
 
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="News Feeds" />
       <section className="blog-wrapper news-wrapper section-padding">
         <div className="container">
@@ -204,7 +204,7 @@ const CausesPage = () => {
           </div>
         </div>
       </section>
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

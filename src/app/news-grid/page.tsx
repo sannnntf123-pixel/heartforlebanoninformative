@@ -1,5 +1,5 @@
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 import Link from "next/link";
 
 const CausesPage = () => {
@@ -71,7 +71,7 @@ const CausesPage = () => {
   ];
 
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="News Grid" />
       <section className="news-section fix section-padding">
         <div className="container">
@@ -118,7 +118,7 @@ const CausesPage = () => {
           </div>
         </div>
       </section>
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

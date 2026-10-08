@@ -1,12 +1,12 @@
 import BlogSidebar from "@/components/BlogSidebar";
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 import Image from "next/image";
 import Link from "next/link";
 
 const CausesPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="News Details" />
       <section className="blog-wrapper news-wrapper section-padding">
         <div className="container">
@@ -291,7 +291,7 @@ const CausesPage = () => {
           </div>
         </div>
       </section>
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

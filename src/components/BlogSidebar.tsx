@@ -32,25 +32,25 @@ const sidebarData: SidebarItem[] = [
     title: "Popular Feeds",
     posts: [
       {
-        image: "assets/img/news/pp3.jpg",
+        image: "/assets/img/news/pp3.jpg",
         title: "Lorem ipsum dolor sit cing elit, sed do.",
         date: "24th March 2024",
         link: "news-details",
       },
       {
-        image: "assets/img/news/pp1.jpg",
+        image: "/assets/img/news/pp1.jpg",
         title: "Lorem ipsum dolor sit cing elit, sed do.",
         date: "25th March 2024",
         link: "news-details",
       },
       {
-        image: "assets/img/news/pp2.jpg",
+        image: "/assets/img/news/pp2.jpg",
         title: "Lorem ipsum dolor sit cing elit, sed do.",
         date: "26th March 2024",
         link: "news-details",
       },
       {
-        image: "assets/img/news/pp4.jpg",
+        image: "/assets/img/news/pp4.jpg",
         title: "Lorem ipsum dolor sit cing elit, sed do.",
         date: "29th March 2024",
         link: "news-details",

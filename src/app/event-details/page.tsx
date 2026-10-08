@@ -1,10 +1,10 @@
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 import Link from "next/link";
 
 const CausesPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="Events Details" />
       <section className="event-details-section fix section-padding">
         <div className="container">
@@ -13,7 +13,7 @@ const CausesPage = () => {
               <div className="col-12 col-lg-12">
                 <div className="event-fetaured-thumb">
                   <img
-                    src="assets/img/event/event-details.jpg"
+                    src="/assets/img/event/event-details.jpg"
                     alt="event details"
                   />
                 </div>
@@ -21,7 +21,7 @@ const CausesPage = () => {
               <div className="col-12 col-lg-7 col-xl-8">
                 <div className="event-details-contents">
                   <p>
-                    t This website is part of Mitsubishi Power's continuous
+                    t This website is part of Mitsubishi Power&apos;s continuous
                     efforts to improve communications with existing and
                     potential customers and other interested parties globally.
                     Aligned with that business purpose and for most effective
@@ -66,10 +66,10 @@ const CausesPage = () => {
                   </p>
                   <div className="row">
                     <div className="col-md-6 col-12">
-                      <img src="assets/img/event/eventd1.jpg" alt="img" />
+                      <img src="/assets/img/event/eventd1.jpg" alt="img" />
                     </div>
                     <div className="col-md-6 col-12">
-                      <img src="assets/img/event/eventd2.jpg" alt="img" />
+                      <img src="/assets/img/event/eventd2.jpg" alt="img" />
                     </div>
                   </div>
                 </div>
@@ -126,7 +126,7 @@ const CausesPage = () => {
                           className="profile-img"
                           style={{
                             backgroundImage:
-                              'url("assets/img/event/guest1.jpg")',
+                              'url("/assets/img/event/guest1.jpg")',
                           }}
                         />
                         <div className="guest-bio">
@@ -139,7 +139,7 @@ const CausesPage = () => {
                           className="profile-img"
                           style={{
                             backgroundImage:
-                              'url("assets/img/event/guest2.jpg")',
+                              'url("/assets/img/event/guest2.jpg")',
                           }}
                         />
                         <div className="guest-bio">
@@ -152,7 +152,7 @@ const CausesPage = () => {
                           className="profile-img"
                           style={{
                             backgroundImage:
-                              'url("assets/img/event/guest3.jpg")',
+                              'url("/assets/img/event/guest3.jpg")',
                           }}
                         />
                         <div className="guest-bio">
@@ -165,7 +165,7 @@ const CausesPage = () => {
                           className="profile-img"
                           style={{
                             backgroundImage:
-                              'url("assets/img/event/guest4.jpg")',
+                              'url("/assets/img/event/guest4.jpg")',
                           }}
                         />
                         <div className="guest-bio">
@@ -192,7 +192,7 @@ const CausesPage = () => {
           </div>
         </div>
       </section>
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

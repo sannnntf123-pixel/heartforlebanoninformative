@@ -4,11 +4,11 @@ import { Cta2, Cta5 } from "@/components/Cta";
 import { Gallery1 } from "@/components/Gallery";
 import PageBanner from "@/components/PageBanner";
 import { Team2 } from "@/components/Team";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 
 const AboutPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="About Us" />
       <About1 />
       <Cta5 />
@@ -17,7 +17,7 @@ const AboutPage = () => {
       <Team2 />
       <Gallery1 />
       <Cta2 />
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

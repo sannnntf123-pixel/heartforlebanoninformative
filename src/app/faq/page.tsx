@@ -1,14 +1,14 @@
 import { Faq2, Faq3 } from "@/components/Faq";
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 
 const CausesPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="Faq" />
       <Faq3 />
       <Faq2 />
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

@@ -58,7 +58,7 @@ export const Feature1 = () => {
                     <div className="content">
                       <h3>50 Milion Volunteers</h3>
                       <p>
-                        Many of us have no idea what it's like to be thirsty. We
+                        Many of us have no idea what it&apos;s like to be thirsty. We
                         have plenty of water to drink even the water in our
                         toilets is clean!
                       </p>

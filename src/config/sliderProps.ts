@@ -1,4 +1,5 @@
 import type { Swiper as SwiperRef } from "swiper";
+import type { SwiperProps } from "swiper/react";
 import SwiperCore from "swiper";
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -13,6 +14,8 @@ import {
   Parallax,
   Thumbs,
 } from "swiper/modules";
+// Global Swiper module registration (not a React hook).
+// eslint-disable-next-line react-hooks/rules-of-hooks
 SwiperCore.use([
   Pagination,
   Navigation,
@@ -66,7 +69,6 @@ export const sliderProps = {
       el: ".dot",
       clickable: true,
     },
-    // @ts-ignore
     onSwiper: (swiper: SwiperRef) => {
       animateElements(swiper);
     },
@@ -87,7 +89,6 @@ export const sliderProps = {
       nextEl: ".array-next",
       prevEl: ".array-prev",
     },
-    // @ts-ignore
     onSwiper: (swiper: SwiperRef) => {
       animateElements(swiper);
     },
@@ -273,4 +274,4 @@ export const sliderProps = {
       },
     },
   },
-};
+} satisfies Record<string, SwiperProps>;

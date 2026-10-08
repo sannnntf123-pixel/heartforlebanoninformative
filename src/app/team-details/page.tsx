@@ -1,10 +1,10 @@
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 import Image from "next/image";
 
 const CausesPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="Volunteer Details" />
       <section className="team-details-section fix section-padding">
         <div className="container">
@@ -101,10 +101,10 @@ const CausesPage = () => {
               </h5>
               <p className="mt-3">
                 Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's in the ou standard
+                industry. Lorem Ipsum has been the industry&apos;s in the ou standard
                 dummy text ever since the 1500s, when an unknown printer
                 took.Ipsum is simply dummy text of the printing and type setting
-                industry. Lorem Ipsum has been the industry's in the abouti
+                industry. Lorem Ipsum has been the industry&apos;s in the abouti
                 standard dummy
               </p>
               <h5 className="pt-5">
@@ -112,17 +112,17 @@ const CausesPage = () => {
               </h5>
               <p className="mt-3">
                 Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's in the ou standard
+                industry. Lorem Ipsum has been the industry&apos;s in the ou standard
                 dummy text ever since the 1500s, when an unknown printer
                 took.Ipsum is simply dummy text of the printing and type setting
-                industry. Lorem Ipsum has been the industry's in the abouti
+                industry. Lorem Ipsum has been the industry&apos;s in the abouti
                 standard dummy
               </p>
             </div>
           </div>
         </div>
       </section>
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

@@ -1,13 +1,13 @@
 import PageBanner from "@/components/PageBanner";
 import { VolunteersPage } from "@/components/Volunter";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 
 const CausesPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="Volunteer" pageTitle="Our Volunteer" />
       <VolunteersPage />
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

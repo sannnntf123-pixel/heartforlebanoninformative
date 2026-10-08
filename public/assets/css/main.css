@@ -161,7 +161,7 @@ Version: 1.1.0
     Template Default Fonts & Fonts Styles
  ---------------------------------------------- */
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-dm-sans), sans-serif;
   font-size: 16px;
   font-weight: normal;
   line-height: 28px;
@@ -199,7 +199,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Chelsea Market", system-ui;
+  font-family: var(--font-chelsea-market), system-ui;
   margin: 0px;
   padding: 0;
   color: var(--header);
@@ -303,7 +303,7 @@ p {
   }
 }
 .preloader .animation-preloader .txt-loading {
-  font: bold 5em "Chelsea Market", system-ui, "DM Sans", sans-serif;
+  font: bold 5em var(--font-chelsea-market), system-ui, var(--font-dm-sans), sans-serif;
   text-align: center;
   user-select: none;
 }
@@ -343,7 +343,7 @@ p {
   content: attr(data-text-preloader);
   left: 0;
   opacity: 0;
-  font-family: "Chelsea Market", system-ui;
+  font-family: var(--font-chelsea-market), system-ui;
   position: absolute;
   top: -3px;
   transform: rotateY(-90deg);
@@ -2238,7 +2238,7 @@ input.main-search-input::placeholder {
   }
 }
 .hero-1 .hero-content h5 {
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-dm-sans), sans-serif;
   color: var(--white);
   position: relative;
   z-index: 1;
@@ -5600,7 +5600,7 @@ input.main-search-input::placeholder {
   color: var(--white);
   font-size: 26px;
   line-height: 1.4;
-  font-family: "Chelsea Market", system-ui;
+  font-family: var(--font-chelsea-market), system-ui;
   font-weight: 400;
   padding: 60px;
   text-align: center;
@@ -7544,7 +7544,7 @@ p.sticky-label {
 }
 .footer-widgets-wrapper .single-footer-widget .footer-content .contact-info-area .contact-items .content h6 {
   font-weight: 400;
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-dm-sans), sans-serif;
   color: #adb7bc;
 }
 @media (max-width: 1199px) {

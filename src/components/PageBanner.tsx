@@ -10,7 +10,7 @@ const PageBanner = ({
   return (
     <div
       className="breadcrumb-wrapper section-padding bg-cover"
-      style={{ backgroundImage: 'url("assets/img/breadcrumb.jpg")' }}
+      style={{ backgroundImage: 'url("/assets/img/breadcrumb.jpg")' }}
     >
       <div className="container">
         <div className="page-heading">

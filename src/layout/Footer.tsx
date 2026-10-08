@@ -1,23 +1,16 @@
+import { siteConfig } from "@/config/site";
+import type { LayoutVariant } from "@/layout/SiteLayout";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
+import { ComponentType, Fragment } from "react";
 
-const Footer = ({ footer }: { footer: number }) => {
-  switch (footer) {
-    case 1:
-      return <Footer1 />;
-    case 2:
-      return <Footer2 />;
-    case 3:
-      return <Footer3 />;
-    case 4:
-      return <Footer4 />;
-    default:
-      return <Footer3 />;
-  }
-};
+const Copyright = () => (
+  <>
+    © {new Date().getFullYear()} <Link href="/">{siteConfig.name}</Link>. All
+    rights reserved.
+  </>
+);
 
-export default Footer;
 const Footer1 = () => {
   return (
     <footer className="footer-section footer-bg">
@@ -49,7 +42,7 @@ const Footer1 = () => {
                   <div className="single-post-items">
                     <div
                       className="post-img bg-cover"
-                      style={{ backgroundImage: 'url("assets/img/post1.jpg")' }}
+                      style={{ backgroundImage: 'url("/assets/img/post1.jpg")' }}
                     />
                     <div className="post-content">
                       <span>
@@ -66,7 +59,7 @@ const Footer1 = () => {
                   <div className="single-post-items">
                     <div
                       className="post-img bg-cover"
-                      style={{ backgroundImage: 'url("assets/img/post2.jpg")' }}
+                      style={{ backgroundImage: 'url("/assets/img/post2.jpg")' }}
                     />
                     <div className="post-content">
                       <span>
@@ -130,8 +123,7 @@ const Footer1 = () => {
         <div className="container">
           <div className="footer-wrapper">
             <p className="wow fadeInUp text-center" data-wow-delay=".3s">
-              © <Link href="/">Danbox</Link> Charity Trust - 2024. All rights
-              reserved.
+              <Copyright />
             </p>
           </div>
         </div>
@@ -216,8 +208,7 @@ const Footer2 = () => {
         <div className="container">
           <div className="footer-bottom-wrapper d-flex align-items-center justify-content-between">
             <p className="wow fadeInLeft" data-wow-delay=".3s">
-              © Copyright 2024 <Link href="/">Danbox</Link>. All Rights
-              Reserved.
+              <Copyright />
             </p>
             <div className="card-image wow fadeInRight" data-wow-delay=".5s">
               <Image
@@ -334,8 +325,7 @@ const Footer3 = () => {
         <div className="container">
           <div className="footer-wrapper">
             <p className="wow fadeInUp text-center" data-wow-delay=".3s">
-              © <Link href="/">Danbox</Link> Charity Trust - 2024. All rights
-              reserved.
+              <Copyright />
             </p>
           </div>
         </div>
@@ -459,7 +449,7 @@ const Footer4 = () => {
                       <div
                         className="post-img bg-cover"
                         style={{
-                          backgroundImage: 'url("assets/img/post1.jpg")',
+                          backgroundImage: 'url("/assets/img/post1.jpg")',
                         }}
                       />
                       <div className="post-content">
@@ -478,7 +468,7 @@ const Footer4 = () => {
                       <div
                         className="post-img bg-cover"
                         style={{
-                          backgroundImage: 'url("assets/img/post2.jpg")',
+                          backgroundImage: 'url("/assets/img/post2.jpg")',
                         }}
                       />
                       <div className="post-content">
@@ -497,7 +487,7 @@ const Footer4 = () => {
                       <div
                         className="post-img bg-cover"
                         style={{
-                          backgroundImage: 'url("assets/img/post1.jpg")',
+                          backgroundImage: 'url("/assets/img/post1.jpg")',
                         }}
                       />
                       <div className="post-content">
@@ -522,8 +512,7 @@ const Footer4 = () => {
           <div className="container">
             <div className="footer-wrapper">
               <p className="wow fadeInUp text-center" data-wow-delay=".3s">
-                © <Link href="/">Danbox</Link> Charity Trust - 2024. All rights
-                reserved.
+                <Copyright />
               </p>
             </div>
           </div>
@@ -544,7 +533,7 @@ const FooterLogoContainer = () => (
             src="/assets/img/logo/white-logo.png"
             width={178}
             height={54}
-            alt="logo-img"
+            alt={siteConfig.name}
           />
         </Link>
       </div>
@@ -573,7 +562,6 @@ const FooterLogoContainer = () => (
 );
 
 type LinkItem = { link: string; text: string };
-type LinkItem2 = { link: string; text: string };
 const LinksCol = ({
   heading,
   links = [],
@@ -581,32 +569,32 @@ const LinksCol = ({
   layout = 1,
 }: {
   heading?: string;
-  layout?: number;
+  layout?: 1 | 2 | 3;
   links?: LinkItem[];
-  links2?: LinkItem2[];
+  links2?: LinkItem[];
 }) => (
   <div className="single-footer-widget">
     {heading && (
       <div className="widget-head">
-        <h4 className={layout == 1 ? "text-white" : ""}>{heading}</h4>
+        <h4 className={layout === 1 ? "text-white" : ""}>{heading}</h4>
       </div>
     )}
-    {layout == 3 ? (
+    {layout === 3 ? (
       <Fragment>
         <div className="special-menu">
           <ul>
-            {links.map((e, i) => (
-              <li key={i}>
-                <a href={e.link}>{e.text}</a>
+            {links.map((e) => (
+              <li key={e.text}>
+                <Link href={e.link}>{e.text}</Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="special-menu">
           <ul>
-            {links2.map((e, i) => (
-              <li key={i}>
-                <a href={e.link}>{e.text}</a>
+            {links2.map((e) => (
+              <li key={e.text}>
+                <Link href={e.link}>{e.text}</Link>
               </li>
             ))}
           </ul>
@@ -614,12 +602,12 @@ const LinksCol = ({
       </Fragment>
     ) : (
       <ul className="list-area">
-        {links.map((e, i) => (
-          <li key={i}>
-            <a href={e.link}>
-              {layout == 1 && <i className="far fa-chevron-double-right" />}
+        {links.map((e) => (
+          <li key={e.text}>
+            <Link href={e.link}>
+              {layout === 1 && <i className="far fa-chevron-double-right" />}
               {e.text}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -628,41 +616,55 @@ const LinksCol = ({
 );
 
 const usefulLink = [
-  { link: "about", text: "About Us" },
-  { link: "causes", text: "Popular Causes" },
-  { link: "events", text: "Upcoming Event" },
-  { link: "team", text: "Our Volunteers" },
-  { link: "news", text: "Latest News" },
+  { link: "/about", text: "About Us" },
+  { link: "/causes", text: "Popular Causes" },
+  { link: "/events", text: "Upcoming Event" },
+  { link: "/team", text: "Our Volunteers" },
+  { link: "/news", text: "Latest News" },
 ];
 const legalLink = [
-  { link: "contact", text: "Term of use" },
-  { link: "contact", text: "Privacy Policy" },
-  { link: "contact", text: "Report Violation" },
-  { link: "contact", text: "Cookies" },
-  { link: "contact", text: "Contact Us" },
+  { link: "/contact", text: "Term of use" },
+  { link: "/contact", text: "Privacy Policy" },
+  { link: "/contact", text: "Report Violation" },
+  { link: "/contact", text: "Cookies" },
+  { link: "/contact", text: "Contact Us" },
 ];
 const aboutLink = [
-  { link: "index", text: "Home" },
-  { link: "about", text: "About" },
-  { link: "causes", text: "Our Causes" },
-  { link: "events", text: "Our Events" },
-  { link: "event-details", text: "Contact" },
-  { link: "team", text: "Team" },
-  { link: "faq", text: "Faq" },
+  { link: "/", text: "Home" },
+  { link: "/about", text: "About" },
+  { link: "/causes", text: "Our Causes" },
+  { link: "/events", text: "Our Events" },
+  { link: "/contact", text: "Contact" },
+  { link: "/team", text: "Team" },
+  { link: "/faq", text: "Faq" },
 ];
 const specialLink = [
-  { link: "causes", text: "Causes List" },
-  { link: "donation-details", text: "Donation" },
-  { link: "team", text: "Careers" },
-  { link: "contact", text: "Get A Quote" },
-  { link: "faq", text: "Terms & Conditions" },
+  { link: "/causes", text: "Causes List" },
+  { link: "/donation-details", text: "Donation" },
+  { link: "/team", text: "Careers" },
+  { link: "/contact", text: "Get A Quote" },
+  { link: "/faq", text: "Terms & Conditions" },
 ];
 const popularlLink = [
-  { link: "causes-details", text: "Water Purify" },
-  { link: "causes-details", text: "Food Collect" },
-  { link: "causes-details", text: "Health Fund" },
-  { link: "causes-details", text: "Free Education" },
-  { link: "causes-details", text: "Poor Health" },
-  { link: "causes-details", text: "Live Donation" },
-  { link: "causes-details", text: "Stream Donation" },
+  { link: "/causes-details", text: "Water Purify" },
+  { link: "/causes-details", text: "Food Collect" },
+  { link: "/causes-details", text: "Health Fund" },
+  { link: "/causes-details", text: "Free Education" },
+  { link: "/causes-details", text: "Poor Health" },
+  { link: "/causes-details", text: "Live Donation" },
+  { link: "/causes-details", text: "Stream Donation" },
 ];
+
+const variants: Record<LayoutVariant, ComponentType> = {
+  1: Footer1,
+  2: Footer2,
+  3: Footer3,
+  4: Footer4,
+};
+
+const Footer = ({ variant }: { variant: LayoutVariant }) => {
+  const Variant = variants[variant];
+  return <Variant />;
+};
+
+export default Footer;

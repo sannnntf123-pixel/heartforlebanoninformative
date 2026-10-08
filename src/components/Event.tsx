@@ -1,5 +1,5 @@
 "use client";
-import { sliderProps } from "@/utility/sliderProps";
+import { sliderProps } from "@/config/sliderProps";
 import Image from "next/image";
 import Link from "next/link";
 import { Nav, Tab } from "react-bootstrap";
@@ -421,7 +421,7 @@ const EventCard = ({
                 <i className="fas fa-check" /> A place in history
               </li>
               <li>
-                <i className="fas fa-check" /> It's about impact, goodness
+                <i className="fas fa-check" /> It&apos;s about impact, goodness
               </li>
             </ul>
             <ul>

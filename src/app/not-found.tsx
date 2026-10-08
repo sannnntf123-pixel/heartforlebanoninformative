@@ -1,10 +1,10 @@
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 import Link from "next/link";
 
 const NotFound = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="error page" />
       <section className="error-section section-padding fix">
         <div className="container">
@@ -25,7 +25,7 @@ const NotFound = () => {
           </div>
         </div>
       </section>
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

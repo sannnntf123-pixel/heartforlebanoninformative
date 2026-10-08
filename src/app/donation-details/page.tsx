@@ -1,10 +1,10 @@
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 import Image from "next/image";
 
 const CausesPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="Donation" pageTitle="Make Donation" />
       <div className="causes-details-wrapper fix section-padding">
         <div className="container">
@@ -188,7 +188,7 @@ const CausesPage = () => {
           </div>
         </div>
       </div>
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

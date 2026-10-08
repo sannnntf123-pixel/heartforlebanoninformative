@@ -1,15 +1,15 @@
 import { CausesTab } from "@/components/Causes";
 import { Cta1 } from "@/components/Cta";
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 
 const CausesPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="Our Causes" />
       <CausesTab />
       <Cta1 />
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

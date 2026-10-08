@@ -1,11 +1,11 @@
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 import Image from "next/image";
 import Link from "next/link";
 
 const CausesPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="Cause Details" />
       <section className="causes-details-section fix section-padding">
         <div className="container">
@@ -177,7 +177,7 @@ const CausesPage = () => {
                     </p>
                     <p>
                       I started this fundraising campaign to help charity: water
-                      build these types of projects around the world, and I'm
+                      build these types of projects around the world, and I&apos;m
                       looking for anyone who can help me. But many people around
                       the world don’t have that luxury. Every day, about 1,400
                       children die from diseases caused by unsafe water and poor
@@ -217,7 +217,7 @@ const CausesPage = () => {
                     </p>
                     <p>
                       I started this fundraising campaign to help charity: water
-                      build these types of projects around the world, and I'm
+                      build these types of projects around the world, and I&apos;m
                       looking for anyone who can help me. But many people around
                       the world don’t have that luxury. Every day, about 1,400
                       children die from diseases caused by unsafe water and poor
@@ -276,31 +276,31 @@ const CausesPage = () => {
                     </div>
                     <div className="causue-gallery-wid">
                       <a
-                        href="assets/img/causes/g1.jpg"
+                        href="/assets/img/causes/g1.jpg"
                         className="single-cause-img img-popup bg-cover"
                         style={{
-                          backgroundImage: 'url("assets/img/causes/g1.jpg")',
+                          backgroundImage: 'url("/assets/img/causes/g1.jpg")',
                         }}
                       />
                       <a
-                        href="assets/img/causes/g2.jpg"
+                        href="/assets/img/causes/g2.jpg"
                         className="single-cause-img img-popup"
                         style={{
-                          backgroundImage: 'url("assets/img/causes/g2.jpg")',
+                          backgroundImage: 'url("/assets/img/causes/g2.jpg")',
                         }}
                       />
                       <a
-                        href="assets/img/causes/g3.jpg"
-                        className="single-cause-img img-popupy"
+                        href="/assets/img/causes/g3.jpg"
+                        className="single-cause-img img-popup"
                         style={{
-                          backgroundImage: 'url("assets/img/causes/g3.jpg")',
+                          backgroundImage: 'url("/assets/img/causes/g3.jpg")',
                         }}
                       />
                       <a
-                        href="assets/img/causes/g4.jpg"
+                        href="/assets/img/causes/g4.jpg"
                         className="single-cause-img img-popup mb-0"
                         style={{
-                          backgroundImage: 'url("assets/img/causes/g4.jpg")',
+                          backgroundImage: 'url("/assets/img/causes/g4.jpg")',
                         }}
                       />
                     </div>
@@ -309,7 +309,7 @@ const CausesPage = () => {
                   <div
                     className="sidebar-promo-widgets bg-cover text-white text-center"
                     style={{
-                      backgroundImage: 'url("assets/img/causes/cause1.jpg")',
+                      backgroundImage: 'url("/assets/img/causes/cause1.jpg")',
                     }}
                   >
                     <span>Call To Action</span>
@@ -325,7 +325,7 @@ const CausesPage = () => {
           </div>
         </div>
       </section>
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

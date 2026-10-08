@@ -350,14 +350,14 @@ export const About4 = () => {
                     <i className="fas fa-check" />
                     <div className="content">
                       <h5>Quick Fundraising</h5>
-                      <p>Charity Navigator's Giving you support multiple</p>
+                      <p>Charity Navigator&apos;s Giving you support multiple</p>
                     </div>
                   </div>
                   <div className="list-items">
                     <i className="fas fa-check" />
                     <div className="content">
                       <h5>Join Our Team</h5>
-                      <p>Charity Navigator's Giving you support multiple</p>
+                      <p>Charity Navigator&apos;s Giving you support multiple</p>
                     </div>
                   </div>
                 </div>

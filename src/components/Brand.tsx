@@ -16,7 +16,7 @@ export const Brand = () => {
   return (
     <div
       className="brand-section bg-cover section-padding"
-      style={{ backgroundImage: 'url("assets/img/brand/brand-bg.png")' }}
+      style={{ backgroundImage: 'url("/assets/img/brand/brand-bg.png")' }}
     >
       <div className="container">
         <div className="title-wrap wow fadeInUp" data-wow-delay=".3s">

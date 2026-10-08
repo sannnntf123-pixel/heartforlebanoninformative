@@ -1,13 +1,13 @@
 import { EventPage } from "@/components/Event";
 import PageBanner from "@/components/PageBanner";
-import DanboxLayout from "@/layout/DanboxLayout";
+import SiteLayout from "@/layout/SiteLayout";
 
 const CausesPage = () => {
   return (
-    <DanboxLayout>
+    <SiteLayout>
       <PageBanner pageName="Events" pageTitle="Upcoming Events" />
       <EventPage />
-    </DanboxLayout>
+    </SiteLayout>
   );
 };
 

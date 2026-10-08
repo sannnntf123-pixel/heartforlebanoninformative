@@ -6,7 +6,7 @@ export const Cta1 = () => {
       <div className="container">
         <div
           className="cta-banner-wrapper section-padding bg-cover"
-          style={{ backgroundImage: 'url("assets/img/join-cat-bg.jpg")' }}
+          style={{ backgroundImage: 'url("/assets/img/join-cat-bg.jpg")' }}
         >
           <div className="row">
             <div className="offset-xl-5 col-xl-6 col-lg-8 offset-lg-2 col-md-12">
@@ -217,7 +217,7 @@ export const Cta5 = () => {
   return (
     <section
       className="cta-video-section-2 fix section-padding bg-cover"
-      style={{ backgroundImage: 'url("assets/img/cta-video.jpg")' }}
+      style={{ backgroundImage: 'url("/assets/img/cta-video.jpg")' }}
     >
       <div className="container">
         <div className="cta-video-wrapper d-block center">

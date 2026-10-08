@@ -1,5 +1,5 @@
 "use client";
-import { sliderProps } from "@/utility/sliderProps";
+import { sliderProps } from "@/config/sliderProps";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -53,7 +53,7 @@ export const Testimonial1 = () => {
   return (
     <section
       className="testimonial-section-4 section-padding bg-cover"
-      style={{ backgroundImage: 'url("assets/img/testimonial/bg.jpg")' }}
+      style={{ backgroundImage: 'url("/assets/img/testimonial/bg.jpg")' }}
     >
       <div className="container">
         <div className="section-title text-center">

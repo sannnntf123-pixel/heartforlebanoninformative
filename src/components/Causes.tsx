@@ -1,5 +1,5 @@
 "use client";
-import { sliderProps } from "@/utility/sliderProps";
+import { sliderProps } from "@/config/sliderProps";
 import Image from "next/image";
 import Link from "next/link";
 import { Nav, Tab } from "react-bootstrap";

@@ -1,5 +1,5 @@
 "use client";
-import { sliderProps } from "@/utility/sliderProps";
+import { sliderProps } from "@/config/sliderProps";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -17,21 +17,21 @@ export const HeroSlider1 = () => {
     };
   }[] = [
     {
-      img: "assets/img/hero/hero-5.jpg",
+      img: "/assets/img/hero/hero-5.jpg",
       mission: "Food, Education, Medicine",
       h1: "We’re On A Mission \n To Change World",
       video: "https://www.youtube.com/watch?v=Cn4G2lZ_g2I",
       delays: { h5: "1.3s", h1: "1.5s", buttons: "1.7s", video: "1.5s" },
     },
     {
-      img: "assets/img/hero/hero-6.jpg",
+      img: "/assets/img/hero/hero-6.jpg",
       mission: "Food, Education, Medicine",
       h1: "We’re On A Mission \n To Change World",
       video: "https://www.youtube.com/watch?v=Cn4G2lZ_g2I",
       delays: { h5: "1.3s", h1: "1.5s", buttons: "1.7s", video: "1.5s" },
     },
     {
-      img: "assets/img/hero/hero-7.jpg",
+      img: "/assets/img/hero/hero-7.jpg",
       mission: "Food, Education, Medicine",
       h1: "We’re On A Mission \n To Change World",
       video: "https://www.youtube.com/watch?v=Cn4G2lZ_g2I",
@@ -128,14 +128,14 @@ export const HeroSlider3 = () => {
     };
   }[] = [
     {
-      img: "assets/img/hero/hero-1.jpg",
+      img: "/assets/img/hero/hero-1.jpg",
       mission: "Food, Education, Medicine",
       h1: "We’re On A Mission To Change That",
       delays: { h5: "1.3s", h1: "1.5s", buttons: "1.7s" },
       links: { causes: "causes", donate: "donation-details" },
     },
     {
-      img: "assets/img/hero/hero-2.jpg",
+      img: "/assets/img/hero/hero-2.jpg",
       mission: "Food, Education, Medicine",
       h1: "We’re On A Mission To Change That",
       delays: { h5: "1.3s", h1: "1.5s", buttons: "1.7s" },
@@ -226,14 +226,14 @@ export const HeroSlider4 = () => {
     };
   }[] = [
     {
-      img: "assets/img/hero/hero-3.jpg",
+      img: "/assets/img/hero/hero-3.jpg",
       mission: "Food, Education, Medicine",
       h1: "More charity. Make More \n better life.",
       delays: { h5: "1.3s", h1: "1.5s", buttons: "1.7s" },
       links: { causes: "causes", donate: "donation-details" },
     },
     {
-      img: "assets/img/hero/hero-4.jpg",
+      img: "/assets/img/hero/hero-4.jpg",
       mission: "Food, Education, Medicine",
       h1: "More charity. Make More \n better life.",
       delays: { h5: "1.3s", h1: "1.5s", buttons: "1.7s" },
