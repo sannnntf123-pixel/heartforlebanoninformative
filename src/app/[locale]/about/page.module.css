@@ -1,0 +1,43 @@
+/* The organisation's name in the other script, under the main title. */
+.altName {
+  margin-top: 6px;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--lime);
+}
+
+.tagline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  font-size: 18px;
+  color: var(--on-dark-text);
+}
+.tagline li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.tagline li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--lime);
+  transform: rotate(45deg);
+}
+.tagline .taglineEnd {
+  color: #fff;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .altName {
+    font-size: 24px;
+  }
+  .tagline {
+    font-size: 16px;
+  }
+}

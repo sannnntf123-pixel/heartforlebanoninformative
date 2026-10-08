@@ -1,9 +1,11 @@
 "use client";
 import { brand } from "@/config/brand";
+import { routes } from "@/config/routes";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import ExternalButton from "./ExternalButton";
 import styles from "./SiteHeader.module.css";
@@ -16,7 +18,8 @@ type SiteHeaderProps = {
 const SiteHeader = ({ locale, t }: SiteHeaderProps) => {
   const [open, setOpen] = useState(false);
   const navId = useId();
-  const home = `/${locale}`;
+  const pathname = usePathname();
+  const r = routes(locale);
 
   // Close the mobile menu with Escape.
   useEffect(() => {
@@ -27,16 +30,18 @@ const SiteHeader = ({ locale, t }: SiteHeaderProps) => {
   }, [open]);
 
   const links = [
-    { href: home, label: t.nav.home, current: true },
-    { href: `${home}${brand.sections.about}`, label: t.nav.about },
-    { href: `${home}${brand.sections.activities}`, label: t.nav.activities },
-    { href: `${home}${brand.sections.contact}`, label: t.nav.contact },
+    { href: r.home, label: t.nav.home },
+    { href: r.about, label: t.nav.about },
+    { href: r.activities, label: t.nav.activities },
+    { href: r.contact, label: t.nav.contact },
   ];
+  // Only page links (not #section links) can be the current page.
+  const isCurrent = (href: string) => !href.includes("#") && href === pathname;
 
   return (
     <header className={`${styles.header} ${open ? styles.open : ""}`}>
       <div className={`wrap ${styles.inner}`}>
-        <Link className={styles.logo} href={home} aria-label={t.meta.title}>
+        <Link className={styles.logo} href={r.home} aria-label={t.meta.title}>
           <Image src="/images/logo-white.png" alt="" width={155} height={58} priority />
         </Link>
 
@@ -46,7 +51,7 @@ const SiteHeader = ({ locale, t }: SiteHeaderProps) => {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  aria-current={link.current ? "page" : undefined}
+                  aria-current={isCurrent(link.href) ? "page" : undefined}
                   onClick={() => setOpen(false)}
                 >
                   {link.label}

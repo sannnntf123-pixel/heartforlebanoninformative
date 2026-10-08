@@ -12,7 +12,35 @@ npm run lint             # ESLint (next/core-web-vitals + typescript)
 npm run typecheck        # tsc --noEmit
 ```
 
-## Current task: new bilingual home page (built, awaiting English font)
+## Done: About us page (`/en/about`, `/ar/about`)
+
+Content supplied by the user (English only, org name "My Heart for Lebanon / قلبي للبنان").
+Saved verbatim in `docs/content/about-en.md`. Arabic is a draft translation — needs review.
+
+### Plan
+- Routes `/en/about` and `/ar/about` (`src/app/[locale]/about/page.tsx`).
+- Copy in its own dictionaries `src/i18n/dictionaries/about/{en,ar}.ts` (only loaded on this page).
+- Move TopBar / SiteHeader / SiteFooter into the `[locale]` layout so every page shares them.
+- Central `src/config/routes.ts`; header "About" → about page, "Activities" → `/about#activities`.
+- Language switcher keeps the current page (`/en/about` ↔ `/ar/about`).
+- Sections: page hero, Who we are (+ key facts, "Human dignity comes first"), Mission,
+  Objectives (6 pillars), Activities (6), Impact (stats), Vision, closing "Together, we …".
+
+### Checklist
+- [x] Save source content, about dictionaries (EN + AR draft)
+- [x] Shared shell in layout, routes config, language switcher, aria-current
+- [x] About page sections + CSS modules (`src/features/about/`, `src/components/site/PageHero.tsx`)
+- [x] `BidiText` isolates mixed-script runs (Arabic inside English copy and vice versa)
+- [x] Cleaned an invisible 1/255-alpha layer from both logo PNGs (also ~35% smaller)
+- [x] Verified EN/AR desktop + mobile, lint, typecheck, build; committed + pushed
+- [ ] **Arabic About copy is a draft translation — needs review by the charity**
+
+### Open question for the user
+- Home page says "Heart of Lebanon Charity", founded **2019** by Dr. Mohammad Hadi Mourad;
+  the About content says "My Heart for Lebanon", officially established **22 July 2021**.
+  Not changed on the home page — needs a decision.
+
+## Done: new bilingual home page (awaiting English font)
 
 Source design: `~/Downloads/heart-of-lebanon 5/danbox/en-home.html` and `ar-home.html`
 (screenshots in the `screenshots/` folder next to them). Official logo: `~/Downloads/heart-of-lebanon 3/brand/`.
@@ -53,6 +81,8 @@ Source design: `~/Downloads/heart-of-lebanon 5/danbox/en-home.html` and `ar-home
 | What | Where |
 |---|---|
 | Copy (EN / AR) | `src/i18n/dictionaries/en.ts`, `ar.ts` |
+| About page copy | `src/i18n/dictionaries/about/en.ts`, `ar.ts` (source: `docs/content/about-en.md`) |
+| Internal links | `src/config/routes.ts` |
 | Links (GoFundMe, Instagram), contact details, anchors | `src/config/brand.ts` |
 | Which photo goes where, campaign amounts, events, testimonials | `src/features/home/content.ts` (`null` = placeholder chip) |
 | Design tokens + shared CSS | `src/styles/site.css` |

@@ -2,12 +2,15 @@ import ExternalButton from "@/components/site/ExternalButton";
 import { HeartOutline, PlayIcon } from "@/components/site/icons";
 import { HighlightedText, Kicker } from "@/components/site/Typography";
 import { brand } from "@/config/brand";
+import { routes } from "@/config/routes";
+import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
+import Link from "next/link";
 import { heroSlides } from "./content";
 import styles from "./Hero.module.css";
 import HeroSlides from "./HeroSlides";
 
-const Hero = ({ t }: { t: Dictionary }) => (
+const Hero = ({ locale, t }: { locale: Locale; t: Dictionary }) => (
   <section className={styles.hero}>
     <HeroSlides
       images={heroSlides}
@@ -26,9 +29,9 @@ const Hero = ({ t }: { t: Dictionary }) => (
           <ExternalButton href={brand.links.donate} variant="lime" withHeart>
             {t.common.donateNow}
           </ExternalButton>
-          <a className="btn btn--ghost" href={brand.sections.about}>
+          <Link className="btn btn--ghost" href={routes(locale).about}>
             {t.hero.secondaryCta}
-          </a>
+          </Link>
         </div>
       </div>
     </div>

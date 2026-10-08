@@ -1,11 +1,13 @@
 import { HighlightedText, Kicker } from "@/components/site/Typography";
-import { brand } from "@/config/brand";
+import { routes } from "@/config/routes";
+import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./About.module.css";
 import { aboutImages } from "./content";
 
-const About = ({ t }: { t: Dictionary }) => (
+const About = ({ locale, t }: { locale: Locale; t: Dictionary }) => (
   <section className="sec" id="about">
     <div className={`wrap ${styles.grid}`}>
       <div className={`${styles.collage} rv`}>
@@ -43,9 +45,9 @@ const About = ({ t }: { t: Dictionary }) => (
             <li key={point}>{point}</li>
           ))}
         </ul>
-        <a className={`btn ${styles.cta}`} href={brand.sections.about}>
+        <Link className={`btn ${styles.cta}`} href={routes(locale).about}>
           {t.about.cta}
-        </a>
+        </Link>
       </div>
     </div>
   </section>

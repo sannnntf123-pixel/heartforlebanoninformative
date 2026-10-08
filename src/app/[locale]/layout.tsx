@@ -1,6 +1,9 @@
 import "@/styles/site.css";
 
 import RevealObserver from "@/components/site/RevealObserver";
+import SiteFooter from "@/components/site/SiteFooter";
+import SiteHeader from "@/components/site/SiteHeader";
+import TopBar from "@/components/site/TopBar";
 import { isLocale, localeDirection, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import type { Metadata, Viewport } from "next";
@@ -29,17 +32,12 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
     title: { default: t.meta.title, template: `%s | ${t.meta.title}` },
     description: t.meta.description,
-    alternates: {
-      canonical: `/${locale}`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
-    },
     openGraph: {
       type: "website",
       siteName: t.meta.title,
       title: t.meta.title,
       description: t.meta.description,
       locale: locale === "ar" ? "ar_LB" : "en_GB",
-      url: `/${locale}`,
       images: [{ url: "/images/medicine-wide.jpg", width: 628, height: 419 }],
     },
   };
@@ -55,6 +53,7 @@ const enableJsStyles = `document.documentElement.classList.add("js")`;
 export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const t = await getDictionary(locale);
 
   return (
     <html
@@ -68,7 +67,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         <script dangerouslySetInnerHTML={{ __html: enableJsStyles }} />
       </head>
       <body>
+        <TopBar locale={locale} t={t} />
+        {/* Only the slices the client component needs are serialised. */}
+        <SiteHeader locale={locale} t={{ common: t.common, nav: t.nav, meta: t.meta }} />
         {children}
+        <SiteFooter locale={locale} t={t} />
         <RevealObserver />
       </body>
     </html>

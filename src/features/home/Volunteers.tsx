@@ -1,12 +1,14 @@
 import { Kicker, SectionHeading, ValueOrPlaceholder } from "@/components/site/Typography";
-import { brand } from "@/config/brand";
+import { routes } from "@/config/routes";
+import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { staggerStyle } from "@/lib/i18n-format";
 import Image from "next/image";
+import Link from "next/link";
 import { volunteers } from "./content";
 import styles from "./Volunteers.module.css";
 
-const Volunteers = ({ t }: { t: Dictionary }) => {
+const Volunteers = ({ locale, t }: { locale: Locale; t: Dictionary }) => {
   const v = t.volunteers;
   return (
     <section className="sec">
@@ -34,9 +36,9 @@ const Volunteers = ({ t }: { t: Dictionary }) => {
             <Kicker>{v.join.kicker}</Kicker>
             <h3>{v.join.title}</h3>
             <p>{v.join.text}</p>
-            <a className="btn btn--lime" href={brand.sections.contact}>
+            <Link className="btn btn--lime" href={routes(locale).contact}>
               {v.join.cta}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

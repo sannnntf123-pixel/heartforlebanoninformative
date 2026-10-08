@@ -13,6 +13,7 @@ const ar: Dictionary = {
     details: "التفاصيل",
     menu: "القائمة",
     mainNav: "القائمة",
+    breadcrumb: "مسار التنقل",
     switchLanguage: "English",
   },
   topBar: {

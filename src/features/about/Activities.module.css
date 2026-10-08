@@ -1,0 +1,143 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Media column alternates sides from one story to the next. */
+.item {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  background: #fff;
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.item:nth-child(even) {
+  grid-template-columns: 1fr 380px;
+}
+.item:nth-child(even) .media {
+  order: 2;
+}
+
+.media {
+  position: relative;
+  min-height: 300px;
+}
+.photo {
+  object-fit: cover;
+}
+.panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 30px;
+  text-align: center;
+  color: #fff;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Cpath d='M17 1 L33 17 L17 33 L1 17 Z' fill='none' stroke='%23ffffff' stroke-opacity='.07'/%3E%3C/svg%3E"),
+    var(--dg);
+}
+/* On a photo, the panel becomes a gradient so the image stays visible. */
+.overPhoto {
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: start;
+  background: linear-gradient(to top, rgba(12, 44, 32, 0.92) 0%, rgba(12, 44, 32, 0.2) 60%, rgba(12, 44, 32, 0) 100%);
+}
+
+.icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--dg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.icon svg {
+  width: 32px;
+  height: 32px;
+}
+.overPhoto .icon {
+  width: 56px;
+  height: 56px;
+}
+.overPhoto .icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.stat b {
+  display: block;
+  font-size: 46px;
+  line-height: 1;
+  color: var(--lime);
+}
+.stat span {
+  display: block;
+  margin-top: 8px;
+  font-size: 15px;
+  color: var(--on-dark-text);
+}
+
+.body {
+  padding: 40px 44px;
+}
+.body h3 {
+  font-size: 26px;
+}
+.body p {
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+.quote {
+  margin-top: 22px;
+  padding-inline-start: 20px;
+  border-inline-start: 3px solid var(--lime);
+}
+.quote figcaption {
+  font-size: 15px;
+  color: var(--muted);
+}
+.quote blockquote {
+  margin: 0;
+}
+.quote blockquote p {
+  margin-top: 4px;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--g);
+}
+
+@media (max-width: 1100px) {
+  .item,
+  .item:nth-child(even) {
+    grid-template-columns: 1fr;
+  }
+  .item:nth-child(even) .media {
+    order: 0;
+  }
+  .media {
+    min-height: 240px;
+  }
+}
+@media (max-width: 640px) {
+  .body {
+    padding: 28px 22px;
+  }
+  .body h3 {
+    font-size: 22px;
+  }
+  .stat b {
+    font-size: 38px;
+  }
+}

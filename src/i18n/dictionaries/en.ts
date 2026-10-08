@@ -16,6 +16,7 @@ const en = {
     details: "Details",
     menu: "Menu",
     mainNav: "Main",
+    breadcrumb: "Breadcrumb",
     switchLanguage: "العربية",
   },
   topBar: {

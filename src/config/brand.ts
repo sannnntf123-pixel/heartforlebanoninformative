@@ -11,15 +11,6 @@ export const brand = {
   donationAmounts: [10, 100, 200],
   /** Amount pre-selected in the donate band. */
   featuredAmount: 100,
-  /**
-   * In-page anchors until the dedicated About / Activities pages exist.
-   * Swap these for routes (e.g. "/about") once those pages are built.
-   */
-  sections: {
-    about: "#about",
-    activities: "#news",
-    contact: "#contact",
-  },
   /** Unconfirmed contact details; `null` renders a visible placeholder. */
   contact: {
     address: null as string | null,

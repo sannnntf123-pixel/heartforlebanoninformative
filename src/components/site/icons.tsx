@@ -113,3 +113,55 @@ export const HeartOutline = ({ className }: { className?: string }) => (
     />
   </svg>
 );
+
+/* ---------- about page icons ---------- */
+
+export const CapIcon = (props: IconProps) => (
+  <Outline {...props}>
+    <path d="M2 9l10-5 10 5-10 5z" />
+    <path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" />
+    <path d="M22 9v6" />
+  </Outline>
+);
+
+export const PeaceIcon = (props: IconProps) => (
+  <Outline {...props}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 3v18M12 12l-6.4 6.4M12 12l6.4 6.4" />
+  </Outline>
+);
+
+export const ShieldIcon = (props: IconProps) => (
+  <Outline {...props}>
+    <path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z" />
+    <path d="M12 8.5v7M8.5 12h7" />
+  </Outline>
+);
+
+export const WomanIcon = (props: IconProps) => (
+  <Outline {...props}>
+    <circle cx="12" cy="8" r="5" />
+    <path d="M12 13v8M8.5 17.5h7" />
+  </Outline>
+);
+
+export const RibbonIcon = (props: IconProps) => (
+  <Outline {...props}>
+    <path d="M12 3c-2.2 0-3.5 1.6-3.5 3.6 0 2.4 1.6 4.6 3.5 7.4 1.9-2.8 3.5-5 3.5-7.4C15.5 4.6 14.2 3 12 3z" />
+    <path d="M10 11.5L6 21l3-1.5 1.5 2.5M14 11.5l4 9.5-3-1.5-1.5 2.5" />
+  </Outline>
+);
+
+export const HeartPulseIcon = (props: IconProps) => (
+  <Outline {...props}>
+    <path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z" />
+    <path d="M3 12h4l2-3 3 6 2-3h7" />
+  </Outline>
+);
+
+export const MegaphoneIcon = (props: IconProps) => (
+  <Outline {...props}>
+    <path d="M3 10v4l11 5V5z" />
+    <path d="M17 9a4 4 0 010 6M6 15l1 5h3l-1-4" />
+  </Outline>
+);

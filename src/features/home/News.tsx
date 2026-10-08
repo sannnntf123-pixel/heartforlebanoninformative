@@ -1,10 +1,11 @@
 import { SectionHeading, ValueOrPlaceholder } from "@/components/site/Typography";
-import { brand } from "@/config/brand";
+import { routes } from "@/config/routes";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { formatDate } from "@/lib/format";
 import { staggerStyle } from "@/lib/i18n-format";
 import Image from "next/image";
+import Link from "next/link";
 import { newsItems } from "./content";
 import styles from "./News.module.css";
 
@@ -36,9 +37,9 @@ const News = ({ locale, t }: { locale: Locale; t: Dictionary }) => {
                 <div className={styles.text}>
                   <span className={styles.tag}>{copy.tag}</span>
                   <h3>{copy.title}</h3>
-                  <a className={`more ${styles.more}`} href={brand.sections.activities}>
+                  <Link className={`more ${styles.more}`} href={routes(locale).activities}>
                     {t.common.readMore}
-                  </a>
+                  </Link>
                 </div>
               </article>
             );

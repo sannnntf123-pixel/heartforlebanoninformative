@@ -1,10 +1,11 @@
 import { SectionHeading, ValueOrPlaceholder } from "@/components/site/Typography";
-import { brand } from "@/config/brand";
+import { routes } from "@/config/routes";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { formatDate } from "@/lib/format";
 import { staggerStyle } from "@/lib/i18n-format";
 import Image from "next/image";
+import Link from "next/link";
 import { upcomingEvents } from "./content";
 import styles from "./Events.module.css";
 
@@ -43,9 +44,9 @@ const Events = ({ locale, t }: { locale: Locale; t: Dictionary }) => {
                 <p>
                   <ValueOrPlaceholder value={event.description} label={e.descriptionPlaceholder} />
                 </p>
-                <a className="more" href={brand.sections.activities}>
+                <Link className="more" href={routes(locale).activities}>
                   {t.common.details}
-                </a>
+                </Link>
               </div>
             </article>
           ))}

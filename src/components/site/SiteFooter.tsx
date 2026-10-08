@@ -1,4 +1,5 @@
 import { brand } from "@/config/brand";
+import { routes } from "@/config/routes";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { formatInteger, interpolate } from "@/lib/i18n-format";
@@ -24,7 +25,7 @@ const InfoItem = ({ icon, title, children }: { icon: ReactNode; title: string; c
 );
 
 const SiteFooter = ({ locale, t }: SiteFooterProps) => {
-  const home = `/${locale}`;
+  const r = routes(locale);
   const f = t.footer;
   const year = formatInteger(new Date().getFullYear(), locale);
 
@@ -33,7 +34,7 @@ const SiteFooter = ({ locale, t }: SiteFooterProps) => {
       <div className="wrap">
         <div className={styles.main}>
           <div>
-            <Link className={styles.logo} href={home}>
+            <Link className={styles.logo} href={r.home}>
               <Image src="/images/logo-white.png" alt={f.logoAlt} width={176} height={66} />
             </Link>
             <p>{f.about}</p>
@@ -51,13 +52,13 @@ const SiteFooter = ({ locale, t }: SiteFooterProps) => {
             <h4>{f.links}</h4>
             <ul>
               <li>
-                <Link href={`${home}${brand.sections.about}`}>{t.nav.about}</Link>
+                <Link href={r.about}>{t.nav.about}</Link>
               </li>
               <li>
-                <Link href={`${home}${brand.sections.activities}`}>{t.nav.activities}</Link>
+                <Link href={r.activities}>{t.nav.activities}</Link>
               </li>
               <li>
-                <Link href={`${home}${brand.sections.contact}`}>{t.nav.contact}</Link>
+                <Link href={r.contact}>{t.nav.contact}</Link>
               </li>
               <li>
                 <a href={brand.links.donate} {...external}>
