@@ -6,7 +6,7 @@ import { getDictionary } from "@/i18n/get-dictionary";
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { arabicFont, latinFont } from "./fonts";
+import { thmanyahSans, latinFont } from "./fonts";
 
 type LayoutProps = {
   children: ReactNode;
@@ -60,7 +60,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     <html
       lang={locale}
       dir={localeDirection(locale)}
-      className={`${latinFont.variable} ${arabicFont.variable}`}
+      className={`${latinFont.variable} ${thmanyahSans.variable}`}
       // The inline script adds the `js` class before React hydrates.
       suppressHydrationWarning
     >

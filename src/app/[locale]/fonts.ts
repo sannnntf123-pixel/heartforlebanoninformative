@@ -19,7 +19,7 @@ export const latinFont = IBM_Plex_Sans({
  * ./fonts/thmanyah/LICENSE.pdf). Only the weights the design uses are bundled;
  * CSS weight 600 resolves to Bold.
  */
-export const arabicFont = localFont({
+export const thmanyahSans = localFont({
   src: [
     { path: "./fonts/thmanyah/thmanyahsans-Regular.woff2", weight: "400", style: "normal" },
     { path: "./fonts/thmanyah/thmanyahsans-Medium.woff2", weight: "500", style: "normal" },

@@ -1,6 +1,6 @@
 import "@/styles/site.css";
 
-import { arabicFont, latinFont } from "./[locale]/fonts";
+import { thmanyahSans, latinFont } from "./[locale]/fonts";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 /** Rendered for any URL that matches no route (both route groups). */
 export default function GlobalNotFound() {
   return (
-    <html lang="en" dir="ltr" className={`${latinFont.variable} ${arabicFont.variable}`}>
+    <html lang="en" dir="ltr" className={`${latinFont.variable} ${thmanyahSans.variable}`}>
       <body>
         <main className="sec">
           <div className="wrap st">
