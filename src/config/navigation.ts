@@ -6,7 +6,7 @@ export type NavItem = {
 
 /** Alternative home page layouts shipped with the theme. */
 export const homeDemos = [
-  { id: 1, label: "Home 01", href: "/", thumbnail: "/assets/img/header/home-1.jpg" },
+  { id: 1, label: "Home 01", href: "/index-1", thumbnail: "/assets/img/header/home-1.jpg" },
   { id: 2, label: "Home 02", href: "/index-2", thumbnail: "/assets/img/header/home-2.jpg" },
   { id: 3, label: "Home 03", href: "/index-3", thumbnail: "/assets/img/header/home-3.jpg" },
   { id: 4, label: "Home 04", href: "/index-4", thumbnail: "/assets/img/header/home-4.jpg" },

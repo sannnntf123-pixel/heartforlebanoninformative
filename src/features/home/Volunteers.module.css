@@ -1,0 +1,78 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+}
+.card {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.card > img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease);
+}
+.card:hover > img {
+  transform: scale(1.06);
+}
+.caption {
+  position: absolute;
+  inset-inline: 16px;
+  bottom: 16px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+  transform: translateY(12px);
+  opacity: 0.96;
+  transition: transform 0.4s var(--ease);
+}
+.card:hover .caption {
+  transform: none;
+}
+.caption b {
+  display: block;
+  font-size: 17px;
+}
+.caption small {
+  color: var(--g);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.join {
+  background: var(--dg);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  aspect-ratio: 3 / 4;
+}
+.join h3 {
+  font-size: 28px;
+  margin-top: 12px;
+}
+.join p {
+  color: var(--on-dark-text);
+  margin-top: 10px;
+  font-size: 16px;
+}
+.join :global(.btn) {
+  margin-top: 22px;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

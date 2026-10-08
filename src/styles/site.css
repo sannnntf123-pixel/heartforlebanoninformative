@@ -1,0 +1,331 @@
+/* ==========================================================================
+   Heart of Lebanon — design tokens, base styles and shared primitives.
+   Loaded only by the public site root layout (src/app/[locale]/layout.tsx).
+   Section-specific styles live in CSS modules next to each component.
+   All spacing uses logical properties so the same CSS serves LTR and RTL.
+   ========================================================================== */
+
+:root {
+  --dg: #123f2e;
+  --dg2: #0c2c20;
+  --g: #0b6b3a;
+  --g-h: #085a30;
+  --lime: #7cc24b;
+  --ink: #141a17;
+  --muted: #4e5a54;
+  --alt: #f4f6f5;
+  --line: #e2e6e3;
+  --on-dark-text: #dce8e1;
+
+  --r: 10px;
+  --pill: 999px;
+  --shadow: 0 10px 30px rgba(18, 63, 46, 0.08);
+  --shadow-h: 0 18px 40px rgba(18, 63, 46, 0.14);
+  --ease: cubic-bezier(0.42, 0, 0.32, 1);
+  --max: 1200px;
+}
+
+html[lang="en"] {
+  --f: var(--font-latin), system-ui, sans-serif;
+}
+html[lang="ar"] {
+  --f: var(--font-arabic), system-ui, sans-serif;
+}
+/* Arabic snippets inside English pages (e.g. the language switcher). */
+[lang="ar"]:not(html) {
+  font-family: var(--font-arabic), system-ui, sans-serif;
+}
+
+/* ---------- base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font: 400 17px/1.7 var(--f);
+  color: var(--ink);
+  background: #fff;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color 0.24s var(--ease),
+    background-color 0.24s var(--ease),
+    border-color 0.24s var(--ease);
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--f);
+  font-weight: 700;
+  line-height: 1.25;
+}
+p,
+figure {
+  margin: 0;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+[id] {
+  scroll-margin-top: 24px;
+}
+
+/* ---------- layout ---------- */
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+.sec {
+  padding-block: 110px;
+}
+.sec--alt {
+  background: var(--alt);
+}
+
+/* ---------- text primitives ---------- */
+.hl {
+  color: var(--g);
+}
+.on-dark .hl {
+  color: var(--lime);
+}
+.dia {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: var(--lime);
+  transform: rotate(45deg);
+  flex: none;
+}
+.kick {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--g);
+}
+.kick .dia + .dia {
+  margin-inline-start: -4px;
+}
+.on-dark .kick {
+  color: var(--lime);
+}
+
+/* Visible placeholder for content the charity has not confirmed yet. */
+.ph-t {
+  background: rgba(18, 63, 46, 0.07);
+  color: var(--muted);
+  padding: 0 0.25em;
+  border-radius: 3px;
+}
+.on-dark .ph-t {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--on-dark-text);
+}
+
+/* Centered section heading */
+.st {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+.st h2 {
+  font-size: 42px;
+  margin-top: 10px;
+}
+html[lang="ar"] .st h2 {
+  font-size: 44px;
+}
+.st p {
+  margin-top: 14px;
+  color: var(--muted);
+}
+.on-dark .st {
+  color: #fff;
+}
+
+/* ---------- buttons & links ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 30px;
+  border-radius: var(--pill);
+  font: 600 16px/1 var(--f);
+  border: 1.5px solid var(--g);
+  background: var(--g);
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s var(--ease);
+}
+.btn:hover {
+  background: var(--g-h);
+  border-color: var(--g-h);
+  transform: translateY(-2px);
+}
+.btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+  transform: none;
+}
+.btn--lime {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--dg);
+}
+.btn--lime:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--dg);
+}
+.btn--ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.btn--ghost:hover {
+  background: #fff;
+  color: var(--dg);
+  border-color: #fff;
+}
+.btn--out {
+  background: transparent;
+  color: var(--g);
+}
+.btn--out:hover {
+  background: var(--g);
+  color: #fff;
+}
+.btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--g);
+}
+.more::after {
+  content: "→";
+  transition: transform 0.3s;
+}
+html[dir="rtl"] .more::after {
+  content: "←";
+}
+.more:hover::after {
+  transform: translateX(4px);
+}
+html[dir="rtl"] .more:hover::after {
+  transform: translateX(-4px);
+}
+
+/* Image placeholder: faded logo on a diamond pattern. */
+.phimg {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background: var(--alt)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M12 1 L23 12 L12 23 L1 12 Z' fill='none' stroke='%23123F2E' stroke-opacity='.08'/%3E%3C/svg%3E");
+  color: var(--muted);
+  font-size: 15px;
+  text-align: center;
+  padding: 10px;
+}
+.phimg img {
+  width: 110px;
+  height: auto;
+  opacity: 0.35;
+}
+
+/* ---------- scroll reveal (enabled by the `js` class set before paint) ---------- */
+.js .rv {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+  transition-delay: calc(var(--i, 0) * 110ms);
+}
+.js .rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Outline heart that draws itself (hero + donate band). */
+.heart-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 3.2s var(--ease) 0.6s forwards;
+}
+html:not(.js) .heart-draw {
+  stroke-dashoffset: 0;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 640px) {
+  body {
+    font-size: 16.5px;
+  }
+  .sec {
+    padding-block: 72px;
+  }
+  .st h2,
+  html[lang="ar"] .st h2 {
+    font-size: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .js .rv {
+    opacity: 1;
+    transform: none;
+  }
+  .heart-draw {
+    stroke-dashoffset: 0;
+  }
+}

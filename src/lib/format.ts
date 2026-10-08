@@ -23,10 +23,15 @@ const dateFormats = {
  * Formats an ISO date (YYYY-MM-DD). Parsed and formatted in UTC so the server
  * and browser always render the same day (avoids hydration mismatches).
  */
-export const formatDate = (isoDate: string, format: keyof typeof dateFormats = "short"): string =>
-  new Intl.DateTimeFormat("en-GB", { ...dateFormats[format], timeZone: "UTC" }).format(
-    new Date(`${isoDate}T00:00:00Z`)
-  );
+export const formatDate = (
+  isoDate: string,
+  format: keyof typeof dateFormats = "short",
+  locale: "en" | "ar" = "en"
+): string =>
+  new Intl.DateTimeFormat(locale === "ar" ? "ar-LB-u-nu-arab" : "en-GB", {
+    ...dateFormats[format],
+    timeZone: "UTC",
+  }).format(new Date(`${isoDate}T00:00:00Z`));
 
 /** Percentage of `goal` reached, clamped to 0-100 and rounded. */
 export const progressPercent = (raised: number, goal: number): number =>

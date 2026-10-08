@@ -1,0 +1,38 @@
+.top {
+  background: var(--dg2);
+  color: #cfe1d7;
+  font-size: 14px;
+}
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  gap: 20px;
+}
+.top a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
+.top a:hover {
+  color: #fff;
+}
+.links {
+  display: flex;
+  gap: 22px;
+}
+.top .lang {
+  color: var(--lime);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .tagline {
+    display: none;
+  }
+  .inner {
+    justify-content: center;
+  }
+}

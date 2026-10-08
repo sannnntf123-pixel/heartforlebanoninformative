@@ -1,0 +1,121 @@
+import { brand } from "@/config/brand";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/get-dictionary";
+import { formatInteger, interpolate } from "@/lib/i18n-format";
+import Image from "next/image";
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { ClockIcon, HeartIcon, InstagramIcon, PhoneIcon, PinIcon } from "./icons";
+import styles from "./SiteFooter.module.css";
+import { ValueOrPlaceholder } from "./Typography";
+
+type SiteFooterProps = { locale: Locale; t: Dictionary };
+
+const external = { target: "_blank", rel: "noopener noreferrer" } as const;
+
+const InfoItem = ({ icon, title, children }: { icon: ReactNode; title: string; children: ReactNode }) => (
+  <div>
+    <span className={styles.infoIcon}>{icon}</span>
+    <span>
+      <b>{title}</b>
+      {children}
+    </span>
+  </div>
+);
+
+const SiteFooter = ({ locale, t }: SiteFooterProps) => {
+  const home = `/${locale}`;
+  const f = t.footer;
+  const year = formatInteger(new Date().getFullYear(), locale);
+
+  return (
+    <footer className={`${styles.footer} on-dark`}>
+      <div className="wrap">
+        <div className={styles.main}>
+          <div>
+            <Link className={styles.logo} href={home}>
+              <Image src="/images/logo-white.png" alt={f.logoAlt} width={176} height={66} />
+            </Link>
+            <p>{f.about}</p>
+            <div className={styles.social}>
+              <a href={brand.links.instagram} {...external} aria-label="Instagram">
+                <InstagramIcon />
+              </a>
+              <a href={brand.links.donate} {...external} aria-label="GoFundMe">
+                <HeartIcon />
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4>{f.links}</h4>
+            <ul>
+              <li>
+                <Link href={`${home}${brand.sections.about}`}>{t.nav.about}</Link>
+              </li>
+              <li>
+                <Link href={`${home}${brand.sections.activities}`}>{t.nav.activities}</Link>
+              </li>
+              <li>
+                <Link href={`${home}${brand.sections.contact}`}>{t.nav.contact}</Link>
+              </li>
+              <li>
+                <a href={brand.links.donate} {...external}>
+                  {t.common.donate}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>{f.programmes}</h4>
+            <ul>
+              {f.programmeItems.map((item) => (
+                <li key={item}>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4>{f.follow}</h4>
+            <ul>
+              <li>
+                <a href={brand.links.instagram} {...external}>
+                  <span dir="ltr">{brand.links.instagramHandle}</span>
+                </a>
+              </li>
+              <li>
+                <a href={brand.links.donate} {...external}>
+                  <span dir="ltr">{brand.links.donateLabel}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className={styles.info}>
+          <InfoItem icon={<PinIcon />} title={f.location}>
+            <ValueOrPlaceholder value={brand.contact.address} label={f.addressPlaceholder} />
+          </InfoItem>
+          <InfoItem icon={<ClockIcon />} title={f.hours}>
+            <ValueOrPlaceholder value={brand.contact.hours} label={f.hoursPlaceholder} />
+          </InfoItem>
+          <InfoItem icon={<PhoneIcon />} title={f.call}>
+            {brand.contact.phone ? (
+              <a href={`tel:${brand.contact.phone}`} dir="ltr">
+                {brand.contact.phone}
+              </a>
+            ) : (
+              <ValueOrPlaceholder value={null} label={f.phonePlaceholder} />
+            )}
+          </InfoItem>
+        </div>
+      </div>
+      <div className={styles.copy}>{interpolate(f.copyright, { year })}</div>
+    </footer>
+  );
+};
+
+export default SiteFooter;
