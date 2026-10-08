@@ -1,4 +1,5 @@
 "use client";
+import FilterTabs, { FilterOption } from "@/components/ui/FilterTabs";
 import Pagination from "@/components/ui/Pagination";
 import { allCauses, causeCategories, CauseCategory } from "@/data/causes";
 import { staggerDelay } from "@/lib/animation";
@@ -7,7 +8,7 @@ import { CauseBoxCard } from "./CauseCards";
 
 type Filter = "All" | CauseCategory;
 
-const filters: { value: Filter; label: string }[] = [
+const filters: FilterOption<Filter>[] = [
   { value: "All", label: "All Categories" },
   ...causeCategories.map((category) => ({ value: category, label: category })),
 ];
@@ -23,28 +24,12 @@ const CausesTabs = () => {
 
   return (
     <>
-      <div className="cuases-tab-header">
-        <ul className="nav mb-4" role="tablist">
-          {filters.map((filter, index) => (
-            <li
-              key={filter.value}
-              className="nav-item wow fadeInUp"
-              data-wow-delay={staggerDelay(index, { columns: filters.length })}
-              role="presentation"
-            >
-              <button
-                type="button"
-                role="tab"
-                aria-selected={active === filter.value}
-                className={`nav-link ${active === filter.value ? "active" : ""}`}
-                onClick={() => setActive(filter.value)}
-              >
-                {filter.label}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <FilterTabs
+        className="cuases-tab-header"
+        options={filters}
+        active={active}
+        onChange={setActive}
+      />
       <div className="tab-content" role="tabpanel">
         <div className="row">
           {visibleCauses.map((cause, index) => (
