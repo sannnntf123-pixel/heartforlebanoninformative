@@ -647,3 +647,80 @@ export const EventPage = () => {
     </section>
   );
 };
+
+export const Event4 = () => {
+  const events: {
+    category: string;
+    date: string;
+    title: string;
+    location: string;
+    image: string;
+  }[] = [
+    {
+      category: "Water Day",
+      date: "24th January 2024",
+      title: "2024 Water Full Day Main Conference",
+      location: "M12/A Miranda Hall Town Hall Street New York, United States",
+      image: "/assets/img/event/event-card-bg.jpg",
+    },
+    {
+      category: "Friendship Day",
+      date: "24th May 2024",
+      title: "How We Can Be A Good Friends",
+      location: "M12/A Miranda Hall Town Hall Street New York, United States",
+      image: "/assets/img/event/event-card-bg.jpg",
+    },
+    {
+      category: "Teachers Day",
+      date: "24th January 2024",
+      title: "Teachers Presentation Day of 2024",
+      location: "M12/A Miranda Hall Town Hall Street New York, United States",
+      image: "/assets/img/event/event-card-bg.jpg",
+    },
+  ];
+
+  return (
+    <section className="event-section fix section-padding fix section-bg">
+      <div className="container">
+        <div className="section-title text-center">
+          <span className="sub-title color-2 wow fadeInUp">
+            <i className="far fa-heart" />
+            Events
+          </span>
+          <h2 className="mt-char-animation">Upcoming Events</h2>
+        </div>
+        <div className="row">
+          {events.map((event, index) => {
+            const delay = (0.3 + index * 0.2).toFixed(1) + "s";
+            return (
+              <div
+                key={index}
+                className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp"
+                data-wow-delay={delay}
+              >
+                <div
+                  className="event-box-items bg-cover"
+                  style={{ backgroundImage: `url(${event.image})` }}
+                >
+                  <div className="cat-name">
+                    <Link href="/events">{event.category}</Link>
+                  </div>
+                  <span>{event.date}</span>
+                  <h3>
+                    <Link href="/event-details">{event.title}</Link>
+                  </h3>
+                  <p>
+                    <i className="fal fa-map-marker-alt" /> {event.location}
+                  </p>
+                  <Link href="/event-details" className="buy-ticket">
+                    <i className="fal fa-chair" /> Book Your Seat
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};

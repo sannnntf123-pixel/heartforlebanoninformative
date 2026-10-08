@@ -1,6 +1,7 @@
 import { About4 } from "@/components/About";
 import { Brand } from "@/components/Brand";
-import { Causes4, Causes5 } from "@/components/Causes";
+import { Causes4 } from "@/components/Causes";
+import { Event4 } from "@/components/Event";
 import { Cta5 } from "@/components/Cta";
 import { Donation1, Donation2 } from "@/components/Donation";
 import { Gallery2 } from "@/components/Gallery";
@@ -22,7 +23,7 @@ const Home4 = () => {
       <Causes4 />
       <Brand />
       <Gallery2 />
-      <Causes5 />
+      <Event4 />
       <Donation2 />
       <Volunter />
       <Testimonial3 />
