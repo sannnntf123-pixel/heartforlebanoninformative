@@ -16,9 +16,6 @@ type LayoutProps = {
   params: Promise<{ locale: string }>;
 };
 
-// Only /en and /ar exist; anything else is a 404.
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -52,6 +49,8 @@ const enableJsStyles = `document.documentElement.classList.add("js")`;
 
 export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
+  // Only /en and /ar exist. (Not `dynamicParams = false`: that would also apply to
+  // child segments and 404 every event published after the last deploy.)
   if (!isLocale(locale)) notFound();
   const t = await getDictionary(locale);
 
