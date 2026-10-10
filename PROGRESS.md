@@ -21,6 +21,14 @@ npm run typecheck        # tsc --noEmit
 - Found by tracing imports from the real site's entry points; old URLs now return 404.
 - Lint is now clean (the remaining `<img>` warnings were all in template code).
 
+## Done: fixed photo uploads on Vercel (2026-10-10)
+- Symptom: "There was a problem while uploading the file" in /admin; `/api/media` returned 500.
+- Cause: with a Blob token (Vercel) the storage plugin adds `prefix` + `_objectkey` columns to
+  `media`; locally (no token) it didn't, so the migrations lacked them and production crashed.
+- Fix: `alwaysInsertFields: true` (same schema everywhere) + migration
+  `20261010_153529_media_storage_prefix`; `clientUploads: true` (browser → Blob, no 4.5 MB limit).
+- Verified on a production-like database with the plugin on: "No schema changes detected".
+
 ## Done: QA test report (2026-10-10)
 Report doc: https://claude.ai/code/artifact/26eaea74-04ce-47a9-acd4-9f77afafeca4
 23 issues: 1 critical (dead GoFundMe link), 5 high (contact form delivers nothing, name/date

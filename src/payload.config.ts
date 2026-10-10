@@ -66,6 +66,11 @@ export default buildConfig({
       enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
       collections: { media: true },
       token: process.env.BLOB_READ_WRITE_TOKEN,
+      // Same database columns with or without a token, so the migrations made
+      // locally match production (otherwise every media query fails on Vercel).
+      alwaysInsertFields: true,
+      // The browser uploads straight to Blob, bypassing Vercel's 4.5 MB request limit.
+      clientUploads: true,
     }),
   ],
 
