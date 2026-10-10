@@ -1,12 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import type { HeroSlide } from "./content";
 import styles from "./Hero.module.css";
 
 const SLIDE_INTERVAL_MS = 6000;
 
 type HeroSlidesProps = {
-  images: string[];
+  images: HeroSlide[];
   labels: { group: string; slide: string };
 };
 
@@ -32,10 +33,11 @@ const HeroSlides = ({ images, labels }: HeroSlidesProps) => {
   return (
     <>
       <div className={styles.slides} aria-hidden="true">
-        {images.map((src, index) => (
+        {images.map(({ src, focus }, index) => (
           <Image
             key={src}
             src={src}
+            style={{ objectPosition: focus }}
             alt=""
             fill
             sizes="100vw"
@@ -45,7 +47,7 @@ const HeroSlides = ({ images, labels }: HeroSlidesProps) => {
         ))}
       </div>
       <div className={styles.dots} role="group" aria-label={labels.group}>
-        {images.map((src, index) => (
+        {images.map(({ src }, index) => (
           <button
             key={src}
             type="button"

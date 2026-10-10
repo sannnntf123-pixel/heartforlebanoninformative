@@ -23,7 +23,18 @@ export const photos = {
   },
 } as const;
 
-export const heroSlides = [photos.medicine.wide, photos.hygiene.wide, photos.food.wide];
+export type HeroSlide = {
+  src: string;
+  /** CSS object-position: keeps faces in frame when the photo is cropped. */
+  focus: string;
+};
+
+/** Hero background photos, shown in this order. */
+export const heroSlides: HeroSlide[] = [
+  { src: "/images/hero-panel.jpg", focus: "78% 30%" },
+  { src: "/images/hero-press-conference.jpg", focus: "60% 35%" },
+  { src: "/images/hero-children-visit.jpg", focus: "center 30%" },
+];
 
 export const aboutImages = {
   primary: photos.food.square,
