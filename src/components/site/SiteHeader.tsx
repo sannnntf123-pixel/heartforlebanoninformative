@@ -33,6 +33,7 @@ const SiteHeader = ({ locale, t }: SiteHeaderProps) => {
     { href: r.home, label: t.nav.home },
     { href: r.about, label: t.nav.about },
     { href: r.activities, label: t.nav.activities },
+    { href: r.events, label: t.nav.events },
     { href: r.contact, label: t.nav.contact },
   ];
   // Only page links (not #section links) can be the current page.

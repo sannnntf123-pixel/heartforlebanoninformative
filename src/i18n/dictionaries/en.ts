@@ -26,6 +26,7 @@ const en = {
     home: "Home",
     about: "About",
     activities: "Activities",
+    events: "Events",
     contact: "Contact",
   },
   hero: {
@@ -197,6 +198,34 @@ const en = {
     call: "Call us",
     phonePlaceholder: "Phone number",
     copyright: "© {year} Heart of Lebanon Charity. All rights reserved.",
+  },
+  eventsPage: {
+    meta: {
+      title: "Events",
+      description: "Upcoming Heart of Lebanon events, distributions and community activities across Lebanon.",
+    },
+    kicker: "Events",
+    title: "Our upcoming events",
+    intro: "Distributions, health days and community activities across Lebanon. Dates and places are announced here as soon as they are confirmed.",
+    allEvents: "View all events",
+    cta: {
+      kicker: "Take part",
+      title: { before: "Want to ", highlight: "join us", after: "?" },
+      text: "Volunteer at our next event or suggest an activity in your community.",
+      button: "Contact us",
+    },
+  },
+  contactPage: {
+    meta: {
+      title: "Contact us",
+      description: "Get in touch with Heart of Lebanon to donate, volunteer, request help or propose a partnership.",
+    },
+    kicker: "Contact us",
+    title: "We are here to listen",
+    intro: "Donating, volunteering, requesting help or proposing a partnership — send us a message and our team will get back to you.",
+    channelsTitle: "Ways to reach us",
+    formKicker: "Message",
+    formTitle: { before: "Send us ", highlight: "a message", after: "" },
   },
   notFound: {
     title: "Page not found",

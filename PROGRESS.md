@@ -12,6 +12,15 @@ npm run lint             # ESLint (next/core-web-vitals + typescript)
 npm run typecheck        # tsc --noEmit
 ```
 
+## Done: Events and Contact pages (`/en/events`, `/en/contact` + Arabic)
+
+- Events page: page banner, all upcoming events (shared `src/features/events/EventGrid.tsx`),
+  "Take part" call to action → contact page. Landing page shows a 4-event preview + "View all events".
+- Contact page: page banner, contact-channel cards (`src/features/contact/ContactChannels.tsx`),
+  map + form (same `Contact` component with its own heading). Landing page keeps its contact section.
+- Header/footer: added "Events"; "Contact" now links to the contact page (`src/config/routes.ts`).
+- Copy in `eventsPage` / `contactPage` in `src/i18n/dictionaries/{en,ar}.ts`.
+
 ## Done: About us page (`/en/about`, `/ar/about`)
 
 Content supplied by the user (English only, org name "My Heart for Lebanon / قلبي للبنان").

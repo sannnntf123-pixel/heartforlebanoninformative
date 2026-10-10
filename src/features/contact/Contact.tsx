@@ -1,10 +1,19 @@
-import { HighlightedText, Kicker, Placeholder } from "@/components/site/Typography";
+import { HighlightedText, Kicker, Placeholder, type HeadingCopy } from "@/components/site/Typography";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import styles from "./Contact.module.css";
 import ContactForm from "./ContactForm";
 
-const Contact = ({ t }: { t: Dictionary }) => {
+type ContactProps = {
+  t: Dictionary;
+  /** Override the panel heading (the contact page has its own page title). */
+  heading?: { kicker: string; title: HeadingCopy };
+};
+
+/** Map + contact form, used on the landing page and the contact page. */
+const Contact = ({ t, heading }: ContactProps) => {
   const c = t.contact;
+  const kicker = heading?.kicker ?? c.kicker;
+  const title = heading?.title ?? c.title;
   return (
     <section className={styles.contact} id="contact">
       <div className={styles.map} role="img" aria-label={c.mapLabel}>
@@ -14,9 +23,9 @@ const Contact = ({ t }: { t: Dictionary }) => {
         <Placeholder label={c.mapPlaceholder} />
       </div>
       <div className={`${styles.panel} rv`}>
-        <Kicker>{c.kicker}</Kicker>
+        <Kicker>{kicker}</Kicker>
         <h2>
-          <HighlightedText copy={c.title} />
+          <HighlightedText copy={title} />
         </h2>
         <ContactForm
           t={{

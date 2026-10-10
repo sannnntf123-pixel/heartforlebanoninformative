@@ -5,7 +5,8 @@ export const routes = (locale: Locale) => ({
   home: `/${locale}`,
   about: `/${locale}/about`,
   activities: `/${locale}/about#activities`,
-  contact: `/${locale}#contact`,
+  events: `/${locale}/events`,
+  contact: `/${locale}/contact`,
 });
 
 export type Routes = ReturnType<typeof routes>;

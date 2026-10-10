@@ -1,0 +1,21 @@
+.cta {
+  max-width: 640px;
+  text-align: center;
+}
+.cta h2 {
+  font-size: 40px;
+  margin-top: 10px;
+}
+.cta p {
+  margin-top: 14px;
+  color: var(--muted);
+}
+.cta :global(.btn) {
+  margin-top: 28px;
+}
+
+@media (max-width: 640px) {
+  .cta h2 {
+    font-size: 30px;
+  }
+}
