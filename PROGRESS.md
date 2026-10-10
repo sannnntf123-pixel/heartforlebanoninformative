@@ -21,8 +21,11 @@ npm run typecheck        # tsc --noEmit
 - Found by tracing imports from the real site's entry points; old URLs now return 404.
 - Lint is now clean (the remaining `<img>` warnings were all in template code).
 
-## In progress: QA test report
+## Done: QA test report (2026-10-10)
 Report doc: https://claude.ai/code/artifact/26eaea74-04ce-47a9-acd4-9f77afafeca4
+23 issues: 1 critical (dead GoFundMe link), 5 high (contact form delivers nothing, name/date
+mismatch, first-visitor-admin on fresh deploy, uploads > 4.5 MB fail on Vercel, Arabic-digit
+phone numbers rejected), 10 medium, 7 low. Fix order is at the end of the report.
 
 ## Done: Events CMS with Payload
 
