@@ -4,3 +4,7 @@ out/
 .DS_Store
 *.tsbuildinfo
 .env*.local
+
+# Payload / local secrets
+.env
+/media

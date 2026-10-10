@@ -61,26 +61,6 @@ export const campaigns: Campaign[] = [
   { id: "programme", image: null, raised: null, goal: null },
 ];
 
-export type UpcomingEvent = {
-  id: string;
-  image: string | null;
-  /** ISO date (YYYY-MM-DD). */
-  date: string | null;
-  place: string | null;
-  title: string | null;
-  description: string | null;
-};
-
-/** Four slots until real events are announced. */
-export const upcomingEvents: UpcomingEvent[] = [1, 2, 3, 4].map((n) => ({
-  id: `event-${n}`,
-  image: null,
-  date: null,
-  place: null,
-  title: null,
-  description: null,
-}));
-
 export type Testimonial = {
   id: string;
   quote: string | null;

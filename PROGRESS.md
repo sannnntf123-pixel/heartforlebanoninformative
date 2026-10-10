@@ -12,7 +12,7 @@ npm run lint             # ESLint (next/core-web-vitals + typescript)
 npm run typecheck        # tsc --noEmit
 ```
 
-## Current task: Events CMS with Payload (in progress)
+## Done: Events CMS with Payload
 
 Decisions (agreed with the user):
 - Payload CMS 3 installed inside this Next.js project; admin at `/admin` (route group `(payload)`).
@@ -26,15 +26,20 @@ Decisions (agreed with the user):
   so Next.js is upgraded to 16.4 / React 19.3 first, as its own commit.
 
 ### Checklist
-- [ ] Upgrade Next 15.5 → 16.4, React 19.3; fix breaking changes; verify build
-- [ ] Install Payload + Postgres adapter + Lexical + Vercel Blob storage
-- [ ] Collections: Users (roles), Media, Events (localized), Registrations
-- [ ] Admin route group + config, generated types, migrations
-- [ ] Events list (upcoming + archive), detail page, landing preview from CMS
-- [ ] Sign-up form (Server Action) + capacity / closed states
-- [ ] Revalidation on publish (afterChange hooks)
-- [ ] Seed script, `.env.example`, README + editor guide (EN/AR)
-- [ ] Verify locally (admin + site, EN/AR), lint, typecheck, build; commit + push
+- [x] Upgrade Next 15.5 → 16.4, React 19.3 (`middleware.ts` → `proxy.ts`, ESLint flat config)
+- [x] Payload + Postgres adapter + Lexical + Vercel Blob storage; project is now ESM (`"type": "module"`)
+- [x] Collections: Users (admin/editor; first user = admin), Media, Events (EN/AR, drafts), Registrations
+- [x] Admin at `/admin` (`src/app/(payload)`), generated types, initial migration (tested on empty DB)
+- [x] Events page: upcoming + past archive; detail page `/[locale]/events/[slug]` with JSON-LD; home preview
+- [x] Sign-up: Server Action, validation, honeypot, capacity / deadline / past checks; stored in Registrations
+- [x] Publishing or signing up expires the cache immediately (`revalidateTag(tag, { expire: 0 })`)
+- [x] Seed script (local only), `.env.example`, `README.md`, `docs/editing-events.md` (EN/AR)
+- [x] Verified locally: admin (EN/AR fields, sign-ups list), site EN/AR, sign-up flow, access rules, build
+
+### Next steps for the user
+- Create the Vercel project + Neon + Blob (see README "Deploying to Vercel").
+- Delete the `[Sample]` events after the first real ones exist (they only exist locally anyway).
+- Optional later: email notification to the charity on each sign-up (needs an email provider, e.g. Resend).
 
 ## Done: Events and Contact pages (`/en/events`, `/en/contact` + Arabic)
 

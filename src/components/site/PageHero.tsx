@@ -9,7 +9,14 @@ type PageHeroProps = {
   title: ReactNode;
   /** Short paragraph under the title. */
   intro?: string;
-  breadcrumb: { label: string; homeLabel: string; homeHref: string; current: string };
+  breadcrumb: {
+    label: string;
+    homeLabel: string;
+    homeHref: string;
+    /** Optional middle level, e.g. "Events" on an event page. */
+    parent?: { label: string; href: string };
+    current: string;
+  };
   children?: ReactNode;
 };
 
@@ -23,6 +30,11 @@ const PageHero = ({ kicker, title, intro, breadcrumb, children }: PageHeroProps)
           <li>
             <Link href={breadcrumb.homeHref}>{breadcrumb.homeLabel}</Link>
           </li>
+          {breadcrumb.parent && (
+            <li>
+              <Link href={breadcrumb.parent.href}>{breadcrumb.parent.label}</Link>
+            </li>
+          )}
           <li aria-current="page">{breadcrumb.current}</li>
         </ol>
       </nav>

@@ -6,6 +6,7 @@ export const routes = (locale: Locale) => ({
   about: `/${locale}/about`,
   activities: `/${locale}/about#activities`,
   events: `/${locale}/events`,
+  event: (slug: string) => `/${locale}/events/${slug}`,
   contact: `/${locale}/contact`,
 });
 

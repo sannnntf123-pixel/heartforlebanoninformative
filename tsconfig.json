@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2022",
     "lib": [
       "dom",
       "dom.iterable",
@@ -31,6 +31,9 @@
       ],
       "@css/*": [
         "./public/assets/css/*"
+      ],
+      "@payload-config": [
+        "./src/payload.config.ts"
       ]
     }
   },

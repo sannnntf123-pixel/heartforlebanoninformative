@@ -16,6 +16,10 @@
 .card:hover {
   transform: translateY(-6px);
 }
+.media {
+  position: relative;
+  align-self: start;
+}
 .photo {
   width: 100%;
   height: auto;
@@ -23,24 +27,81 @@
   object-fit: cover;
   border-radius: 8px;
 }
+.badge {
+  position: absolute;
+  top: 10px;
+  inset-inline-start: 10px;
+  min-width: 54px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: var(--lime);
+  color: var(--dg);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.badge b {
+  display: block;
+  font-size: 22px;
+}
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 16px;
+  gap: 6px 10px;
   font-size: 14px;
+}
+.category {
+  font-weight: 600;
+  color: var(--g);
+}
+.pastBadge {
+  padding: 0 10px;
+  border-radius: var(--pill);
+  background: var(--alt);
   color: var(--muted);
 }
 .card h3 {
   font-size: 20px;
-  margin-top: 8px;
+  margin-top: 6px;
+}
+.card h3 a:hover {
+  color: var(--g);
 }
 .card p {
   margin-top: 8px;
   color: var(--muted);
   font-size: 15.5px;
 }
+.card .when {
+  font-size: 14px;
+  color: var(--ink);
+}
 .card :global(.more) {
   margin-top: 6px;
+}
+
+/* Archive: same card, quieter. */
+.past .photo {
+  filter: grayscale(0.6);
+}
+.past .badge {
+  background: var(--line);
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: 44px;
+}
+.empty {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 40px 28px;
+  border-radius: var(--r);
+  background: var(--alt);
+  text-align: center;
+  color: var(--muted);
 }
 
 @media (max-width: 1100px) {
@@ -54,10 +115,11 @@
     gap: 16px;
     padding: 14px;
   }
-}
-
-.more {
-  display: flex;
-  justify-content: center;
-  margin-top: 44px;
+  .badge {
+    min-width: 44px;
+    font-size: 11px;
+  }
+  .badge b {
+    font-size: 17px;
+  }
 }

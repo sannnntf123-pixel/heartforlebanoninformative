@@ -1,0 +1,163 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 50px;
+  align-items: start;
+}
+.main {
+  min-width: 0;
+}
+.banner {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+}
+.body {
+  margin-top: 36px;
+}
+.body h2 {
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+/* Rich text from the CMS */
+.body :global(p) {
+  margin-top: 14px;
+  color: var(--muted);
+}
+.body :global(h3),
+.body :global(h4) {
+  margin-top: 26px;
+}
+.body :global(ul),
+.body :global(ol) {
+  margin-top: 14px;
+  padding-inline-start: 22px;
+  color: var(--muted);
+}
+.body :global(a) {
+  color: var(--g);
+  text-decoration: underline;
+}
+.main :global(.more) {
+  margin-top: 30px;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 24px;
+}
+.card {
+  margin: 0;
+  padding: 26px;
+  border-radius: var(--r);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.card h2 {
+  font-size: 22px;
+}
+dl.card {
+  display: grid;
+  gap: 16px;
+}
+dl.card dt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+dl.card dt svg {
+  width: 18px;
+  height: 18px;
+  color: var(--g);
+}
+dl.card dd {
+  margin: 4px 0 0;
+  font-weight: 600;
+}
+
+.places {
+  margin-top: 8px;
+  font-weight: 600;
+  color: var(--g);
+}
+.notice {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: var(--alt);
+  color: var(--muted);
+}
+
+.form {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+.form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid #9aa59f;
+  border-radius: 8px;
+  background: var(--alt);
+  color: var(--ink);
+  font: 400 16px var(--f);
+}
+.form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  outline: 2px solid var(--g);
+  background: #fff;
+}
+.form input[aria-invalid="true"] {
+  border-color: #b3261e;
+}
+.form :global(.btn) {
+  width: 100%;
+}
+.honeypot {
+  position: absolute;
+  inset-inline-start: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.error {
+  color: #b3261e;
+  font-weight: 600;
+}
+.success {
+  margin-top: 14px;
+  padding: 16px;
+  border-radius: 8px;
+  background: rgba(11, 107, 58, 0.08);
+  color: var(--g);
+  font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .aside {
+    position: static;
+  }
+}
