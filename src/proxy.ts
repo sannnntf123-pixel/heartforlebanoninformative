@@ -17,7 +17,7 @@ function preferredLocale(request: NextRequest): Locale {
 }
 
 /** `/` has no page of its own: send visitors to their language's home page. */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const url = request.nextUrl.clone();
   url.pathname = `/${preferredLocale(request)}`;
   return NextResponse.redirect(url);

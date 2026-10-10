@@ -12,6 +12,30 @@ npm run lint             # ESLint (next/core-web-vitals + typescript)
 npm run typecheck        # tsc --noEmit
 ```
 
+## Current task: Events CMS with Payload (in progress)
+
+Decisions (agreed with the user):
+- Payload CMS 3 installed inside this Next.js project; admin at `/admin` (route group `(payload)`).
+- Database: Postgres (local Homebrew PostgreSQL 16 for dev; Neon via Vercel Marketplace in prod).
+- Media: Vercel Blob in prod (local disk in dev).
+- Content in English + Arabic (Payload localization, Arabic RTL). Admin UI in EN or AR per editor.
+- Events page: upcoming + past events archive; detail page `/[locale]/events/[slug]`.
+- Basic sign-up: visitors register on the event page (name, phone, email optional, attendees);
+  registrations are stored in a `registrations` collection visible to editors.
+- Requirement found: Payload 3.90 needs Next >=16.3.3 (15.5 unsupported) and React >=19.2.1,
+  so Next.js is upgraded to 16.4 / React 19.3 first, as its own commit.
+
+### Checklist
+- [ ] Upgrade Next 15.5 → 16.4, React 19.3; fix breaking changes; verify build
+- [ ] Install Payload + Postgres adapter + Lexical + Vercel Blob storage
+- [ ] Collections: Users (roles), Media, Events (localized), Registrations
+- [ ] Admin route group + config, generated types, migrations
+- [ ] Events list (upcoming + archive), detail page, landing preview from CMS
+- [ ] Sign-up form (Server Action) + capacity / closed states
+- [ ] Revalidation on publish (afterChange hooks)
+- [ ] Seed script, `.env.example`, README + editor guide (EN/AR)
+- [ ] Verify locally (admin + site, EN/AR), lint, typecheck, build; commit + push
+
 ## Done: Events and Contact pages (`/en/events`, `/en/contact` + Arabic)
 
 - Events page: page banner, all upcoming events (shared `src/features/events/EventGrid.tsx`),
