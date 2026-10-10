@@ -21,6 +21,11 @@ npm run typecheck        # tsc --noEmit
 - Found by tracing imports from the real site's entry points; old URLs now return 404.
 - Lint is now clean (the remaining `<img>` warnings were all in template code).
 
+## Done: events published after a deploy returned 404 (2026-10-10)
+- Cause: `dynamicParams = false` on the `[locale]` layout also applied to `/events/[slug]`.
+- Fix: removed it (the layout already 404s unknown locales). Live `/en/events/new-event` now works.
+- Charity data request doc: https://claude.ai/code/artifact/7c7b8109-44ed-41eb-8073-80fb2bd7f633
+
 ## Done: fixed photo uploads on Vercel (2026-10-10)
 - Symptom: "There was a problem while uploading the file" in /admin; `/api/media` returned 500.
 - Cause: with a Blob token (Vercel) the storage plugin adds `prefix` + `_objectkey` columns to
