@@ -8,7 +8,6 @@ events CMS (**Payload 3**) living in the same project.
 | `/en`, `/ar` | Public site (home, about, events, contact) |
 | `/en/events/[slug]` | Event page with sign-up |
 | `/admin` | CMS: events, sign-ups, photos, users |
-| `/index-1` … `/about` (no locale) | Original Danbox template demo pages |
 
 ## Local development
 

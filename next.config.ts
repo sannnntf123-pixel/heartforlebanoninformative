@@ -13,14 +13,14 @@ const nextConfig: NextConfig = {
     root: dirname,
   },
   experimental: {
-    // Three root layouts ((template), [locale], (payload)), so unmatched URLs
+    // Two root layouts ([locale] and (payload)), so unmatched URLs
     // need a 404 that renders its own <html>: src/app/global-not-found.tsx.
     globalNotFound: true,
   },
   images: {
     // Event photos uploaded through the CMS are served from Vercel Blob in production.
     remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
-    localPatterns: [{ pathname: "/images/**" }, { pathname: "/assets/**" }, { pathname: "/api/media/file/**" }],
+    localPatterns: [{ pathname: "/images/**" }, { pathname: "/api/media/file/**" }],
   },
 };
 

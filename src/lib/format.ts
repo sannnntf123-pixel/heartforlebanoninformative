@@ -1,13 +1,3 @@
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  maximumFractionDigits: 0,
-});
-
-/** Formats a whole-dollar amount, e.g. 4407 -> "$4,407". */
-export const formatCurrency = (amount: number): string =>
-  currencyFormatter.format(amount);
-
 const dateFormats = {
   /** 13 Nov 2024 */
   short: { day: "numeric", month: "short", year: "numeric" },

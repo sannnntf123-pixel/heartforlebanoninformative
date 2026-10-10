@@ -26,12 +26,6 @@
       "@/*": [
         "./src/*"
       ],
-      "@layout/*": [
-        "./src/layout/*"
-      ],
-      "@css/*": [
-        "./public/assets/css/*"
-      ],
       "@payload-config": [
         "./src/payload.config.ts"
       ]

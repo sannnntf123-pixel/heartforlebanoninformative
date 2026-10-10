@@ -12,6 +12,18 @@ npm run lint             # ESLint (next/core-web-vitals + typescript)
 npm run typecheck        # tsc --noEmit
 ```
 
+## Done: removed the Danbox template (2026-10-10)
+
+- Deleted the 18 template demo pages (`src/app/(template)`), 74 unreachable source files
+  (template components, data, hooks, layout), `public/assets` (8.2 MB of template CSS, fonts and
+  images), the default Next.js SVGs, and 5 packages only the template used
+  (react-bootstrap, swiper, wowjs, react-countup, react-player).
+- Found by tracing imports from the real site's entry points; old URLs now return 404.
+- Lint is now clean (the remaining `<img>` warnings were all in template code).
+
+## In progress: QA test report
+Report doc: https://claude.ai/code/artifact/26eaea74-04ce-47a9-acd4-9f77afafeca4
+
 ## Done: Events CMS with Payload
 
 Decisions (agreed with the user):
