@@ -68,7 +68,6 @@ export interface Config {
   blocks: {};
   collections: {
     events: Event;
-    registrations: Registration;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -76,14 +75,9 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {
-    events: {
-      registrations: 'registrations';
-    };
-  };
+  collectionsJoins: {};
   collectionsSelect: {
     events: EventsSelect<false> | EventsSelect<true>;
-    registrations: RegistrationsSelect<false> | RegistrationsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -153,25 +147,27 @@ export interface Event {
     };
     [k: string]: unknown;
   } | null;
-  coverImage?: (number | null) | Media;
-  startDate: string;
-  endDate?: string | null;
+  /**
+   * Landscape photo shown on the event card and at the top of the event page.
+   */
+  coverImage: number | Media;
+  /**
+   * Optional: photos from the event, shown as a gallery on the event page.
+   */
+  gallery?: (number | Media)[] | null;
+  /**
+   * Leave empty if the date isn't set yet; the site shows "Date to be announced".
+   */
+  date?: string | null;
   location: string;
-  registration?: {
-    enabled?: boolean | null;
-    capacity?: number | null;
-    deadline?: string | null;
-  };
-  registrations?: {
-    docs?: (number | Registration)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
   /**
    * Filled from the English title if left empty.
    */
   slug?: string | null;
   category: 'medical' | 'health' | 'food' | 'youth' | 'women' | 'community';
+  /**
+   * Shown first in "Important events" and on the home page.
+   */
   featured?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -215,22 +211,6 @@ export interface Media {
       filename?: string | null;
     };
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "registrations".
- */
-export interface Registration {
-  id: number;
-  event: number | Event;
-  name: string;
-  phone: string;
-  email?: string | null;
-  attendees: number;
-  notes?: string | null;
-  language?: ('en' | 'ar') | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -287,10 +267,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'events';
         value: number | Event;
-      } | null)
-    | ({
-        relationTo: 'registrations';
-        value: number | Registration;
       } | null)
     | ({
         relationTo: 'media';
@@ -351,38 +327,15 @@ export interface EventsSelect<T extends boolean = true> {
   summary?: T;
   description?: T;
   coverImage?: T;
-  startDate?: T;
-  endDate?: T;
+  gallery?: T;
+  date?: T;
   location?: T;
-  registration?:
-    | T
-    | {
-        enabled?: T;
-        capacity?: T;
-        deadline?: T;
-      };
-  registrations?: T;
   slug?: T;
   category?: T;
   featured?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "registrations_select".
- */
-export interface RegistrationsSelect<T extends boolean = true> {
-  event?: T;
-  name?: T;
-  phone?: T;
-  email?: T;
-  attendees?: T;
-  notes?: T;
-  language?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

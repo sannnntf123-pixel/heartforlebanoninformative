@@ -1,5 +1,6 @@
 import * as migration_20261010_145602_initial from './20261010_145602_initial';
 import * as migration_20261010_153529_media_storage_prefix from './20261010_153529_media_storage_prefix';
+import * as migration_20261010_165521_events_single_date_gallery_no_signup from './20261010_165521_events_single_date_gallery_no_signup';
 
 export const migrations = [
   {
@@ -10,6 +11,11 @@ export const migrations = [
   {
     up: migration_20261010_153529_media_storage_prefix.up,
     down: migration_20261010_153529_media_storage_prefix.down,
-    name: '20261010_153529_media_storage_prefix'
+    name: '20261010_153529_media_storage_prefix',
+  },
+  {
+    up: migration_20261010_165521_events_single_date_gallery_no_signup.up,
+    down: migration_20261010_165521_events_single_date_gallery_no_signup.down,
+    name: '20261010_165521_events_single_date_gallery_no_signup'
   },
 ];

@@ -11,8 +11,8 @@ const PREVIEW_COUNT = 4;
 
 /** Landing-page preview: featured upcoming events first, then the soonest. */
 const Events = async ({ locale, t }: { locale: Locale; t: Dictionary }) => {
-  const { upcoming } = splitEvents(await getPublishedEvents(locale));
-  const preview = [...upcoming]
+  const { upcomingAll } = splitEvents(await getPublishedEvents(locale));
+  const preview = [...upcomingAll]
     .sort((a, b) => Number(b.featured) - Number(a.featured))
     .slice(0, PREVIEW_COUNT);
 

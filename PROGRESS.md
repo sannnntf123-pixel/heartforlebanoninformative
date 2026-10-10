@@ -21,6 +21,15 @@ npm run typecheck        # tsc --noEmit
 - Found by tracing imports from the real site's entry points; old URLs now return 404.
 - Lint is now clean (the remaining `<img>` warnings were all in template code).
 
+## Done: event groups, one optional date, gallery; sign-up removed (2026-10-10)
+- Events page: Important (CMS "Important event" tick) → Upcoming (incl. undated) → Past; each event once.
+- One optional `date` per event (day only, Lebanon time); no date = "Date to be announced".
+  Migration renames `start_date` → `date`, so existing dates are kept.
+- Cover photo required to publish; new per-event photo gallery with a full-screen viewer
+  (native <dialog>, arrow keys mirror in Arabic).
+- Sign-up removed entirely: form, Server Action, Registrations collection and its table.
+- Hand-fixed the generated migration (DROP CONSTRAINT IF EXISTS after a CASCADE) — it failed as generated.
+
 ## Done: events published after a deploy returned 404 (2026-10-10)
 - Cause: `dynamicParams = false` on the `[locale]` layout also applied to `/events/[slug]`.
 - Fix: removed it (the layout already 404s unknown locales). Live `/en/events/new-event` now works.

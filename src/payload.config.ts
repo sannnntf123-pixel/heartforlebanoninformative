@@ -9,7 +9,6 @@ import sharp from "sharp";
 import { fileURLToPath } from "url";
 import { Events } from "./payload/collections/Events";
 import { Media } from "./payload/collections/Media";
-import { Registrations } from "./payload/collections/Registrations";
 import { Users } from "./payload/collections/Users";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -46,7 +45,7 @@ export default buildConfig({
     fallback: true,
   },
 
-  collections: [Events, Registrations, Media, Users],
+  collections: [Events, Media, Users],
 
   editor: lexicalEditor(),
 

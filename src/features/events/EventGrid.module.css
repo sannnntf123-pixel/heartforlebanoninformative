@@ -81,6 +81,25 @@
   margin-top: 6px;
 }
 
+/* Important events: lime accent edge. */
+.important {
+  box-shadow:
+    inset 4px 0 0 var(--lime),
+    var(--shadow);
+}
+:global(html[dir="rtl"]) .important {
+  box-shadow:
+    inset -4px 0 0 var(--lime),
+    var(--shadow);
+}
+.importantBadge {
+  padding: 0 10px;
+  border-radius: var(--pill);
+  background: var(--lime);
+  color: var(--dg);
+  font-weight: 600;
+}
+
 /* Archive: same card, quieter. */
 .past .photo {
   filter: grayscale(0.6);

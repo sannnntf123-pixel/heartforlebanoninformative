@@ -2,13 +2,12 @@ import { ClockIcon, PinIcon } from "@/components/site/icons";
 import PageHero from "@/components/site/PageHero";
 import { routes } from "@/config/routes";
 import detail from "@/features/events/EventDetail.module.css";
-import { getEventBySlug, getEventSlugs, getRegisteredCount, isUpcoming } from "@/features/events/queries";
-import SignupForm from "@/features/events/SignupForm";
+import { getEventBySlug, getEventSlugs, isUpcoming } from "@/features/events/queries";
+import EventGallery from "@/features/events/EventGallery";
 import { pageAlternates } from "@/i18n/alternates";
-import { isLocale, type Locale } from "@/i18n/config";
-import { getDictionary, type Dictionary } from "@/i18n/get-dictionary";
+import { isLocale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/get-dictionary";
 import { formatEventDate } from "@/lib/format";
-import { formatInteger, interpolate } from "@/lib/i18n-format";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -17,7 +16,7 @@ import { notFound } from "next/navigation";
 
 // New events published after a deploy are rendered on first visit, then cached.
 export const dynamicParams = true;
-// Re-render hourly so an event switches to "past" once it ends.
+// Re-render hourly so an event is marked "past" once its day is over.
 export const revalidate = 3600;
 
 type PageProps = { params: Promise<{ locale: string; slug: string }> };
@@ -45,51 +44,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-type SignupPanelProps = {
-  event: NonNullable<Awaited<ReturnType<typeof getEventBySlug>>>;
-  locale: Locale;
-  t: Dictionary;
-};
-
-/** Sign-up card: form, places left, or the reason sign-up is unavailable. */
-const SignupPanel = async ({ event, locale, t }: SignupPanelProps) => {
-  const s = t.eventsPage.signup;
-  const { enabled, capacity, deadline } = event.registration;
-
-  let message: string | null = null;
-  let placesLeft: number | null = null;
-
-  if (!isUpcoming(event)) message = s.past;
-  else if (!enabled) message = s.noSignup;
-  else if (deadline && new Date(deadline) < new Date()) message = s.closed;
-  else if (capacity) {
-    placesLeft = Math.max(0, capacity - (await getRegisteredCount(event.id)));
-    if (placesLeft === 0) message = s.full;
-  }
-
-  return (
-    <section className={detail.card} aria-labelledby="signup-title">
-      <h2 id="signup-title">{s.title}</h2>
-      {message ? (
-        <p className={detail.notice}>{message}</p>
-      ) : (
-        <>
-          {placesLeft !== null && (
-            <p className={detail.places}>
-              {interpolate(s.spotsLeft, { count: formatInteger(placesLeft, locale) })}
-            </p>
-          )}
-          <SignupForm
-            eventId={event.id}
-            locale={locale}
-            t={{ fields: s.fields, submit: s.submit, sending: s.sending, success: s.success, errors: s.errors }}
-          />
-        </>
-      )}
-    </section>
-  );
-};
-
 export default async function EventPage({ params }: PageProps) {
   const { locale, slug } = await params;
   if (!isLocale(locale)) notFound();
@@ -98,7 +52,8 @@ export default async function EventPage({ params }: PageProps) {
 
   const p = t.eventsPage;
   const r = routes(locale);
-  const when = formatEventDate(event.startDate, event.endDate, locale);
+  const when = event.date ? formatEventDate(event.date, locale) : p.dateTba;
+  const past = !isUpcoming(event);
   const image = event.banner ?? event.cover;
 
   // Structured data so search engines can show the event.
@@ -107,8 +62,7 @@ export default async function EventPage({ params }: PageProps) {
     "@type": "Event",
     name: event.title,
     description: event.summary,
-    startDate: event.startDate,
-    ...(event.endDate ? { endDate: event.endDate } : {}),
+    startDate: event.date,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     location: { "@type": "Place", name: event.location, address: event.location },
@@ -119,7 +73,10 @@ export default async function EventPage({ params }: PageProps) {
 
   return (
     <main>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {/* Search engines require a date for event results, so only dated events get it. */}
+      {event.date && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      )}
       <PageHero
         kicker={p.categories[event.category]}
         title={event.title}
@@ -153,6 +110,13 @@ export default async function EventPage({ params }: PageProps) {
                 <RichText data={event.description} />
               </div>
             )}
+            {event.gallery.length > 0 && (
+              <EventGallery
+                photos={event.gallery}
+                locale={locale}
+                t={p.gallery}
+              />
+            )}
             <Link className="more" href={r.events}>
               {p.detail.backToEvents}
             </Link>
@@ -165,7 +129,8 @@ export default async function EventPage({ params }: PageProps) {
                   <ClockIcon /> {p.detail.when}
                 </dt>
                 <dd>
-                  <time dateTime={event.startDate}>{when}</time>
+                  {event.date ? <time dateTime={event.date}>{when}</time> : when}
+                  {past && <span className={detail.pastNote}> · {p.pastBadge}</span>}
                 </dd>
               </div>
               <div>
@@ -179,7 +144,6 @@ export default async function EventPage({ params }: PageProps) {
                 <dd>{p.categories[event.category]}</dd>
               </div>
             </dl>
-            <SignupPanel event={event} locale={locale} t={t} />
           </aside>
         </div>
       </section>

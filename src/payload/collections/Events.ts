@@ -38,14 +38,14 @@ export const Events: CollectionConfig = {
   },
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "startDate", "category", "_status"],
+    defaultColumns: ["title", "date", "category", "_status"],
     group: { en: "Content", ar: "المحتوى" },
     description: {
       en: "Fill in both English and Arabic (switch language at the top right) before publishing.",
       ar: "املأ النسختين العربية والإنجليزية (بدّل اللغة من أعلى الصفحة) قبل النشر.",
     },
   },
-  defaultSort: "-startDate",
+  defaultSort: "-date",
   versions: { drafts: true, maxPerDoc: 20 },
   access: {
     read: publishedOrLoggedIn,
@@ -85,31 +85,41 @@ export const Events: CollectionConfig = {
       label: { en: "Cover photo", ar: "صورة الغلاف" },
       type: "upload",
       relationTo: "media",
+      // Required to publish (drafts may be saved without it).
+      required: true,
+      admin: {
+        description: {
+          en: "Landscape photo shown on the event card and at the top of the event page.",
+          ar: "صورة أفقية تظهر على بطاقة الفعالية وفي أعلى صفحتها.",
+        },
+      },
     },
     {
-      type: "row",
-      fields: [
-        {
-          name: "startDate",
-          label: { en: "Starts", ar: "يبدأ" },
-          type: "date",
-          required: true,
-          index: true,
-          admin: { date: { pickerAppearance: "dayAndTime", timeIntervals: 15 }, width: "50%" },
+      name: "gallery",
+      label: { en: "Photo gallery", ar: "معرض الصور" },
+      type: "upload",
+      relationTo: "media",
+      hasMany: true,
+      maxRows: 40,
+      admin: {
+        description: {
+          en: "Optional: photos from the event, shown as a gallery on the event page.",
+          ar: "اختياري: صور من الفعالية تظهر كمعرض في صفحتها.",
         },
-        {
-          name: "endDate",
-          label: { en: "Ends (optional)", ar: "ينتهي (اختياري)" },
-          type: "date",
-          admin: { date: { pickerAppearance: "dayAndTime", timeIntervals: 15 }, width: "50%" },
-          validate: (value: unknown, { siblingData }: { siblingData: { startDate?: string } }) => {
-            if (!value || !siblingData.startDate) return true;
-            return new Date(String(value)) >= new Date(siblingData.startDate)
-              ? true
-              : "The end must be after the start. / يجب أن يكون الانتهاء بعد البداية.";
-          },
+      },
+    },
+    {
+      name: "date",
+      label: { en: "Date (optional)", ar: "التاريخ (اختياري)" },
+      type: "date",
+      index: true,
+      admin: {
+        date: { pickerAppearance: "dayOnly", displayFormat: "d MMMM yyyy" },
+        description: {
+          en: "Leave empty if the date isn't set yet; the site shows \"Date to be announced\".",
+          ar: "اتركه فارغًا إذا لم يُحدَّد الموعد بعد، وسيظهر «الموعد يُعلن لاحقًا».",
         },
-      ],
+      },
     },
     {
       name: "location",
@@ -117,46 +127,6 @@ export const Events: CollectionConfig = {
       type: "text",
       localized: true,
       required: true,
-    },
-    {
-      name: "registration",
-      label: { en: "Sign-up", ar: "التسجيل" },
-      type: "group",
-      fields: [
-        {
-          name: "enabled",
-          label: { en: "Allow visitors to sign up", ar: "السماح للزوار بالتسجيل" },
-          type: "checkbox",
-          defaultValue: true,
-        },
-        {
-          type: "row",
-          admin: { condition: (_, siblingData) => Boolean(siblingData?.enabled) },
-          fields: [
-            {
-              name: "capacity",
-              label: { en: "Places (empty = unlimited)", ar: "عدد الأماكن (فارغ = غير محدود)" },
-              type: "number",
-              min: 1,
-              admin: { width: "50%" },
-            },
-            {
-              name: "deadline",
-              label: { en: "Sign-up closes (optional)", ar: "آخر موعد للتسجيل (اختياري)" },
-              type: "date",
-              admin: { date: { pickerAppearance: "dayAndTime" }, width: "50%" },
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "registrations",
-      label: { en: "Sign-ups", ar: "المسجّلون" },
-      type: "join",
-      collection: "registrations",
-      on: "event",
-      admin: { defaultColumns: ["name", "phone", "attendees", "createdAt"] },
     },
     // ---------- sidebar ----------
     {
@@ -185,10 +155,16 @@ export const Events: CollectionConfig = {
     },
     {
       name: "featured",
-      label: { en: "Feature on the home page", ar: "إبرازها في الصفحة الرئيسية" },
+      label: { en: "Important event", ar: "فعالية مهمّة" },
       type: "checkbox",
       defaultValue: false,
-      admin: { position: "sidebar" },
+      admin: {
+        position: "sidebar",
+        description: {
+          en: "Shown first in \"Important events\" and on the home page.",
+          ar: "تظهر أولًا في «فعاليات مهمّة» وفي الصفحة الرئيسية.",
+        },
+      },
     },
   ],
 };

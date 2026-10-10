@@ -2,7 +2,6 @@ import { revalidateTag } from "next/cache";
 
 /** Cache tags used by the public site's event queries (src/features/events/queries.ts). */
 export const EVENTS_TAG = "events";
-export const REGISTRATIONS_TAG = "registrations";
 
 /**
  * Marks cached event data stale so published changes appear on the site

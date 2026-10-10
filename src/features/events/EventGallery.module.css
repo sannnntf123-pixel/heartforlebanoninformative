@@ -1,0 +1,137 @@
+.gallery {
+  margin-top: 40px;
+}
+.gallery h2 {
+  font-size: 30px;
+  margin-bottom: 18px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.thumb {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--alt);
+  cursor: zoom-in;
+}
+.thumb img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.thumb:hover img {
+  transform: scale(1.05);
+}
+
+/* Full-screen viewer */
+.viewer {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+.viewer::backdrop {
+  background: rgba(8, 31, 22, 0.94);
+}
+.viewer[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.figure {
+  margin: 0;
+  max-width: min(92vw, 1400px);
+  text-align: center;
+}
+.full {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 82vh;
+  border-radius: 6px;
+}
+.figure figcaption {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--on-dark-text);
+}
+.counter {
+  font-variant-numeric: tabular-nums;
+}
+
+.control {
+  position: fixed;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+.control:hover {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--dg);
+}
+.closeButton {
+  top: 20px;
+  inset-inline-end: 20px;
+}
+.prev,
+.next {
+  top: 50%;
+  margin-top: -26px;
+}
+.prev {
+  inset-inline-start: 20px;
+}
+.next {
+  inset-inline-end: 20px;
+}
+/* Arrows point the reading direction in Arabic. */
+:global(html[dir="rtl"]) .prev,
+:global(html[dir="rtl"]) .next {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gallery h2 {
+    font-size: 24px;
+  }
+  .prev,
+  .next {
+    top: auto;
+    bottom: 20px;
+    margin-top: 0;
+  }
+}

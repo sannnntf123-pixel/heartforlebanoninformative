@@ -1,7 +1,7 @@
 import "server-only";
 import config from "@payload-config";
 import type { Event, Media } from "@/payload-types";
-import { EVENTS_TAG, REGISTRATIONS_TAG } from "@/payload/hooks/revalidate";
+import { EVENTS_TAG } from "@/payload/hooks/revalidate";
 import type { Locale } from "@/i18n/config";
 import { unstable_cache } from "next/cache";
 import { getPayload } from "payload";
@@ -14,16 +14,24 @@ export type EventSummary = {
   summary: string;
   location: string;
   category: Event["category"];
-  startDate: string;
-  endDate: string | null;
+  /** ISO date, or null when the date is still to be announced. */
+  date: string | null;
   cover: { url: string; alt: string; width: number; height: number } | null;
   featured: boolean;
+};
+
+export type GalleryPhoto = {
+  id: number;
+  /** Large version for the full-screen viewer. */
+  full: NonNullable<EventSummary["cover"]>;
+  /** Square-cropped thumbnail for the grid. */
+  thumb: NonNullable<EventSummary["cover"]>;
 };
 
 export type EventDetail = EventSummary & {
   description: Event["description"];
   banner: EventSummary["cover"];
-  registration: { enabled: boolean; capacity: number | null; deadline: string | null };
+  gallery: GalleryPhoto[];
 };
 
 /**
@@ -50,6 +58,14 @@ const image = (media: Event["coverImage"], size: "card" | "banner"): EventSummar
   };
 };
 
+const toGallery = (items: Event["gallery"]): GalleryPhoto[] =>
+  (items ?? []).flatMap((item) => {
+    if (!item || typeof item === "number") return [];
+    const full = image(item, "banner");
+    const thumb = image(item, "card");
+    return full && thumb ? [{ id: item.id, full, thumb }] : [];
+  });
+
 const toSummary = (doc: Event): EventSummary => ({
   id: doc.id,
   slug: doc.slug ?? String(doc.id),
@@ -57,8 +73,7 @@ const toSummary = (doc: Event): EventSummary => ({
   summary: doc.summary,
   location: doc.location,
   category: doc.category,
-  startDate: doc.startDate,
-  endDate: doc.endDate ?? null,
+  date: doc.date ?? null,
   cover: image(doc.coverImage, "card"),
   featured: Boolean(doc.featured),
 });
@@ -76,10 +91,9 @@ export const getPublishedEvents = unstable_cache(
       collection: "events",
       locale,
       where: published,
-      sort: "startDate",
+      sort: "date",
       depth: 1,
       pagination: false,
-      joins: false,
       overrideAccess: false,
     });
     return docs.map(toSummary);
@@ -97,7 +111,6 @@ export const getEventBySlug = unstable_cache(
       where: { and: [published, { slug: { equals: slug } }] },
       depth: 1,
       limit: 1,
-      joins: false,
       overrideAccess: false,
     });
     const doc = docs[0];
@@ -106,11 +119,7 @@ export const getEventBySlug = unstable_cache(
       ...toSummary(doc),
       description: doc.description ?? null,
       banner: image(doc.coverImage, "banner"),
-      registration: {
-        enabled: doc.registration?.enabled ?? false,
-        capacity: doc.registration?.capacity ?? null,
-        deadline: doc.registration?.deadline ?? null,
-      },
+      gallery: toGallery(doc.gallery),
     };
   },
   ["event-by-slug"],
@@ -134,28 +143,31 @@ export const getEventSlugs = unstable_cache(
   { tags: [EVENTS_TAG] }
 );
 
-/** People already signed up for an event (sum of `attendees`). */
-export const getRegisteredCount = unstable_cache(
-  async (eventId: number): Promise<number> => {
-    const payload = await getPayload({ config });
-    const { docs } = await payload.find({
-      collection: "registrations",
-      where: { event: { equals: eventId } },
-      select: { attendees: true },
-      pagination: false,
-      depth: 0,
-    });
-    return docs.reduce((sum, doc) => sum + (doc.attendees ?? 0), 0);
-  },
-  ["registered-count"],
-  { tags: [REGISTRATIONS_TAG] }
-);
+const DAY_MS = 24 * 60 * 60 * 1000;
 
-/** An event is upcoming until it ends (or until it starts, if it has no end). */
-export const isUpcoming = (event: { startDate: string; endDate?: string | null }, now = new Date()) =>
-  new Date(event.endDate ?? event.startDate) >= now;
+/**
+ * An event stays upcoming through the whole of its day. Events without a date
+ * yet ("to be announced") count as upcoming.
+ */
+export const isUpcoming = (event: { date?: string | null }, now = new Date()) =>
+  !event.date || new Date(event.date).getTime() + DAY_MS > now.getTime();
 
-export const splitEvents = (events: EventSummary[], now = new Date()) => ({
-  upcoming: events.filter((e) => isUpcoming(e, now)),
-  past: events.filter((e) => !isUpcoming(e, now)).reverse(),
-});
+/**
+ * Groups events for the events page. Each event appears once:
+ * important (marked in the CMS, soonest upcoming first, then most recent past),
+ * then the remaining upcoming (soonest first) and past (most recent first).
+ */
+export const splitEvents = (events: EventSummary[], now = new Date()) => {
+  // Dated events soonest first; undated ("to be announced") ones after them.
+  const upcomingAll = events
+    .filter((e) => isUpcoming(e, now))
+    .sort((a, b) => (a.date ?? "9999").localeCompare(b.date ?? "9999"));
+  const pastAll = events.filter((e) => !isUpcoming(e, now)).reverse();
+  return {
+    important: [...upcomingAll, ...pastAll].filter((e) => e.featured),
+    upcoming: upcomingAll.filter((e) => !e.featured),
+    past: pastAll.filter((e) => !e.featured),
+    /** Every upcoming event, important or not (home page preview). */
+    upcomingAll,
+  };
+};

@@ -23,23 +23,15 @@ export const formatDate = (
     timeZone: "UTC",
   }).format(new Date(`${isoDate}T00:00:00Z`));
 
-/**
- * Event date and time in Lebanon's time zone, e.g. "Sat 14 March 2026, 10:00"
- * (or a range when the event ends on another time/day).
- */
-export const formatEventDate = (start: string, end: string | null, locale: "en" | "ar" = "en"): string => {
-  const options: Intl.DateTimeFormatOptions = {
+/** Event day in Lebanon, e.g. "Sat 14 March 2026" / "السبت ١٤ آذار ٢٠٢٦". */
+export const formatEventDate = (iso: string, locale: "en" | "ar" = "en"): string =>
+  new Intl.DateTimeFormat(locale === "ar" ? "ar-LB-u-nu-arab" : "en-GB", {
     weekday: "short",
     day: "numeric",
     month: "long",
     year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
     timeZone: "Asia/Beirut",
-  };
-  const formatter = new Intl.DateTimeFormat(locale === "ar" ? "ar-LB-u-nu-arab" : "en-GB", options);
-  return end ? formatter.formatRange(new Date(start), new Date(end)) : formatter.format(new Date(start));
-};
+  }).format(new Date(iso));
 
 /** Day + short month for date badges (e.g. "14" / "Mar"), Lebanon time. */
 export const formatDateBadge = (iso: string, locale: "en" | "ar" = "en") => {

@@ -24,12 +24,12 @@ const EventGrid = ({ events, locale, t, past = false }: EventGridProps) => {
   return (
     <div className={styles.grid}>
       {events.map((event, index) => {
-        const badge = formatDateBadge(event.startDate, locale);
+        const badge = event.date ? formatDateBadge(event.date, locale) : null;
         const href = r.event(event.slug);
         return (
           <article
             key={event.id}
-            className={`${styles.card} ${past ? styles.past : ""} rv`}
+            className={`${styles.card} ${past ? styles.past : ""} ${event.featured ? styles.important : ""} rv`}
             style={staggerStyle(index, 2)}
           >
             <Link href={href} className={styles.media} tabIndex={-1} aria-hidden="true">
@@ -47,21 +47,28 @@ const EventGrid = ({ events, locale, t, past = false }: EventGridProps) => {
                   <Image src="/images/logo.png" alt="" width={110} height={41} />
                 </span>
               )}
-              <span className={styles.badge}>
-                <b>{badge.day}</b>
-                {badge.month}
-              </span>
+              {badge && (
+                <span className={styles.badge}>
+                  <b>{badge.day}</b>
+                  {badge.month}
+                </span>
+              )}
             </Link>
             <div>
               <div className={styles.meta}>
                 <span className={styles.category}>{p.categories[event.category]}</span>
+                {event.featured && <span className={styles.importantBadge}>{p.important.badge}</span>}
                 {past && <span className={styles.pastBadge}>{p.pastBadge}</span>}
               </div>
               <h3>
                 <Link href={href}>{event.title}</Link>
               </h3>
               <p className={styles.when}>
-                <time dateTime={event.startDate}>{formatEventDate(event.startDate, event.endDate, locale)}</time>
+                {event.date ? (
+                  <time dateTime={event.date}>{formatEventDate(event.date, locale)}</time>
+                ) : (
+                  p.dateTba
+                )}
                 <span aria-hidden="true"> · </span>
                 {event.location}
               </p>

@@ -2,7 +2,7 @@
  * Local development seed: `npm run seed`.
  * - Creates an admin account from SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD (.env).
  * - Uploads the site's field photos and creates clearly-marked SAMPLE events
- *   (upcoming + past, English + Arabic) so the pages, archive and sign-up can be tested.
+ *   (important, upcoming, past and undated; English + Arabic) with galleries.
  * Refuses to run in production. Safe to re-run: existing sample data is replaced.
  */
 import config from "@payload-config";
@@ -14,9 +14,10 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const DAY = 24 * 60 * 60 * 1000;
-const at = (daysFromNow: number, hour: number) => {
+/** A calendar day relative to today (noon UTC, so it is the same day in Beirut). */
+const day = (daysFromNow: number) => {
   const date = new Date(Date.now() + daysFromNow * DAY);
-  date.setUTCHours(hour - 3, 0, 0, 0); // Beirut is UTC+3
+  date.setUTCHours(12, 0, 0, 0);
   return date.toISOString();
 };
 
@@ -44,10 +45,8 @@ type SampleEvent = {
   slug: string;
   photo: "medicine" | "food" | "hygiene";
   category: "medical" | "health" | "food" | "youth" | "women" | "community";
-  start: string;
-  end?: string;
+  date: string | null;
   featured?: boolean;
-  capacity?: number;
   en: { title: string; summary: string; location: string; body: string[] };
   ar: { title: string; summary: string; location: string; body: string[] };
 };
@@ -57,10 +56,8 @@ const samples: SampleEvent[] = [
     slug: "sample-medicine-distribution-baalbek",
     photo: "medicine",
     category: "medical",
-    start: at(12, 10),
-    end: at(12, 14),
+    date: day(12),
     featured: true,
-    capacity: 40,
     en: {
       title: "[Sample] Medicine distribution in Baalbek",
       summary: "Volunteers hand out medicine to displaced families according to each family's needs.",
@@ -78,7 +75,7 @@ const samples: SampleEvent[] = [
     slug: "sample-food-parcels-rayak",
     photo: "food",
     category: "food",
-    start: at(25, 9),
+    date: day(25),
     en: {
       title: "[Sample] Food parcels for families in Rayak",
       summary: "Packing and delivering food parcels to families in Rayak and nearby villages.",
@@ -96,7 +93,7 @@ const samples: SampleEvent[] = [
     slug: "sample-hygiene-kits-hazmieh",
     photo: "hygiene",
     category: "community",
-    start: at(40, 11),
+    date: null, // date to be announced
     en: {
       title: "[Sample] Hygiene kits drive in Hazmieh",
       summary: "Collecting and distributing hygiene kits and nappies for families in need.",
@@ -114,7 +111,7 @@ const samples: SampleEvent[] = [
     slug: "sample-past-health-awareness-day",
     photo: "medicine",
     category: "health",
-    start: at(-20, 10),
+    date: day(-20),
     en: {
       title: "[Sample] Health awareness day (past)",
       summary: "A past sample event to test the archive section.",
@@ -132,7 +129,8 @@ const samples: SampleEvent[] = [
     slug: "sample-past-ramadan-food-campaign",
     photo: "food",
     category: "food",
-    start: at(-60, 16),
+    featured: true,
+    date: day(-60),
     en: {
       title: "[Sample] Ramadan food campaign (past)",
       summary: "A past sample event to test the archive section.",
@@ -175,7 +173,6 @@ const old = await payload.find({
   depth: 0,
 });
 for (const doc of old.docs) {
-  await payload.delete({ collection: "registrations", where: { event: { equals: doc.id } } });
   await payload.delete({ collection: "events", id: doc.id });
 }
 
@@ -209,11 +206,10 @@ for (const sample of samples) {
       description: richText(sample.en.body, "ltr"),
       slug: sample.slug,
       category: sample.category,
-      startDate: sample.start,
-      endDate: sample.end,
+      date: sample.date,
       coverImage: mediaIds[sample.photo],
+      gallery: Object.values(mediaIds),
       featured: sample.featured ?? false,
-      registration: { enabled: true, capacity: sample.capacity },
       _status: "published",
     },
   });

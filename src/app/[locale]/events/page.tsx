@@ -34,8 +34,15 @@ export default async function EventsPage({ params }: PageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const [t, events] = await Promise.all([getDictionary(locale), getPublishedEvents(locale)]);
-  const { upcoming, past } = splitEvents(events);
   const p = t.eventsPage;
+  const { important, upcoming, past } = splitEvents(events);
+  // Important and past groups only appear when they have events; "upcoming"
+  // always shows, with a friendly message when empty.
+  const groups = [
+    ...(important.length ? [{ id: "important", copy: p.important, events: important }] : []),
+    { id: "upcoming", copy: p.upcoming, events: upcoming },
+    ...(past.length ? [{ id: "archive", copy: p.past, events: past }] : []),
+  ];
   const r = routes(locale);
 
   return (
@@ -47,27 +54,21 @@ export default async function EventsPage({ params }: PageProps) {
         breadcrumb={{ label: t.common.breadcrumb, homeLabel: t.nav.home, homeHref: r.home, current: p.meta.title }}
       />
 
-      <section className="sec" id="upcoming">
-        <div className="wrap">
-          <SectionHeading kicker={p.upcoming.kicker} title={p.upcoming.title} />
-          {upcoming.length > 0 ? (
-            <EventGrid events={upcoming} locale={locale} t={t} />
-          ) : (
-            <p className={gridStyles.empty}>{p.upcoming.empty}</p>
-          )}
-        </div>
-      </section>
-
-      {past.length > 0 && (
-        <section className="sec sec--alt" id="archive">
+      {groups.map((group, index) => (
+        // Backgrounds alternate white / grey, whichever groups are shown.
+        <section key={group.id} className={`sec ${index % 2 ? "sec--alt" : ""}`} id={group.id}>
           <div className="wrap">
-            <SectionHeading kicker={p.past.kicker} title={p.past.title} />
-            <EventGrid events={past} locale={locale} t={t} past />
+            <SectionHeading kicker={group.copy.kicker} title={group.copy.title} />
+            {group.events.length > 0 ? (
+              <EventGrid events={group.events} locale={locale} t={t} past={group.id === "archive"} />
+            ) : (
+              <p className={gridStyles.empty}>{p.upcoming.empty}</p>
+            )}
           </div>
         </section>
-      )}
+      ))}
 
-      <section className={`sec ${past.length > 0 ? "" : "sec--alt"}`}>
+      <section className={`sec ${groups.length % 2 ? "sec--alt" : ""}`}>
         <div className={`wrap ${styles.cta} rv`}>
           <Kicker>{p.cta.kicker}</Kicker>
           <h2>

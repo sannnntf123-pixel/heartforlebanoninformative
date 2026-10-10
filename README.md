@@ -6,8 +6,8 @@ events CMS (**Payload 3**) living in the same project.
 | URL | What |
 |---|---|
 | `/en`, `/ar` | Public site (home, about, events, contact) |
-| `/en/events/[slug]` | Event page with sign-up |
-| `/admin` | CMS: events, sign-ups, photos, users |
+| `/en/events/[slug]` | Event page with photo gallery |
+| `/admin` | CMS: events, photos, users |
 
 ## Local development
 
@@ -50,9 +50,8 @@ The database schema is created automatically in development.
 | What | Where |
 |---|---|
 | Site copy (EN / AR) | `src/i18n/dictionaries/` |
-| CMS collections | `src/payload/collections/` (Events, Registrations, Media, Users) |
+| CMS collections | `src/payload/collections/` (Events, Media, Users) |
 | Event queries + caching | `src/features/events/queries.ts` |
-| Sign-up Server Action | `src/features/events/actions.ts` |
 | Brand links, routes | `src/config/brand.ts`, `src/config/routes.ts` |
 | Editor guide | `docs/editing-events.md` |
 | Work log | `PROGRESS.md` |
