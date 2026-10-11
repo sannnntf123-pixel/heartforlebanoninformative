@@ -8,18 +8,6 @@ import { importEvents, removeEvents, type EventToImport } from "./lib/import-eve
  * Idempotent: an event whose slug already exists is skipped.
  */
 
-type Copy = { title: string; summary: string; location: string; body: string[]; photoAlt: string };
-
-type FeaturedEvent = {
-  slug: string;
-  category: "health";
-  /** ISO date, or null when the charity hasn't given one. */
-  date: string | null;
-  /** Focal point (percent) for the cover, so faces survive cropping. */
-  coverFocus?: { x: number; y: number };
-  en: Copy;
-  ar: Copy;
-};
 
 const events: EventToImport[] = [
   {
@@ -118,6 +106,13 @@ const events: EventToImport[] = [
 ];
 
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
+  // The Payload API below uses today's schema, so columns added by later
+  // migrations must exist already on a fresh database (no-op otherwise). Run on
+  // the pool, outside the migration transaction, so the uploads (which use
+  // their own connections) aren't blocked by the table lock.
+  await payload.db.pool.query(`
+    ALTER TABLE "events" ADD COLUMN IF NOT EXISTS "show_on_home" boolean DEFAULT false;
+    ALTER TABLE "_events_v" ADD COLUMN IF NOT EXISTS "version_show_on_home" boolean DEFAULT false;`);
   await importEvents(payload, events);
 }
 

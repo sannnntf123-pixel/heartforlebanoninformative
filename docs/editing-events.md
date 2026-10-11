@@ -17,8 +17,8 @@ To use the admin in Arabic: click your profile (top right) → *Account* → *La
    Choose a **cover photo** (required) and a **category**. Optionally add photos to the **Photo gallery**.
 3. Switch the language at the top right (**Locale → العربية**) and fill in the **Arabic** title,
    summary, description and location. The date, photos and category are shared — no need to repeat them.
-4. Tick **Important event** (right-hand column) to show it in the "Important events" section and first
-   on the home page.
+4. Tick **Important event** (right-hand column) to show it in the "Important events" section.
+   Tick **Show on home page** to also feature it in "Our key events" on the home page (up to 3).
 5. Click **Publish changes**. The event appears on the website within seconds.
    *Save Draft* keeps it hidden from the public.
 
@@ -50,7 +50,7 @@ To use the admin in Arabic: click your profile (top right) → *Account* → *La
 و**الفئة**، ويمكنك إضافة صور إلى **معرض الصور**.
 ٣. بدّل اللغة من أعلى الصفحة (**Locale ← العربية**) واملأ العنوان والملخص والوصف والمكان **بالعربية**.
 التاريخ والصور والفئة مشتركة بين اللغتين، فلا حاجة لإعادتها.
-٤. فعّل خيار **فعالية مهمّة** (في العمود الجانبي) لإظهارها في قسم «فعاليات مهمّة» وأولًا في الصفحة الرئيسية.
+٤. فعّل خيار **فعالية مهمّة** (في العمود الجانبي) لإظهارها في قسم «فعاليات مهمّة»، وخيار **إظهار في الصفحة الرئيسية** لإبرازها في «أبرز فعالياتنا» (حتى 3 فعاليات).
 ٥. اضغط **نشر التغييرات**. تظهر الفعالية على الموقع خلال ثوانٍ. أما *حفظ كمسودة* فيبقيها مخفية عن الزوار.
 
 ### كيف تُصنَّف الفعاليات

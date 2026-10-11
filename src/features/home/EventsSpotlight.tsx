@@ -50,11 +50,13 @@ const SpotlightCard = ({ event, locale, t, lead, index }: CardProps) => {
 
 /**
  * Landing-page events spotlight, right after the hero: the events marked
- * "Important" in the CMS (newest first), or the next upcoming ones if none are.
+ * "Show on home page" in the CMS, falling back to the important events and
+ * then the next upcoming ones when none are picked.
  */
 const EventsSpotlight = async ({ locale, t }: { locale: Locale; t: Dictionary }) => {
-  const { important, upcomingAll } = splitEvents(await getPublishedEvents(locale));
-  const events = (important.length ? important : upcomingAll).slice(0, SPOTLIGHT_COUNT);
+  const { important, upcoming, past, upcomingAll } = splitEvents(await getPublishedEvents(locale));
+  const picked = [...important, ...upcoming, ...past].filter((e) => e.showOnHome);
+  const events = (picked.length ? picked : important.length ? important : upcomingAll).slice(0, SPOTLIGHT_COUNT);
   if (events.length === 0) return null;
 
   return (

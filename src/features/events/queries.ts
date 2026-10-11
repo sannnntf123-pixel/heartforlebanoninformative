@@ -20,6 +20,8 @@ export type EventSummary = {
   /** 16:9 crop of the cover (focal-point aware) for large cards. */
   wide: EventSummary["cover"];
   featured: boolean;
+  /** Picked for the home page spotlight. */
+  showOnHome: boolean;
 };
 
 export type GalleryPhoto = {
@@ -89,6 +91,7 @@ const toSummary = (doc: Event): EventSummary => ({
   cover: image(doc.coverImage, "card"),
   wide: image(doc.coverImage, "banner"),
   featured: Boolean(doc.featured),
+  showOnHome: Boolean(doc.showOnHome),
 });
 
 const published = { _status: { equals: "published" } } as const;

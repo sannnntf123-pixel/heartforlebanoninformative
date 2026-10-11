@@ -166,9 +166,13 @@ export interface Event {
   slug?: string | null;
   category: 'medical' | 'health' | 'food' | 'youth' | 'women' | 'community';
   /**
-   * Shown first in "Important events" and on the home page.
+   * Listed under "Important events" on the events page.
    */
   featured?: boolean | null;
+  /**
+   * Shown in "Our key events" right after the hero (up to 3).
+   */
+  showOnHome?: boolean | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -333,6 +337,7 @@ export interface EventsSelect<T extends boolean = true> {
   slug?: T;
   category?: T;
   featured?: T;
+  showOnHome?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

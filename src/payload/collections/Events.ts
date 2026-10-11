@@ -161,8 +161,21 @@ export const Events: CollectionConfig = {
       admin: {
         position: "sidebar",
         description: {
-          en: "Shown first in \"Important events\" and on the home page.",
-          ar: "تظهر أولًا في «فعاليات مهمّة» وفي الصفحة الرئيسية.",
+          en: "Listed under \"Important events\" on the events page.",
+          ar: "تظهر ضمن «فعاليات مهمّة» في صفحة الفعاليات.",
+        },
+      },
+    },
+    {
+      name: "showOnHome",
+      label: { en: "Show on home page", ar: "إظهار في الصفحة الرئيسية" },
+      type: "checkbox",
+      defaultValue: false,
+      admin: {
+        position: "sidebar",
+        description: {
+          en: "Shown in \"Our key events\" right after the hero (up to 3).",
+          ar: "تظهر في «أبرز فعالياتنا» بعد الواجهة الرئيسية (حتى 3 فعاليات).",
         },
       },
     },

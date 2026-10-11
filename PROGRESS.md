@@ -210,3 +210,8 @@ Source design: `~/Downloads/heart-of-lebanon 5/danbox/en-home.html` and `ar-home
 ## Still to refactor in the Danbox template (lower priority now)
 News, Team, Testimonial, About, Cta, Promo, Faq, HeroSlider, Volunter, BlogSidebar and the
 detail pages still hold inline data; the remaining 4 lint warnings are `<img>` tags.
+
+## Important vs home page (2026-10-11)
+- New CMS checkbox **Show on home page** (`showOnHome`), separate from **Important event**; the home spotlight shows events with it ticked (fallback: important, then upcoming).
+- Migration `20261011_152513_events_show_on_home`: column + all six charity events Important; only the original three on the home page.
+- Earlier data migration now adds that column first (on the pool, outside the transaction) so a fresh database still migrates.
