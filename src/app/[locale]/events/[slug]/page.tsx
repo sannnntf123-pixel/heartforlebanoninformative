@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: event.title,
       description: event.summary,
       url: `/${locale}/events/${slug}`,
-      images: event.banner ? [{ url: event.banner.url, width: event.banner.width, height: event.banner.height }] : undefined,
+      images: event.wide ? [{ url: event.wide.url, width: event.wide.width, height: event.wide.height }] : undefined,
     },
   };
 }
@@ -52,9 +52,9 @@ export default async function EventPage({ params }: PageProps) {
 
   const p = t.eventsPage;
   const r = routes(locale);
-  const when = event.date ? formatEventDate(event.date, locale) : p.dateTba;
+  const when = event.date ? formatEventDate(event.date, locale) : null;
   const past = !isUpcoming(event);
-  const image = event.banner ?? event.cover;
+  const image = event.wide ?? event.cover;
 
   // Structured data so search engines can show the event.
   const jsonLd = {
@@ -124,15 +124,17 @@ export default async function EventPage({ params }: PageProps) {
 
           <aside className={detail.aside}>
             <dl className={detail.card}>
-              <div>
-                <dt>
-                  <ClockIcon /> {p.detail.when}
-                </dt>
-                <dd>
-                  {event.date ? <time dateTime={event.date}>{when}</time> : when}
-                  {past && <span className={detail.pastNote}> · {p.pastBadge}</span>}
-                </dd>
-              </div>
+              {when && (
+                <div>
+                  <dt>
+                    <ClockIcon /> {p.detail.when}
+                  </dt>
+                  <dd>
+                    <time dateTime={event.date ?? undefined}>{when}</time>
+                    {past && <span className={detail.pastNote}> · {p.pastBadge}</span>}
+                  </dd>
+                </div>
+              )}
               <div>
                 <dt>
                   <PinIcon /> {p.detail.where}

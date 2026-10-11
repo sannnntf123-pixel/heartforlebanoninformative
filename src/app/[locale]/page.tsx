@@ -2,7 +2,7 @@ import Contact from "@/features/contact/Contact";
 import About from "@/features/home/About";
 import Campaigns from "@/features/home/Campaigns";
 import DonateBand from "@/features/home/DonateBand";
-import Events from "@/features/home/Events";
+import EventsSpotlight from "@/features/home/EventsSpotlight";
 import Faq from "@/features/home/Faq";
 import Hero from "@/features/home/Hero";
 import News from "@/features/home/News";
@@ -30,12 +30,13 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <main>
       <Hero locale={locale} t={t} />
+      {/* Events come first after the hero: the charity's key activities. */}
+      <EventsSpotlight locale={locale} t={t} />
       <About locale={locale} t={t} />
       <Services t={t} />
       <Faq t={t} />
       <Campaigns locale={locale} t={t} />
       <DonateBand locale={locale} t={t} />
-      <Events locale={locale} t={t} />
       <Testimonials t={t} />
       <Volunteers locale={locale} t={t} />
       <News locale={locale} t={t} />

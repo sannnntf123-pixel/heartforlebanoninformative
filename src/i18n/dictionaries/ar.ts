@@ -102,12 +102,7 @@ const ar: Dictionary = {
   },
   events: {
     kicker: "فعاليات",
-    title: { before: "فعالياتنا ", highlight: "القادمة", after: "" },
-    photoPlaceholder: "صورة الفعالية",
-    datePlaceholder: "التاريخ",
-    placePlaceholder: "المكان",
-    titlePlaceholder: "عنوان الفعالية",
-    descriptionPlaceholder: "وصف قصير للفعالية",
+    title: { before: "", highlight: "أبرز", after: " فعالياتنا" },
   },
   testimonials: {
     kicker: "شهادات",
@@ -205,7 +200,6 @@ const ar: Dictionary = {
       kicker: "الأرشيف",
       title: { before: "الفعاليات ", highlight: "السابقة", after: "" },
     },
-    dateTba: "الموعد يُعلن لاحقًا",
     pastBadge: "فعالية سابقة",
     categories: {
       medical: "مساعدات طبية",

@@ -17,6 +17,8 @@ export type EventSummary = {
   /** ISO date, or null when the date is still to be announced. */
   date: string | null;
   cover: { url: string; alt: string; width: number; height: number } | null;
+  /** 16:9 crop of the cover (focal-point aware) for large cards. */
+  wide: EventSummary["cover"];
   featured: boolean;
 };
 
@@ -30,7 +32,6 @@ export type GalleryPhoto = {
 
 export type EventDetail = EventSummary & {
   description: Event["description"];
-  banner: EventSummary["cover"];
   gallery: GalleryPhoto[];
 };
 
@@ -75,6 +76,7 @@ const toSummary = (doc: Event): EventSummary => ({
   category: doc.category,
   date: doc.date ?? null,
   cover: image(doc.coverImage, "card"),
+  wide: image(doc.coverImage, "banner"),
   featured: Boolean(doc.featured),
 });
 
@@ -118,7 +120,6 @@ export const getEventBySlug = unstable_cache(
     return {
       ...toSummary(doc),
       description: doc.description ?? null,
-      banner: image(doc.coverImage, "banner"),
       gallery: toGallery(doc.gallery),
     };
   },

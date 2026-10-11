@@ -119,12 +119,7 @@ const en = {
   },
   events: {
     kicker: "Events",
-    title: { before: "Our ", highlight: "upcoming", after: " events" },
-    photoPlaceholder: "Event photo",
-    datePlaceholder: "Date",
-    placePlaceholder: "Place",
-    titlePlaceholder: "Event title",
-    descriptionPlaceholder: "Short event description",
+    title: { before: "Our ", highlight: "key", after: " events" },
   },
   testimonials: {
     kicker: "Testimonials",
@@ -222,7 +217,6 @@ const en = {
       kicker: "Archive",
       title: { before: "Past ", highlight: "events", after: "" },
     },
-    dateTba: "Date to be announced",
     pastBadge: "Past event",
     categories: {
       medical: "Medical aid",

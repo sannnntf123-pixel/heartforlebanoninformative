@@ -21,9 +21,11 @@ export const Media: CollectionConfig = {
   upload: {
     mimeTypes: ["image/jpeg", "image/png", "image/webp", "image/avif"],
     focalPoint: true,
+    // No fixed crop position: sizes are cropped around each photo's focal point
+    // (set by dragging the dot in the admin), so faces stay in frame.
     imageSizes: [
-      { name: "card", width: 600, height: 600, position: "centre" },
-      { name: "banner", width: 1600, height: 900, position: "centre" },
+      { name: "card", width: 600, height: 600 },
+      { name: "banner", width: 1600, height: 900 },
     ],
     adminThumbnail: "card",
   },

@@ -64,12 +64,12 @@ const EventGrid = ({ events, locale, t, past = false }: EventGridProps) => {
                 <Link href={href}>{event.title}</Link>
               </h3>
               <p className={styles.when}>
-                {event.date ? (
-                  <time dateTime={event.date}>{formatEventDate(event.date, locale)}</time>
-                ) : (
-                  p.dateTba
+                {event.date && (
+                  <>
+                    <time dateTime={event.date}>{formatEventDate(event.date, locale)}</time>
+                    <span aria-hidden="true"> · </span>
+                  </>
                 )}
-                <span aria-hidden="true"> · </span>
                 {event.location}
               </p>
               <p>{event.summary}</p>

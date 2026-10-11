@@ -21,6 +21,16 @@ npm run typecheck        # tsc --noEmit
 - Found by tracing imports from the real site's entry points; old URLs now return 404.
 - Lint is now clean (the remaining `<img>` warnings were all in template code).
 
+## Done: events spotlight + the charity's three featured events (2026-10-11)
+- Landing page: events spotlight right after the hero (1 large lead card + 2), showing
+  "Important" events, falling back to upcoming ones.
+- Data migration `20261011_144712_add_featured_events` adds 3 events (EN/AR, cover + gallery)
+  from `content/events/<slug>/`: breast cancer campaign with Elissa (27 Oct 2021), children's
+  heart screening (ongoing, every Saturday, no date), "Use Your Mind" mental-health conference
+  with Tim Hassan (date not provided yet). Idempotent: skips existing slugs.
+- Image sizes now crop around the focal point (faces stay in frame); undated events show no date line.
+- Open: date of the mental-health conference.
+
 ## Done: event groups, one optional date, gallery; sign-up removed (2026-10-10)
 - Events page: Important (CMS "Important event" tick) → Upcoming (incl. undated) → Past; each event once.
 - One optional `date` per event (day only, Lebanon time); no date = "Date to be announced".
