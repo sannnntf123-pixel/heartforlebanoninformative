@@ -30,6 +30,10 @@ npm run typecheck        # tsc --noEmit
   with Tim Hassan (date not provided yet). Idempotent: skips existing slugs.
 - Image sizes now crop around the focal point (faces stay in frame); undated events show no date line.
 - Open: date of the mental-health conference.
+- Bug found in production: every featured-event photo showed the breast-cancer cover. Cause: the
+  migration shared one `req` across uploads and the Vercel Blob plugin re-reads `req.file`.
+  Repaired by migration `20261011_145629_fix_featured_event_photos` (re-uploads each file, keeps ids);
+  the original migration no longer shares `req`. Media changes now refresh event pages.
 
 ## Done: event groups, one optional date, gallery; sign-up removed (2026-10-10)
 - Events page: Important (CMS "Important event" tick) → Upcoming (incl. undated) → Past; each event once.

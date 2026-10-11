@@ -157,6 +157,9 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
     const coverFile = files.find((f) => f.startsWith("cover."));
     if (!coverFile) throw new Error(`Missing cover photo in ${dir}`);
 
+    // Uploads deliberately get no `req`: with a shared request, the Vercel Blob
+    // storage plugin re-reads the first file for every later upload (see the
+    // fix_featured_event_photos migration).
     const upload = async (file: string, index: number | null, focus?: { x: number; y: number }) => {
       const suffix = index === null ? "" : ` (${index})`;
       const media = await payload.create({
@@ -167,14 +170,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
           ...(focus ? { focalX: focus.x, focalY: focus.y } : {}),
         },
         filePath: path.join(dir, file),
-        req,
       });
       await payload.update({
         collection: "media",
         id: media.id,
         locale: "ar",
         data: { alt: `${event.ar.photoAlt}${suffix}` },
-        req,
       });
       return media.id;
     };

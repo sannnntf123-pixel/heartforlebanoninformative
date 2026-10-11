@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { isLoggedIn } from "../access";
+import { EVENTS_TAG, revalidate } from "../hooks/revalidate";
 
 /** Uploaded photos (event covers). Stored on Vercel Blob in production. */
 export const Media: CollectionConfig = {
@@ -17,6 +18,11 @@ export const Media: CollectionConfig = {
     create: isLoggedIn,
     update: isLoggedIn,
     delete: isLoggedIn,
+  },
+  hooks: {
+    // Event pages embed photo URLs, so replacing a photo refreshes them.
+    afterChange: [() => revalidate(EVENTS_TAG)],
+    afterDelete: [() => revalidate(EVENTS_TAG)],
   },
   upload: {
     mimeTypes: ["image/jpeg", "image/png", "image/webp", "image/avif"],
