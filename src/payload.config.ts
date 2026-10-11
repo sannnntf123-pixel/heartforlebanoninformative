@@ -63,7 +63,9 @@ export default buildConfig({
     // Production uploads go to Vercel Blob; locally (no token) files stay in ./media.
     vercelBlobStorage({
       enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
-      collections: { media: true },
+      // Photos are public, so the site links straight to the Blob CDN instead of
+      // streaming every image through a serverless function (/api/media/file).
+      collections: { media: { disablePayloadAccessControl: true } },
       token: process.env.BLOB_READ_WRITE_TOKEN,
       // Same database columns with or without a token, so the migrations made
       // locally match production (otherwise every media query fails on Vercel).

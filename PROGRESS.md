@@ -224,3 +224,11 @@ detail pages still hold inline data; the remaining 4 lint warnings are `<img>` t
 
 ## Campaigns section removed (2026-10-11)
 - Home "Campaigns that need your support" (placeholder amounts, dead donate links) removed with its copy, content and unused helpers (`formatMoney`, `progressPercent`).
+
+## Performance pass (2026-10-11)
+Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly framework), but every event photo went through `/api/media/file` (serverless, uncached, 0.6–1.5 s each).
+- Blob storage `disablePayloadAccessControl: true` → photo URLs point straight at the Blob CDN.
+- next/image: AVIF + WebP, 30-day optimizer cache (event URLs are versioned), `qualities: [45, 75]`.
+- Hero: only the first slide loads with the page; the other two mount after `load`; rotation starts then.
+- Removed `priority` from the spotlight lead image (below the hero, competed with the LCP image).
+- Quotes background at quality 45 (under a dark overlay); `transition: all` → explicit properties; dropped `filter` on animated hero slides.

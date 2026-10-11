@@ -181,7 +181,11 @@ html[lang="ar"] .st h2 {
   color: #fff;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.3s var(--ease);
+  transition:
+    background-color 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    color 0.3s var(--ease),
+    transform 0.3s var(--ease);
 }
 .btn:hover {
   background: var(--g-h);

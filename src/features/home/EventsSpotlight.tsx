@@ -25,7 +25,6 @@ const SpotlightCard = ({ event, locale, t, lead, index }: CardProps) => {
           alt=""
           fill
           sizes={lead ? "(max-width: 1100px) 100vw, 720px" : "(max-width: 1100px) 100vw, 460px"}
-          priority={lead}
         />
       )}
       <div className={styles.body}>

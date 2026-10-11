@@ -24,7 +24,8 @@ const EventQuotes = async ({ locale, t }: { locale: Locale; t: Dictionary }) => 
 
   return (
     <section className={`sec on-dark ${styles.section}`}>
-      <Image className={styles.background} src={eventQuotesBackground} alt="" fill sizes="100vw" />
+      {/* Sits under a dark overlay, so lower quality is invisible and much lighter. */}
+      <Image className={styles.background} src={eventQuotesBackground} alt="" fill sizes="100vw" quality={45} />
       <div className={`wrap ${styles.inner}`}>
         <SectionHeading kicker={q.kicker} title={q.title} />
         <div className={styles.grid}>

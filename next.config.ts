@@ -20,6 +20,13 @@ const nextConfig: NextConfig = {
   images: {
     // Event photos uploaded through the CMS are served from Vercel Blob in production.
     remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
+    // AVIF first: noticeably smaller than WebP/JPEG for photos.
+    formats: ["image/avif", "image/webp"],
+    // 45 for photos under a dark overlay, 75 (default) everywhere else.
+    qualities: [45, 75],
+    // Optimized images are kept for 30 days. Event photo URLs carry a version
+    // (?v=…), so a replaced photo still shows up immediately.
+    minimumCacheTTL: 2592000,
     localPatterns: [{ pathname: "/images/**" }, { pathname: "/api/media/file/**" }],
   },
 };

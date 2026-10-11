@@ -35,7 +35,6 @@
   transition:
     opacity 1.6s var(--ease),
     transform 7s linear;
-  filter: saturate(0.9);
 }
 .slides img.slideOn {
   opacity: 1;
@@ -180,7 +179,10 @@
   height: 10px;
   border-radius: 50%;
   border: 1.5px solid #fff;
-  transition: all 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    transform 0.3s;
 }
 .dots button[aria-pressed="true"] i {
   background: var(--lime);
