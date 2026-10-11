@@ -42,7 +42,3 @@ export const formatDateBadge = (iso: string, locale: "en" | "ar" = "en") => {
     month: new Intl.DateTimeFormat(tag, { month: "short", timeZone: "Asia/Beirut" }).format(date),
   };
 };
-
-/** Percentage of `goal` reached, clamped to 0-100 and rounded. */
-export const progressPercent = (raised: number, goal: number): number =>
-  goal > 0 ? Math.min(100, Math.max(0, Math.round((raised / goal) * 100))) : 0;

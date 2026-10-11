@@ -57,21 +57,6 @@ export const services = [
   { id: "social", image: photos.hygiene.square, icon: "people" },
 ] as const;
 
-export type Campaign = {
-  id: "medicine" | "food" | "hygiene" | "programme";
-  image: string | null;
-  /** Whole dollars; `null` until confirmed by the charity. */
-  raised: number | null;
-  goal: number | null;
-};
-
-export const campaigns: Campaign[] = [
-  { id: "medicine", image: photos.medicine.wide, raised: null, goal: null },
-  { id: "food", image: photos.food.wide, raised: null, goal: null },
-  { id: "hygiene", image: photos.hygiene.wide, raised: null, goal: null },
-  { id: "programme", image: null, raised: null, goal: null },
-];
-
 /** Team photos for "Our team in the field": an event and which of its gallery photos (1-based). */
 export const fieldPhotos = [
   { slug: "shelter-visits-war-relief-2026", photo: 4 },

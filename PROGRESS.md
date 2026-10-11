@@ -221,3 +221,6 @@ detail pages still hold inline data; the remaining 4 lint warnings are `<img>` t
 - Testimonials (placeholders) → **EventQuotes**: messages from the charity's own event write-ups, with event cover and link; skips unpublished events.
 - Volunteers → "Our team in the field": chosen gallery photos (`fieldPhotos` in content.ts) captioned per event, linking to it; Join us card kept.
 - News → latest 3 events not in the spotlight (newest first), real date/category/link; updates automatically.
+
+## Campaigns section removed (2026-10-11)
+- Home "Campaigns that need your support" (placeholder amounts, dead donate links) removed with its copy, content and unused helpers (`formatMoney`, `progressPercent`).

@@ -1,6 +1,5 @@
 import Contact from "@/features/contact/Contact";
 import About from "@/features/home/About";
-import Campaigns from "@/features/home/Campaigns";
 import EventQuotes from "@/features/home/EventQuotes";
 import EventsSpotlight from "@/features/home/EventsSpotlight";
 import Faq from "@/features/home/Faq";
@@ -35,7 +34,6 @@ export default async function HomePage({ params }: PageProps) {
       <About locale={locale} t={t} />
       <Services t={t} />
       <Faq t={t} />
-      <Campaigns locale={locale} t={t} />
       <ImpactBand locale={locale} t={t} />
       <EventQuotes locale={locale} t={t} />
       <Volunteers locale={locale} t={t} />
