@@ -21,6 +21,13 @@ npm run typecheck        # tsc --noEmit
 - Found by tracing imports from the real site's entry points; old URLs now return 404.
 - Lint is now clean (the remaining `<img>` warnings were all in template code).
 
+## Done: three more events (2026-10-11)
+- Migration `20261011_151256_add_more_events` (regular, not Important): shelter visits for
+  displaced families (dated 1 Mar 2026, "March–April 2026"), "Fasting Together" Ramadan/Lent food
+  aid (no year given), Youth Academy for IT/AI/English ("winter 2025", no exact date).
+- Shared helper `src/migrations/lib/import-events.ts` (uploads without a shared req).
+- Open: dates for Fasting Together, Youth Academy and the Tim Hassan conference (undated = "upcoming").
+
 ## Done: events spotlight + the charity's three featured events (2026-10-11)
 - Landing page: events spotlight right after the hero (1 large lead card + 2), showing
   "Important" events, falling back to upcoming ones.

@@ -1,6 +1,5 @@
 import { MigrateDownArgs, MigrateUpArgs } from "@payloadcms/db-postgres";
-import fs from "fs";
-import path from "path";
+import { importEvents, removeEvents, type EventToImport } from "./lib/import-events";
 
 /**
  * Data migration: adds the charity's three featured events (English + Arabic,
@@ -22,10 +21,11 @@ type FeaturedEvent = {
   ar: Copy;
 };
 
-const events: FeaturedEvent[] = [
+const events: EventToImport[] = [
   {
     slug: "together-against-breast-cancer",
     category: "health",
+    featured: true,
     date: "2021-10-27T12:00:00.000Z",
     en: {
       title:
@@ -56,6 +56,7 @@ const events: FeaturedEvent[] = [
   {
     slug: "my-heart-for-lebanons-children",
     category: "health",
+    featured: true,
     date: null, // ongoing programme, every Saturday
     coverFocus: { x: 50, y: 28 },
     en: {
@@ -86,6 +87,7 @@ const events: FeaturedEvent[] = [
   {
     slug: "use-your-mind-mental-health",
     category: "health",
+    featured: true,
     date: null, // date not provided yet
     coverFocus: { x: 60, y: 30 },
     en: {
@@ -115,124 +117,13 @@ const events: FeaturedEvent[] = [
   },
 ];
 
-/** Minimal Lexical rich-text document from plain paragraphs. */
-const richText = (paragraphs: string[], direction: "ltr" | "rtl") => ({
-  root: {
-    type: "root",
-    format: "" as const,
-    indent: 0,
-    version: 1,
-    direction,
-    children: paragraphs.map((text) => ({
-      type: "paragraph",
-      format: "",
-      indent: 0,
-      version: 1,
-      direction,
-      textFormat: 0,
-      children: [{ type: "text", text, format: 0, detail: 0, mode: "normal", style: "", version: 1 }],
-    })),
-  },
-});
-
-const contentDir = (slug: string) => path.resolve(process.cwd(), "content/events", slug);
-
-export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
-  for (const event of events) {
-    const existing = await payload.find({
-      collection: "events",
-      where: { slug: { equals: event.slug } },
-      limit: 1,
-      depth: 0,
-      req,
-    });
-    if (existing.totalDocs > 0) {
-      payload.logger.info(`Event "${event.slug}" already exists, skipping`);
-      continue;
-    }
-
-    const dir = contentDir(event.slug);
-    const files = fs.readdirSync(dir).filter((f) => /\.(jpe?g|png|webp)$/i.test(f)).sort();
-    const galleryFiles = files.filter((f) => !f.startsWith("cover."));
-    const coverFile = files.find((f) => f.startsWith("cover."));
-    if (!coverFile) throw new Error(`Missing cover photo in ${dir}`);
-
-    // Uploads deliberately get no `req`: with a shared request, the Vercel Blob
-    // storage plugin re-reads the first file for every later upload (see the
-    // fix_featured_event_photos migration).
-    const upload = async (file: string, index: number | null, focus?: { x: number; y: number }) => {
-      const suffix = index === null ? "" : ` (${index})`;
-      const media = await payload.create({
-        collection: "media",
-        locale: "en",
-        data: {
-          alt: `${event.en.photoAlt}${suffix}`,
-          ...(focus ? { focalX: focus.x, focalY: focus.y } : {}),
-        },
-        filePath: path.join(dir, file),
-      });
-      await payload.update({
-        collection: "media",
-        id: media.id,
-        locale: "ar",
-        data: { alt: `${event.ar.photoAlt}${suffix}` },
-      });
-      return media.id;
-    };
-
-    const coverId = await upload(coverFile, null, event.coverFocus);
-    const galleryIds: number[] = [];
-    for (const [i, file] of galleryFiles.entries()) {
-      galleryIds.push(await upload(file, i + 1));
-    }
-
-    const created = await payload.create({
-      collection: "events",
-      locale: "en",
-      data: {
-        title: event.en.title,
-        summary: event.en.summary,
-        location: event.en.location,
-        description: richText(event.en.body, "ltr"),
-        slug: event.slug,
-        category: event.category,
-        date: event.date,
-        coverImage: coverId,
-        gallery: galleryIds,
-        featured: true,
-        _status: "published",
-      },
-      req,
-    });
-    await payload.update({
-      collection: "events",
-      id: created.id,
-      locale: "ar",
-      data: {
-        title: event.ar.title,
-        summary: event.ar.summary,
-        location: event.ar.location,
-        description: richText(event.ar.body, "rtl"),
-        _status: "published",
-      },
-      req,
-    });
-    payload.logger.info(`Added featured event "${event.slug}" with ${galleryIds.length} gallery photos`);
-  }
+export async function up({ payload }: MigrateUpArgs): Promise<void> {
+  await importEvents(payload, events);
 }
 
-export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
-  for (const event of events) {
-    const { docs } = await payload.find({
-      collection: "events",
-      where: { slug: { equals: event.slug } },
-      depth: 0,
-      req,
-    });
-    for (const doc of docs) {
-      const mediaIds = [doc.coverImage, ...(doc.gallery ?? [])].filter((id): id is number => typeof id === "number");
-      await payload.delete({ collection: "events", id: doc.id, req });
-      for (const id of mediaIds) await payload.delete({ collection: "media", id, req });
-    }
-  }
+export async function down({ payload }: MigrateDownArgs): Promise<void> {
+  await removeEvents(
+    payload,
+    events.map((e) => e.slug)
+  );
 }
