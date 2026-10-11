@@ -45,6 +45,17 @@ const toImageSrc = (url: string): string => {
   return url.replace(/^https?:\/\/localhost(:\d+)?/, "");
 };
 
+/**
+ * Adds the photo's last-change time to its URL. Photos are cached for a year
+ * (browser, CDN and the image optimizer all key on the URL), so a replaced photo
+ * that reuses a file name would otherwise keep showing the old picture.
+ */
+const withVersion = (src: string, updatedAt: string) => {
+  const version = Date.parse(updatedAt);
+  if (Number.isNaN(version)) return src;
+  return `${src}${src.includes("?") ? "&" : "?"}v=${version}`;
+};
+
 const image = (media: Event["coverImage"], size: "card" | "banner"): EventSummary["cover"] => {
   if (!media || typeof media === "number") return null;
   const m = media as Media;
@@ -52,7 +63,7 @@ const image = (media: Event["coverImage"], size: "card" | "banner"): EventSummar
   const url = variant?.url ?? m.url;
   if (!url) return null;
   return {
-    url: toImageSrc(url),
+    url: withVersion(toImageSrc(url), m.updatedAt),
     alt: m.alt ?? "",
     width: variant?.width ?? m.width ?? 1200,
     height: variant?.height ?? m.height ?? 800,
