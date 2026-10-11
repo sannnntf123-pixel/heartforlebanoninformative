@@ -110,31 +110,72 @@ const en = {
       programme: { tag: "Health & social", title: "Our health and social programme", text: "Sustainable programmes that stay with families long-term." },
     },
   },
-  donateBand: {
-    kicker: "Donate now",
-    title: { before: "Your gift reaches ", highlight: "a family in need", after: "" },
-    text: "Choose an amount and complete your donation securely on our GoFundMe page.",
-    custom: "Custom",
-    cta: "Donate on GoFundMe",
+  impact: {
+    kicker: "Our impact",
+    title: { before: "What your support ", highlight: "has made possible", after: "" },
+    text: "A few numbers from the campaigns the association has carried out across Lebanon.",
+    stats: [
+      {
+        slug: "together-against-breast-cancer",
+        value: 10000,
+        plus: false,
+        label: "mammography and breast ultrasound screenings for women across Lebanon",
+      },
+      {
+        slug: "shelter-visits-war-relief-2026",
+        value: 30,
+        plus: true,
+        label: "shelters for displaced families reached with medical and food aid",
+      },
+      {
+        slug: "fasting-together",
+        value: 30,
+        plus: true,
+        label: "municipalities in Baabda and the Bekaa reached by “Fasting Together”",
+      },
+    ],
+    cta: "See all our events",
   },
   events: {
     kicker: "Events",
     title: { before: "Our ", highlight: "key", after: " events" },
   },
-  testimonials: {
-    kicker: "Testimonials",
-    title: { before: "Words from ", highlight: "families and volunteers", after: "" },
-    quotePlaceholder: "Testimonial from a beneficiary or volunteer",
-    photoPlaceholder: "Photo",
-    namePlaceholder: "Name",
-    rolePlaceholder: "Role",
+  eventQuotes: {
+    kicker: "From our events",
+    title: { before: "The messages behind ", highlight: "our campaigns", after: "" },
+    viewEvent: "View the event",
+    items: [
+      {
+        slug: "use-your-mind-mental-health",
+        quote: "Use your mind: mental illness is not a shame.",
+        source: "“Use Your Mind” mental health conference",
+      },
+      {
+        slug: "together-against-breast-cancer",
+        quote: "Women’s health is a right and a priority, and early diagnosis can save thousands of lives.",
+        source: "“Together Against Breast Cancer” campaign",
+      },
+      {
+        slug: "my-heart-for-lebanons-children",
+        quote: "Early detection gives every child a better chance for a healthy future.",
+        source: "“My Heart for Lebanon’s Children” campaign",
+      },
+      {
+        slug: "fasting-together",
+        quote: "Fasting brings the Lebanese together around love and giving, beyond religious differences.",
+        source: "“Fasting Together” campaign",
+      },
+    ],
   },
   volunteers: {
     kicker: "Our team",
-    title: { before: "Our ", highlight: "green-vest", after: " volunteers" },
-    role: "Volunteer",
-    namePlaceholder: "Volunteer name",
-    imageAlt: "A volunteer in the charity’s green vest",
+    title: { before: "Our team ", highlight: "in the field", after: "" },
+    /** Caption per event photo (keyed by event slug). */
+    field: {
+      "shelter-visits-war-relief-2026": "Aid visits to 30+ shelters",
+      "fasting-together": "“Fasting Together” food aid",
+      "my-heart-for-lebanons-children": "Children’s heart screenings",
+    } as Record<string, string>,
     join: {
       kicker: "Join us",
       title: "Wear the green vest",
@@ -144,13 +185,7 @@ const en = {
   },
   news: {
     kicker: "From the field",
-    title: { before: "Latest ", highlight: "news", after: "" },
-    datePlaceholder: "Date",
-    items: {
-      medicine: { tag: "Medical aid", title: "Distributing medicine according to the needs of displaced families" },
-      programme: { tag: "Social programmes", title: "Closing our health and social programme" },
-      relief: { tag: "Relief", title: "Standing with our people from every region of Lebanon" },
-    },
+    title: { before: "Latest ", highlight: "from our events", after: "" },
   },
   contact: {
     kicker: "Contact us",

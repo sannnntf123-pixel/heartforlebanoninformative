@@ -76,3 +76,10 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Stretch the caption link over the whole photo card. */
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}

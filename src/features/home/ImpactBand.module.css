@@ -28,33 +28,45 @@
   color: var(--on-dark-text);
 }
 
-.chips {
+.stats {
+  list-style: none;
+  margin: 44px auto 0;
+  padding: 0;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.stat {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 34px;
-}
-.chips a {
-  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-width: 96px;
-  min-height: 52px;
-  padding: 0 22px;
-  border-radius: var(--pill);
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
-  font-weight: 600;
-  font-size: 18px;
+  gap: 10px;
+  height: 100%;
+  padding: 30px 24px;
+  border-radius: var(--r);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  transition: border-color 0.25s, background 0.25s, transform 0.25s var(--ease);
 }
-.chips a:hover,
-.chips a.selected {
-  background: #fff;
-  color: var(--dg);
-  border-color: #fff;
+.stat:hover {
+  border-color: var(--lime);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+}
+.value {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--lime);
+}
+.label {
+  color: var(--on-dark-text);
+  font-size: 16px;
+  line-height: 1.5;
 }
 .cta {
-  margin-top: 28px;
+  margin-top: 36px;
 }
 
 /* The heart draws itself when the band scrolls into view. */
@@ -82,5 +94,11 @@
   }
   .heart {
     width: 260px;
+  }
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  .value {
+    font-size: 42px;
   }
 }

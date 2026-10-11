@@ -7,10 +7,6 @@ export const brand = {
     donate: "https://gofund.me/cd38fc38",
     donateLabel: "gofund.me/cd38fc38",
   },
-  /** Suggested donation amounts (USD) shown in the donate band. */
-  donationAmounts: [10, 100, 200],
-  /** Amount pre-selected in the donate band. */
-  featuredAmount: 100,
   /** Unconfirmed contact details; `null` renders a visible placeholder. */
   contact: {
     address: null as string | null,

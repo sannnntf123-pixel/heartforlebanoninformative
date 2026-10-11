@@ -93,31 +93,71 @@ const ar: Dictionary = {
       programme: { tag: "برامج صحية واجتماعية", title: "برنامجنا الصحي والاجتماعي", text: "برامج مستدامة ترافق العائلات على المدى الطويل." },
     },
   },
-  donateBand: {
-    kicker: "تبرّع الآن",
-    title: { before: "تبرّعك يصل إلى ", highlight: "عائلة تحتاجه", after: "" },
-    text: "اختر مبلغًا وأكمل تبرّعك بأمان عبر صفحتنا على GoFundMe.",
-    custom: "مبلغ آخر",
-    cta: "تبرّع عبر GoFundMe",
+  impact: {
+    kicker: "أثرنا",
+    title: { before: "ما حقّقه ", highlight: "دعمكم", after: "" },
+    text: "أرقام من حملات نفّذتها الجمعية في مختلف المناطق اللبنانية.",
+    stats: [
+      {
+        slug: "together-against-breast-cancer",
+        value: 10000,
+        plus: false,
+        label: "فحص وقائي بالماموغرافي والإيكوغرافي لنساء في مختلف المحافظات اللبنانية",
+      },
+      {
+        slug: "shelter-visits-war-relief-2026",
+        value: 30,
+        plus: true,
+        label: "مركز إيواء للنازحين وصلته المساعدات الطبية والغذائية",
+      },
+      {
+        slug: "fasting-together",
+        value: 30,
+        plus: true,
+        label: "بلدية في بعبدا والبقاع ضمن حملة «صايمين سوا»",
+      },
+    ],
+    cta: "كل فعالياتنا",
   },
   events: {
     kicker: "فعاليات",
     title: { before: "", highlight: "أبرز", after: " فعالياتنا" },
   },
-  testimonials: {
-    kicker: "شهادات",
-    title: { before: "كلمات من ", highlight: "العائلات والمتطوعين", after: "" },
-    quotePlaceholder: "شهادة من أحد المستفيدين أو المتطوعين",
-    photoPlaceholder: "صورة",
-    namePlaceholder: "الاسم",
-    rolePlaceholder: "الصفة",
+  eventQuotes: {
+    kicker: "من فعالياتنا",
+    title: { before: "الرسائل التي ", highlight: "تحملها حملاتنا", after: "" },
+    viewEvent: "عرض الفعالية",
+    items: [
+      {
+        slug: "use-your-mind-mental-health",
+        quote: "حكّم عقلك – المرض النفسي مش عيب.",
+        source: "ندوة «حكّم عقلك» للتوعية بالصحة النفسية",
+      },
+      {
+        slug: "together-against-breast-cancer",
+        quote: "صحة المرأة اللبنانية حقّ وأولوية، والتشخيص المبكر قد ينقذ آلاف الأرواح.",
+        source: "حملة «سوا منحارب سرطان الثدي»",
+      },
+      {
+        slug: "my-heart-for-lebanons-children",
+        quote: "صحة أطفال لبنان أولوية، والكشف المبكر قد يصنع فارقاً في حياة طفل ومستقبله.",
+        source: "حملة «قلبي عَ قلب أطفال لبنان»",
+      },
+      {
+        slug: "fasting-together",
+        quote: "الصيام يجمع اللبنانيين على قيم المحبة والعطاء، بعيداً عن الاختلافات الدينية والطائفية.",
+        source: "حملة «صايمين سوا»",
+      },
+    ],
   },
   volunteers: {
     kicker: "فريقنا",
-    title: { before: "متطوعو ", highlight: "السترات الخضراء", after: "" },
-    role: "متطوعة",
-    namePlaceholder: "اسم المتطوع",
-    imageAlt: "متطوعة من الجمعية بالسترة الخضراء",
+    title: { before: "فريقنا ", highlight: "في الميدان", after: "" },
+    field: {
+      "shelter-visits-war-relief-2026": "زيارات لأكثر من 30 مركز إيواء",
+      "fasting-together": "مساعدات حملة «صايمين سوا»",
+      "my-heart-for-lebanons-children": "فحوصات القلب للأطفال",
+    },
     join: {
       kicker: "انضم إلينا",
       title: "ارتدِ السترة الخضراء",
@@ -127,13 +167,7 @@ const ar: Dictionary = {
   },
   news: {
     kicker: "من الميدان",
-    title: { before: "آخر ", highlight: "الأخبار", after: "" },
-    datePlaceholder: "التاريخ",
-    items: {
-      medicine: { tag: "مساعدات طبية", title: "توزيع أدوية وفقًا لاحتياجات النازحين" },
-      programme: { tag: "برامج اجتماعية", title: "ختام البرنامج الصحي والاجتماعي" },
-      relief: { tag: "إغاثة", title: "إلى جانب أهلنا من جميع مناطق لبنان" },
-    },
+    title: { before: "آخر ", highlight: "أخبار فعالياتنا", after: "" },
   },
   contact: {
     kicker: "تواصل معنا",

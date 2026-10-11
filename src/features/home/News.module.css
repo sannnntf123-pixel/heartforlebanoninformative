@@ -44,10 +44,6 @@
   font-size: 15px;
   text-align: center;
 }
-.date :global(.ph-t) {
-  background: rgba(18, 63, 46, 0.12);
-  color: var(--dg);
-}
 .text {
   position: relative;
   z-index: 2;
@@ -61,6 +57,12 @@
 .text h3 {
   font-size: 22px;
   margin-top: 8px;
+  /* Event titles can be long: keep cards even. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
 }
 .text .more {
   color: #fff;

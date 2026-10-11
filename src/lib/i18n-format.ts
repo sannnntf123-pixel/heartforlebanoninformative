@@ -11,6 +11,10 @@ const numberLocale: Record<Locale, string> = {
 export const formatInteger = (value: number, locale: Locale): string =>
   new Intl.NumberFormat(numberLocale[locale], { useGrouping: false }).format(value);
 
+/** Count in the locale's digits, grouped (e.g. "10,000" / "١٠٬٠٠٠"). */
+export const formatCount = (value: number, locale: Locale): string =>
+  new Intl.NumberFormat(numberLocale[locale]).format(value);
+
 /** Whole-dollar amount in the locale's digits (e.g. "$4,407" in English). */
 export const formatMoney = (amount: number, locale: Locale): string =>
   new Intl.NumberFormat(numberLocale[locale], {

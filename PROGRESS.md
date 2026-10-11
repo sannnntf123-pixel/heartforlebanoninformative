@@ -215,3 +215,9 @@ detail pages still hold inline data; the remaining 4 lint warnings are `<img>` t
 - New CMS checkbox **Show on home page** (`showOnHome`), separate from **Important event**; the home spotlight shows events with it ticked (fallback: important, then upcoming).
 - Migration `20261011_152513_events_show_on_home`: column + all six charity events Important; only the original three on the home page.
 - Earlier data migration now adds that column first (on the pool, outside the transaction) so a fresh database still migrates.
+
+## Home sections from real event content (2026-10-11)
+- Donate band → **ImpactBand**: 10,000 screenings / 30+ shelters / 30+ municipalities, each linking to its event; CTA to the events page (GoFundMe link is dead). Removed donation amounts from `brand.ts`.
+- Testimonials (placeholders) → **EventQuotes**: messages from the charity's own event write-ups, with event cover and link; skips unpublished events.
+- Volunteers → "Our team in the field": chosen gallery photos (`fieldPhotos` in content.ts) captioned per event, linking to it; Join us card kept.
+- News → latest 3 events not in the spotlight (newest first), real date/category/link; updates automatically.

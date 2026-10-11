@@ -1,13 +1,13 @@
 import Contact from "@/features/contact/Contact";
 import About from "@/features/home/About";
 import Campaigns from "@/features/home/Campaigns";
-import DonateBand from "@/features/home/DonateBand";
+import EventQuotes from "@/features/home/EventQuotes";
 import EventsSpotlight from "@/features/home/EventsSpotlight";
 import Faq from "@/features/home/Faq";
 import Hero from "@/features/home/Hero";
+import ImpactBand from "@/features/home/ImpactBand";
 import News from "@/features/home/News";
 import Services from "@/features/home/Services";
-import Testimonials from "@/features/home/Testimonials";
 import Volunteers from "@/features/home/Volunteers";
 import { pageAlternates } from "@/i18n/alternates";
 import { isLocale } from "@/i18n/config";
@@ -36,8 +36,8 @@ export default async function HomePage({ params }: PageProps) {
       <Services t={t} />
       <Faq t={t} />
       <Campaigns locale={locale} t={t} />
-      <DonateBand locale={locale} t={t} />
-      <Testimonials t={t} />
+      <ImpactBand locale={locale} t={t} />
+      <EventQuotes locale={locale} t={t} />
       <Volunteers locale={locale} t={t} />
       <News locale={locale} t={t} />
       <Contact t={t} />

@@ -72,28 +72,14 @@ export const campaigns: Campaign[] = [
   { id: "programme", image: null, raised: null, goal: null },
 ];
 
-export type Testimonial = {
-  id: string;
-  quote: string | null;
-  name: string | null;
-  role: string | null;
-};
-
-export const testimonials: Testimonial[] = [
-  { id: "testimonial-1", quote: null, name: null, role: null },
-  { id: "testimonial-2", quote: null, name: null, role: null },
+/** Team photos for "Our team in the field": an event and which of its gallery photos (1-based). */
+export const fieldPhotos = [
+  { slug: "shelter-visits-war-relief-2026", photo: 4 },
+  { slug: "fasting-together", photo: 6 },
+  { slug: "my-heart-for-lebanons-children", photo: 1 },
 ];
 
-export const volunteers = [
-  { id: "volunteer-1", name: null as string | null, image: photos.hygiene.square },
-  { id: "volunteer-2", name: null as string | null, image: photos.medicine.square },
-  { id: "volunteer-3", name: null as string | null, image: photos.food.square },
-];
+/** How many of the latest events the home page news section shows. */
+export const NEWS_COUNT = 3;
 
-export const newsItems = [
-  { id: "medicine", image: photos.medicine.wide, date: null as string | null },
-  { id: "programme", image: photos.hygiene.wide, date: null as string | null },
-  { id: "relief", image: photos.food.wide, date: null as string | null },
-] as const;
-
-export const testimonialsBackground = photos.food.wide;
+export const eventQuotesBackground = photos.food.wide;
