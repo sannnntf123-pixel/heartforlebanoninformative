@@ -247,3 +247,4 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 - Footer: one "Donate now" button (removed heart icon, "Donate" link and gofund.me link).
 - Hero: "Donate now" button removed (only "About us" remains); lint warnings in HeroSlides fixed.
 - Phone version of the first hero slide is now the team photo (public/images/hero-mobile-team.jpg); old portrait photo removed.
+- Home About bullets: Children’s Health & Well-Being; Youth Empowerment, Peacebuilding & Civic Engagement; Family Welfare & Social Protection; Women’s Empowerment & Economic Independence (+ Arabic).
