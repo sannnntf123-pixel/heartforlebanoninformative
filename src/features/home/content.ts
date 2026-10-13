@@ -70,6 +70,9 @@ export const fieldPhotos = [
   { slug: "my-heart-for-lebanons-children", photo: 1 },
 ];
 
+/** Photo beside the contact details: an event and which of its gallery photos (1-based). */
+export const contactPhoto = { slug: "my-heart-for-lebanons-children", photo: 6 };
+
 /** How many of the latest events the home page news section shows. */
 export const NEWS_COUNT = 3;
 

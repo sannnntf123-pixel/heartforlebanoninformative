@@ -38,7 +38,7 @@ export default async function HomePage({ params }: PageProps) {
       <EventQuotes locale={locale} t={t} />
       <Volunteers locale={locale} t={t} />
       <News locale={locale} t={t} />
-      <Contact t={t} />
+      <Contact locale={locale} t={t} />
     </main>
   );
 }

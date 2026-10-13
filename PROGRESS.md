@@ -241,3 +241,4 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 - Charity contact: email info@heartforlebanon.org, location Lebanon, no phone (`brand.contact.email`).
 - Removed ContactForm, server action and schema; home Contact section now shows email / location / Instagram + "Email us" button.
 - Contact page: hero + channel cards (Email, Location, Instagram, GoFundMe). Footer: Location + Email (phone/hours placeholders gone). FAQ volunteer answer points to the email.
+- Contact section: map placeholder replaced by an event photo (`contactPhoto` in content.ts: children heart campaign, gallery photo 6) with a "Lebanon" chip.
