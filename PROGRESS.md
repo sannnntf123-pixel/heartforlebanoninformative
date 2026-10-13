@@ -246,3 +246,4 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 - Favicon from the logo (heart portion of the wordmark, readable at tab size): src/app/favicon.ico (32px PNG-in-ICO), [locale]/icon.png 192px, [locale]/apple-icon.png 180px on white.
 - Footer: one "Donate now" button (removed heart icon, "Donate" link and gofund.me link).
 - Hero: "Donate now" button removed (only "About us" remains); lint warnings in HeroSlides fixed.
+- Phone version of the first hero slide is now the team photo (public/images/hero-mobile-team.jpg); old portrait photo removed.

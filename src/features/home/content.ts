@@ -36,7 +36,7 @@ export const heroSlides: HeroSlide[] = [
   {
     src: "/images/hero-panel.webp",
     focus: "72% 25%",
-    mobile: { src: "/images/hero-panel-mobile.webp", focus: "center 35%" },
+    mobile: { src: "/images/hero-mobile-team.jpg", focus: "52% 45%" },
   },
   { src: "/images/hero-press-conference.jpg", focus: "60% 35%" },
   { src: "/images/hero-children-visit.jpg", focus: "center 30%" },
