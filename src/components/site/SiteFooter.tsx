@@ -6,7 +6,8 @@ import { formatInteger, interpolate } from "@/lib/i18n-format";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { HeartIcon, InstagramIcon, MailIcon, PinIcon } from "./icons";
+import ExternalButton from "./ExternalButton";
+import { InstagramIcon, MailIcon, PinIcon } from "./icons";
 import styles from "./SiteFooter.module.css";
 
 type SiteFooterProps = { locale: Locale; t: Dictionary };
@@ -41,10 +42,11 @@ const SiteFooter = ({ locale, t }: SiteFooterProps) => {
               <a href={brand.links.instagram} {...external} aria-label="Instagram">
                 <InstagramIcon />
               </a>
-              <a href={brand.links.donate} {...external} aria-label="GoFundMe">
-                <HeartIcon />
-              </a>
             </div>
+            {/* The footer's single donation link. */}
+            <ExternalButton href={brand.links.donate} variant="lime" withHeart className={styles.donate}>
+              {t.common.donateNow}
+            </ExternalButton>
           </div>
 
           <div>
@@ -61,11 +63,6 @@ const SiteFooter = ({ locale, t }: SiteFooterProps) => {
               </li>
               <li>
                 <Link href={r.contact}>{t.nav.contact}</Link>
-              </li>
-              <li>
-                <a href={brand.links.donate} {...external}>
-                  {t.common.donate}
-                </a>
               </li>
             </ul>
           </div>
@@ -87,11 +84,6 @@ const SiteFooter = ({ locale, t }: SiteFooterProps) => {
               <li>
                 <a href={brand.links.instagram} {...external}>
                   <span dir="ltr">{brand.links.instagramHandle}</span>
-                </a>
-              </li>
-              <li>
-                <a href={brand.links.donate} {...external}>
-                  <span dir="ltr">{brand.links.donateLabel}</span>
                 </a>
               </li>
             </ul>
