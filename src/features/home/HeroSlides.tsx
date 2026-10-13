@@ -18,14 +18,13 @@ const SlideImage = ({ slide, priority, className }: SlideImageProps) => {
   // Crop focus per screen size; Hero.module.css picks the right one.
   const style = { "--focus": slide.focus, "--focus-mobile": slide.mobile?.focus } as CSSProperties;
   const common = { alt: "", fill: true, sizes: "100vw", priority, className, style };
-  if (!slide.mobile) return <Image {...common} src={slide.src} />;
+  if (!slide.mobile) return <Image {...common} src={slide.src} alt="" />;
 
   const mobile = getImageProps({ ...common, src: slide.mobile.src }).props;
   const { props } = getImageProps({ ...common, src: slide.src });
   return (
     <picture>
       <source media={MOBILE_QUERY} srcSet={mobile.srcSet} sizes={mobile.sizes} />
-      {/* eslint-disable-next-line @next/next/no-img-element -- props come from next/image */}
       <img {...props} alt="" />
     </picture>
   );

@@ -1,7 +1,5 @@
-import ExternalButton from "@/components/site/ExternalButton";
 import { HeartOutline } from "@/components/site/icons";
 import { HighlightedText, Kicker } from "@/components/site/Typography";
-import { brand } from "@/config/brand";
 import { routes } from "@/config/routes";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
@@ -26,9 +24,6 @@ const Hero = ({ locale, t }: { locale: Locale; t: Dictionary }) => (
         </h1>
         <p>{t.hero.text}</p>
         <div className={styles.cta}>
-          <ExternalButton href={brand.links.donate} variant="lime" withHeart>
-            {t.common.donateNow}
-          </ExternalButton>
           <Link className="btn btn--ghost" href={routes(locale).about}>
             {t.hero.secondaryCta}
           </Link>
