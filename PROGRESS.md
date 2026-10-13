@@ -238,7 +238,8 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 - Fix: with reduced motion the hero copy stayed invisible (entrance animation disabled but opacity 0 kept); the hidden start state now only applies with motion allowed.
 
 ## Contact form removed (2026-10-13)
-- Charity contact: email info@heartforlebanon.org, location Lebanon, no phone (`brand.contact.email`).
+- Charity contact: email info@myheartforlebanon.org, location Lebanon, no phone (`brand.contact.email`).
 - Removed ContactForm, server action and schema; home Contact section now shows email / location / Instagram + "Email us" button.
 - Contact page: hero + channel cards (Email, Location, Instagram, GoFundMe). Footer: Location + Email (phone/hours placeholders gone). FAQ volunteer answer points to the email.
 - Contact section: map placeholder replaced by an event photo (`contactPhoto` in content.ts: children heart campaign, gallery photo 6) with a "Lebanon" chip.
+- Email corrected to info@myheartforlebanon.org. Hero "Watch our work" play button removed (with its CSS, copy and PlayIcon).

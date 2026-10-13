@@ -1,5 +1,5 @@
 import ExternalButton from "@/components/site/ExternalButton";
-import { HeartOutline, PlayIcon } from "@/components/site/icons";
+import { HeartOutline } from "@/components/site/icons";
 import { HighlightedText, Kicker } from "@/components/site/Typography";
 import { brand } from "@/config/brand";
 import { routes } from "@/config/routes";
@@ -35,17 +35,6 @@ const Hero = ({ locale, t }: { locale: Locale; t: Dictionary }) => (
         </div>
       </div>
     </div>
-
-    <a
-      className={styles.play}
-      href={brand.links.instagram}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={t.hero.watchLabel}
-    >
-      <PlayIcon />
-      <span aria-hidden="true">{t.hero.watch}</span>
-    </a>
   </section>
 );
 

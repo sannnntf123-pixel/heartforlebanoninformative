@@ -22,12 +22,6 @@ export const HeartIcon = (props: IconProps) => (
   </Outline>
 );
 
-export const PlayIcon = (props: IconProps) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" {...props}>
-    <path d="M8 5v14l11-7z" />
-  </svg>
-);
-
 export const InstagramIcon = (props: IconProps) => (
   <Outline {...props}>
     <rect x="3" y="3" width="18" height="18" rx="5" />

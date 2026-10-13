@@ -8,6 +8,6 @@ export const brand = {
     donateLabel: "gofund.me/cd38fc38",
   },
   contact: {
-    email: "info@heartforlebanon.org",
+    email: "info@myheartforlebanon.org",
   },
 } as const;

@@ -34,8 +34,6 @@ const en = {
     title: { before: "Together we reach every family ", highlight: "in Lebanon", after: "" },
     text: "Medicine, food and hygiene aid, and health and social programmes for displaced families.",
     secondaryCta: "About us",
-    watch: "Watch our work",
-    watchLabel: "Watch our work on Instagram",
     slidesLabel: "Slides",
     slideLabel: "Show slide",
   },
@@ -83,7 +81,7 @@ const en = {
       {
         question: "How do I become a volunteer?",
         answer:
-          "Email us at info@heartforlebanon.org or message us on Instagram and we will get back to you with upcoming activities.",
+          "Email us at info@myheartforlebanon.org or message us on Instagram and we will get back to you with upcoming activities.",
       },
       { question: "Where does the charity work?", answer: "We work with families in every region of Lebanon." },
       {

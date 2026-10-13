@@ -111,59 +111,6 @@
   }
 }
 
-/* Pulsing "watch our work" button. */
-.play {
-  position: absolute;
-  z-index: 2;
-  inset-inline-end: 12%;
-  top: 50%;
-  width: 96px;
-  height: 96px;
-  margin-top: -48px;
-  border-radius: 50%;
-  background: var(--lime);
-  color: var(--dg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.play::before,
-.play::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1.5px solid var(--lime);
-  animation: ring 2.4s var(--ease) infinite;
-}
-.play::after {
-  animation-delay: 1.2s;
-}
-@keyframes ring {
-  from {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  to {
-    transform: scale(1.9);
-    opacity: 0;
-  }
-}
-.play svg {
-  width: 28px;
-  height: 28px;
-}
-:global(html[dir="rtl"]) .play svg {
-  transform: scaleX(-1);
-}
-.play span {
-  position: absolute;
-  top: 110px;
-  white-space: nowrap;
-  font-size: 15px;
-  color: #fff;
-}
-
 .dots {
   position: absolute;
   z-index: 2;
@@ -218,9 +165,6 @@
   }
   :global(html[lang="ar"]) .copy h1 {
     font-size: 52px;
-  }
-  .play {
-    display: none;
   }
 }
 @media (max-width: 640px) {
