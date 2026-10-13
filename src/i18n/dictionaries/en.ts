@@ -83,7 +83,7 @@ const en = {
       {
         question: "How do I become a volunteer?",
         answer:
-          "Send us a message through the contact form or on Instagram and we will get back to you with upcoming activities.",
+          "Email us at info@heartforlebanon.org or message us on Instagram and we will get back to you with upcoming activities.",
       },
       { question: "Where does the charity work?", answer: "We work with families in every region of Lebanon." },
       {
@@ -172,28 +172,9 @@ const en = {
   contact: {
     kicker: "Contact us",
     title: { before: "We are here ", highlight: "to listen", after: "" },
-    mapPlaceholder: "Map — charity address",
-    mapLabel: "Map placeholder",
-    fields: {
-      name: "Name",
-      phone: "Phone",
-      reason: "Reason",
-      message: "Message",
-    },
-    reasons: {
-      donating: "Donating",
-      volunteering: "Volunteering",
-      help: "Requesting help",
-      partnership: "Partnership",
-      other: "Other",
-    },
-    submit: "Send message",
-    sending: "Sending…",
-    success: "Thank you, your message was received. (Demo form)",
-    errors: {
-      required: "Please fill in your name, phone and message.",
-      phone: "Please enter a valid phone number.",
-    },
+    text: "Donating, volunteering, requesting help or proposing a partnership: email us and our team will get back to you.",
+    emailCta: "Email us",
+    location: "Lebanon",
   },
   footer: {
     about:
@@ -204,11 +185,7 @@ const en = {
     programmeItems: ["Medicine", "Food aid", "Hygiene", "Displaced families"],
     follow: "Follow us",
     location: "Location",
-    addressPlaceholder: "Address",
-    hours: "Working hours",
-    hoursPlaceholder: "Days and hours",
-    call: "Call us",
-    phonePlaceholder: "Phone number",
+    email: "Email",
     copyright: "© {year} Heart of Lebanon Charity. All rights reserved.",
   },
   eventsPage: {
@@ -272,10 +249,8 @@ const en = {
     },
     kicker: "Contact us",
     title: "We are here to listen",
-    intro: "Donating, volunteering, requesting help or proposing a partnership — send us a message and our team will get back to you.",
+    intro: "Donating, volunteering, requesting help or proposing a partnership — email us and our team will get back to you.",
     channelsTitle: "Ways to reach us",
-    formKicker: "Message",
-    formTitle: { before: "Send us ", highlight: "a message", after: "" },
   },
   notFound: {
     title: "Page not found",

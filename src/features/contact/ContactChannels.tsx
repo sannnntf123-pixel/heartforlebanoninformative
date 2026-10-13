@@ -1,5 +1,4 @@
-import { ClockIcon, HeartIcon, InstagramIcon, PhoneIcon, PinIcon } from "@/components/site/icons";
-import { ValueOrPlaceholder } from "@/components/site/Typography";
+import { HeartIcon, InstagramIcon, MailIcon, PinIcon } from "@/components/site/icons";
 import { brand } from "@/config/brand";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { staggerStyle } from "@/lib/i18n-format";
@@ -13,9 +12,24 @@ const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 /** Cards listing every way to reach the charity (contact page). */
 const ContactChannels = ({ t }: { t: Dictionary }) => {
   const f = t.footer;
-  const { contact } = brand;
 
   const channels: Channel[] = [
+    {
+      id: "email",
+      icon: <MailIcon />,
+      label: f.email,
+      value: (
+        <a href={`mailto:${brand.contact.email}`} dir="ltr">
+          {brand.contact.email}
+        </a>
+      ),
+    },
+    {
+      id: "location",
+      icon: <PinIcon />,
+      label: f.location,
+      value: t.contact.location,
+    },
     {
       id: "instagram",
       icon: <InstagramIcon />,
@@ -36,30 +50,6 @@ const ContactChannels = ({ t }: { t: Dictionary }) => {
         </a>
       ),
     },
-    {
-      id: "phone",
-      icon: <PhoneIcon />,
-      label: f.call,
-      value: contact.phone ? (
-        <a href={`tel:${contact.phone}`} dir="ltr">
-          {contact.phone}
-        </a>
-      ) : (
-        <ValueOrPlaceholder value={null} label={f.phonePlaceholder} />
-      ),
-    },
-    {
-      id: "address",
-      icon: <PinIcon />,
-      label: f.location,
-      value: <ValueOrPlaceholder value={contact.address} label={f.addressPlaceholder} />,
-    },
-    {
-      id: "hours",
-      icon: <ClockIcon />,
-      label: f.hours,
-      value: <ValueOrPlaceholder value={contact.hours} label={f.hoursPlaceholder} />,
-    },
   ];
 
   return (
@@ -70,7 +60,7 @@ const ContactChannels = ({ t }: { t: Dictionary }) => {
         </h2>
         <ul className={styles.grid}>
           {channels.map((channel, index) => (
-            <li key={channel.id} className={`${styles.card} rv`} style={staggerStyle(index, 5)}>
+            <li key={channel.id} className={`${styles.card} rv`} style={staggerStyle(index, 4)}>
               <span className={styles.icon}>{channel.icon}</span>
               <b>{channel.label}</b>
               <span className={styles.value}>{channel.value}</span>

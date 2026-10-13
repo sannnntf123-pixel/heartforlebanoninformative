@@ -7,10 +7,7 @@ export const brand = {
     donate: "https://gofund.me/cd38fc38",
     donateLabel: "gofund.me/cd38fc38",
   },
-  /** Unconfirmed contact details; `null` renders a visible placeholder. */
   contact: {
-    address: null as string | null,
-    hours: null as string | null,
-    phone: null as string | null,
+    email: "info@heartforlebanon.org",
   },
 } as const;

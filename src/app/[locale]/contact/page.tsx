@@ -1,6 +1,5 @@
 import PageHero from "@/components/site/PageHero";
 import { routes } from "@/config/routes";
-import Contact from "@/features/contact/Contact";
 import ContactChannels from "@/features/contact/ContactChannels";
 import { pageAlternates } from "@/i18n/alternates";
 import { isLocale } from "@/i18n/config";
@@ -42,7 +41,6 @@ export default async function ContactPage({ params }: PageProps) {
         intro={p.intro}
       />
       <ContactChannels t={t} />
-      <Contact t={t} heading={{ kicker: p.formKicker, title: p.formTitle }} />
     </main>
   );
 }

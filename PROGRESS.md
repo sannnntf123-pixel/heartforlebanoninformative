@@ -236,3 +236,8 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 ## Mobile hero photo (2026-10-13)
 - First hero slide uses a portrait photo on phones (<768px) via <picture> + getImageProps: each device downloads only its own photo. Crop focus per size through CSS vars (--focus / --focus-mobile).
 - Fix: with reduced motion the hero copy stayed invisible (entrance animation disabled but opacity 0 kept); the hidden start state now only applies with motion allowed.
+
+## Contact form removed (2026-10-13)
+- Charity contact: email info@heartforlebanon.org, location Lebanon, no phone (`brand.contact.email`).
+- Removed ContactForm, server action and schema; home Contact section now shows email / location / Instagram + "Email us" button.
+- Contact page: hero + channel cards (Email, Location, Instagram, GoFundMe). Footer: Location + Email (phone/hours placeholders gone). FAQ volunteer answer points to the email.

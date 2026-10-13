@@ -6,9 +6,8 @@ import { formatInteger, interpolate } from "@/lib/i18n-format";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ClockIcon, HeartIcon, InstagramIcon, PhoneIcon, PinIcon } from "./icons";
+import { HeartIcon, InstagramIcon, MailIcon, PinIcon } from "./icons";
 import styles from "./SiteFooter.module.css";
-import { ValueOrPlaceholder } from "./Typography";
 
 type SiteFooterProps = { locale: Locale; t: Dictionary };
 
@@ -101,19 +100,12 @@ const SiteFooter = ({ locale, t }: SiteFooterProps) => {
 
         <div className={styles.info}>
           <InfoItem icon={<PinIcon />} title={f.location}>
-            <ValueOrPlaceholder value={brand.contact.address} label={f.addressPlaceholder} />
+            {t.contact.location}
           </InfoItem>
-          <InfoItem icon={<ClockIcon />} title={f.hours}>
-            <ValueOrPlaceholder value={brand.contact.hours} label={f.hoursPlaceholder} />
-          </InfoItem>
-          <InfoItem icon={<PhoneIcon />} title={f.call}>
-            {brand.contact.phone ? (
-              <a href={`tel:${brand.contact.phone}`} dir="ltr">
-                {brand.contact.phone}
-              </a>
-            ) : (
-              <ValueOrPlaceholder value={null} label={f.phonePlaceholder} />
-            )}
+          <InfoItem icon={<MailIcon />} title={f.email}>
+            <a href={`mailto:${brand.contact.email}`} dir="ltr">
+              {brand.contact.email}
+            </a>
           </InfoItem>
         </div>
       </div>

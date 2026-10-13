@@ -50,9 +50,10 @@ export const ClockIcon = (props: IconProps) => (
   </Outline>
 );
 
-export const PhoneIcon = (props: IconProps) => (
+export const MailIcon = (props: IconProps) => (
   <Outline {...props}>
-    <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" />
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <path d="M3.5 6.5L12 13l8.5-6.5" />
   </Outline>
 );
 
