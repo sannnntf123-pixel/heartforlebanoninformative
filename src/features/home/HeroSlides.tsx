@@ -1,10 +1,35 @@
 "use client";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import Image, { getImageProps } from "next/image";
+import { useEffect, useState, type CSSProperties } from "react";
 import type { HeroSlide } from "./content";
 import styles from "./Hero.module.css";
 
 const SLIDE_INTERVAL_MS = 6000;
+/** Phones get a slide's portrait photo when it has one. */
+const MOBILE_QUERY = "(max-width: 767px)";
+
+type SlideImageProps = { slide: HeroSlide; priority: boolean; className?: string };
+
+/**
+ * One background photo. With a mobile variant it renders <picture>, so the
+ * browser downloads only the photo that matches the screen.
+ */
+const SlideImage = ({ slide, priority, className }: SlideImageProps) => {
+  // Crop focus per screen size; Hero.module.css picks the right one.
+  const style = { "--focus": slide.focus, "--focus-mobile": slide.mobile?.focus } as CSSProperties;
+  const common = { alt: "", fill: true, sizes: "100vw", priority, className, style };
+  if (!slide.mobile) return <Image {...common} src={slide.src} />;
+
+  const mobile = getImageProps({ ...common, src: slide.mobile.src }).props;
+  const { props } = getImageProps({ ...common, src: slide.src });
+  return (
+    <picture>
+      <source media={MOBILE_QUERY} srcSet={mobile.srcSet} sizes={mobile.sizes} />
+      {/* eslint-disable-next-line @next/next/no-img-element -- props come from next/image */}
+      <img {...props} alt="" />
+    </picture>
+  );
+};
 
 type HeroSlidesProps = {
   images: HeroSlide[];
@@ -46,15 +71,11 @@ const HeroSlides = ({ images, labels }: HeroSlidesProps) => {
   return (
     <>
       <div className={styles.slides} aria-hidden="true">
-        {images.map(({ src, focus }, index) =>
+        {images.map((slide, index) =>
           isMounted(index) ? (
-            <Image
-              key={src}
-              src={src}
-              style={{ objectPosition: focus }}
-              alt=""
-              fill
-              sizes="100vw"
+            <SlideImage
+              key={slide.src}
+              slide={slide}
               priority={index === 0}
               className={index === active ? styles.slideOn : undefined}
             />

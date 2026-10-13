@@ -232,3 +232,7 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 - Hero: only the first slide loads with the page; the other two mount after `load`; rotation starts then.
 - Removed `priority` from the spotlight lead image (below the hero, competed with the LCP image).
 - Quotes background at quality 45 (under a dark overlay); `transition: all` → explicit properties; dropped `filter` on animated hero slides.
+
+## Mobile hero photo (2026-10-13)
+- First hero slide uses a portrait photo on phones (<768px) via <picture> + getImageProps: each device downloads only its own photo. Crop focus per size through CSS vars (--focus / --focus-mobile).
+- Fix: with reduced motion the hero copy stayed invisible (entrance animation disabled but opacity 0 kept); the hidden start state now only applies with motion allowed.

@@ -27,11 +27,17 @@ export type HeroSlide = {
   src: string;
   /** CSS object-position: keeps faces in frame when the photo is cropped. */
   focus: string;
+  /** Optional portrait photo used instead on phones (art direction). */
+  mobile?: { src: string; focus: string };
 };
 
 /** Hero background photos, shown in this order. */
 export const heroSlides: HeroSlide[] = [
-  { src: "/images/hero-panel.webp", focus: "72% 25%" },
+  {
+    src: "/images/hero-panel.webp",
+    focus: "72% 25%",
+    mobile: { src: "/images/hero-panel-mobile.webp", focus: "center 35%" },
+  },
   { src: "/images/hero-press-conference.jpg", focus: "60% 35%" },
   { src: "/images/hero-children-visit.jpg", focus: "center 30%" },
 ];

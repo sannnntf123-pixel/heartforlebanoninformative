@@ -30,11 +30,18 @@
 }
 .slides img {
   object-fit: cover;
+  object-position: var(--focus, center);
   opacity: 0;
   transform: scale(1.08);
   transition:
     opacity 1.6s var(--ease),
     transform 7s linear;
+}
+/* Must match MOBILE_QUERY in HeroSlides.tsx. */
+@media (max-width: 767px) {
+  .slides img {
+    object-position: var(--focus-mobile, var(--focus, center));
+  }
 }
 .slides img.slideOn {
   opacity: 1;
@@ -79,20 +86,23 @@
   margin-top: 36px;
 }
 
-/* Staggered entrance of the hero copy. */
-:global(.js) .copy > * {
-  opacity: 0;
-  transform: translateY(24px);
-  animation: up 1s var(--ease) forwards;
-}
-:global(.js) .copy > *:nth-child(2) {
-  animation-delay: 0.15s;
-}
-:global(.js) .copy > *:nth-child(3) {
-  animation-delay: 0.3s;
-}
-:global(.js) .copy > *:nth-child(4) {
-  animation-delay: 0.45s;
+/* Staggered entrance of the hero copy (skipped with reduced motion, where the
+   copy would otherwise stay hidden because animations are turned off). */
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .copy > * {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: up 1s var(--ease) forwards;
+  }
+  :global(.js) .copy > *:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  :global(.js) .copy > *:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  :global(.js) .copy > *:nth-child(4) {
+    animation-delay: 0.45s;
+  }
 }
 @keyframes up {
   to {
