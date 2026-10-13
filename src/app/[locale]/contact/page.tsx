@@ -1,5 +1,6 @@
 import PageHero from "@/components/site/PageHero";
 import { routes } from "@/config/routes";
+import { shareImage } from "@/config/site";
 import ContactChannels from "@/features/contact/ContactChannels";
 import { pageAlternates } from "@/i18n/alternates";
 import { isLocale } from "@/i18n/config";
@@ -17,7 +18,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: meta.title,
     description: meta.description,
     alternates: pageAlternates(locale, "/contact"),
-    openGraph: { title: meta.title, description: meta.description, url: `/${locale}/contact` },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: `/${locale}/contact`,
+      images: [shareImage],
+    },
   };
 }
 

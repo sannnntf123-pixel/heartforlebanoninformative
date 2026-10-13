@@ -1,6 +1,7 @@
 import PageHero from "@/components/site/PageHero";
 import { HighlightedText, Kicker, SectionHeading } from "@/components/site/Typography";
 import { routes } from "@/config/routes";
+import { shareImage } from "@/config/site";
 import EventGrid from "@/features/events/EventGrid";
 import gridStyles from "@/features/events/EventGrid.module.css";
 import { getPublishedEvents, splitEvents } from "@/features/events/queries";
@@ -26,7 +27,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: meta.title,
     description: meta.description,
     alternates: pageAlternates(locale, "/events"),
-    openGraph: { title: meta.title, description: meta.description, url: `/${locale}/events` },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: `/${locale}/events`,
+      images: [shareImage],
+    },
   };
 }
 

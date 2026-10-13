@@ -250,3 +250,4 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 - Home About bullets: Children’s Health & Well-Being; Youth Empowerment, Peacebuilding & Civic Engagement; Family Welfare & Social Protection; Women’s Empowerment & Economic Independence (+ Arabic).
 - SEO fix: canonical/hreflang/OG used http://localhost:3000 in production (NEXT_PUBLIC_SITE_URL unset on Vercel). New src/config/site.ts falls back to https://www.myheartforlebanon.org on Vercel.
 - Domain: apex A record pointed at Namecheap redirect (162.255.119.201, no TLS) → user to set A @ 216.150.1.1 and delete URL Redirect.
+- Link previews (WhatsApp etc.): every page shares public/images/og-logo.png (1200x630, white logo on #123f2e, logo inside the centre square for WhatsApp crops) via `shareImage` in src/config/site.ts. Previously inner pages had no og:image.

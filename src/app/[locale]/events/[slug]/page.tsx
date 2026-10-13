@@ -1,6 +1,7 @@
 import { ClockIcon, PinIcon } from "@/components/site/icons";
 import PageHero from "@/components/site/PageHero";
 import { routes } from "@/config/routes";
+import { shareImage } from "@/config/site";
 import detail from "@/features/events/EventDetail.module.css";
 import { getEventBySlug, getEventSlugs, isUpcoming } from "@/features/events/queries";
 import EventGallery from "@/features/events/EventGallery";
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: event.title,
       description: event.summary,
       url: `/${locale}/events/${slug}`,
-      images: event.wide ? [{ url: event.wide.url, width: event.wide.width, height: event.wide.height }] : undefined,
+      images: [shareImage],
     },
   };
 }

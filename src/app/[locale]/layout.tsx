@@ -4,7 +4,7 @@ import RevealObserver from "@/components/site/RevealObserver";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
 import TopBar from "@/components/site/TopBar";
-import { siteUrl } from "@/config/site";
+import { shareImage, siteUrl } from "@/config/site";
 import { isLocale, localeDirection, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import type { Metadata, Viewport } from "next";
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
       title: t.meta.title,
       description: t.meta.description,
       locale: locale === "ar" ? "ar_LB" : "en_GB",
-      images: [{ url: "/images/medicine-wide.jpg", width: 628, height: 419 }],
+      images: [shareImage],
     },
   };
 }

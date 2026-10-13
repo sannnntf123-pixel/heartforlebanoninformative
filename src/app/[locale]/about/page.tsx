@@ -1,5 +1,6 @@
 import PageHero from "@/components/site/PageHero";
 import { routes } from "@/config/routes";
+import { shareImage } from "@/config/site";
 import Activities from "@/features/about/Activities";
 import { Closing, Impact, Vision } from "@/features/about/ImpactVisionClosing";
 import { Mission, Objectives } from "@/features/about/MissionAndObjectives";
@@ -21,7 +22,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: a.meta.title,
     description: a.meta.description,
     alternates: pageAlternates(locale, "/about"),
-    openGraph: { title: a.meta.title, description: a.meta.description, url: `/${locale}/about` },
+    openGraph: {
+      title: a.meta.title,
+      description: a.meta.description,
+      url: `/${locale}/about`,
+      images: [shareImage],
+    },
   };
 }
 
