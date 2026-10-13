@@ -4,6 +4,7 @@ import RevealObserver from "@/components/site/RevealObserver";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
 import TopBar from "@/components/site/TopBar";
+import { siteUrl } from "@/config/site";
 import { isLocale, localeDirection, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import type { Metadata, Viewport } from "next";
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   const t = await getDictionary(locale);
 
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+    metadataBase: new URL(siteUrl),
     title: { default: t.meta.title, template: `%s | ${t.meta.title}` },
     description: t.meta.description,
     openGraph: {

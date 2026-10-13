@@ -248,3 +248,5 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 - Hero: "Donate now" button removed (only "About us" remains); lint warnings in HeroSlides fixed.
 - Phone version of the first hero slide is now the team photo (public/images/hero-mobile-team.jpg); old portrait photo removed.
 - Home About bullets: Children’s Health & Well-Being; Youth Empowerment, Peacebuilding & Civic Engagement; Family Welfare & Social Protection; Women’s Empowerment & Economic Independence (+ Arabic).
+- SEO fix: canonical/hreflang/OG used http://localhost:3000 in production (NEXT_PUBLIC_SITE_URL unset on Vercel). New src/config/site.ts falls back to https://www.myheartforlebanon.org on Vercel.
+- Domain: apex A record pointed at Namecheap redirect (162.255.119.201, no TLS) → user to set A @ 216.150.1.1 and delete URL Redirect.
