@@ -80,12 +80,14 @@
   stroke-width: 1.2;
   opacity: 0.35;
 }
-:global(.js) .heart :global(.heart-draw) {
-  animation: none;
-  transition: stroke-dashoffset 2.6s var(--ease);
-}
-:global(.js) .band:global(.in) .heart :global(.heart-draw) {
-  stroke-dashoffset: 0;
+@media (scripting: enabled) {
+  .heart :global(.heart-draw) {
+    animation: none;
+    transition: stroke-dashoffset 2.6s var(--ease);
+  }
+  .band:global(.in) .heart :global(.heart-draw) {
+    stroke-dashoffset: 0;
+  }
 }
 
 @media (max-width: 640px) {

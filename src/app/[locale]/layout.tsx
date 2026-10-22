@@ -45,9 +45,6 @@ export const viewport: Viewport = {
   themeColor: "#123f2e",
 };
 
-// Runs before first paint so scroll-reveal styles never flash visible content.
-const enableJsStyles = `document.documentElement.classList.add("js")`;
-
 export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
   // Only /en and /ar exist. (Not `dynamicParams = false`: that would also apply to
@@ -60,12 +57,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       lang={locale}
       dir={localeDirection(locale)}
       className={`${latinFont.variable} ${thmanyahSans.variable}`}
-      // The inline script adds the `js` class before React hydrates.
-      suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: enableJsStyles }} />
-      </head>
       <body>
         <TopBar locale={locale} t={t} />
         {/* Only the slices the client component needs are serialised. */}

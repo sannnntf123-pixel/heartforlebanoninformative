@@ -272,18 +272,22 @@ html[dir="rtl"] .more:hover::after {
   opacity: 0.35;
 }
 
-/* ---------- scroll reveal (enabled by the `js` class set before paint) ---------- */
-.js .rv {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 0.9s var(--ease),
-    transform 0.9s var(--ease);
-  transition-delay: calc(var(--i, 0) * 110ms);
-}
-.js .rv.in {
-  opacity: 1;
-  transform: none;
+/* ---------- scroll reveal ----------
+   Only when JavaScript runs (RevealObserver adds `.in`); without it, content
+   simply stays visible. A CSS media query, so no inline script is needed. */
+@media (scripting: enabled) {
+  .rv {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.9s var(--ease),
+      transform 0.9s var(--ease);
+    transition-delay: calc(var(--i, 0) * 110ms);
+  }
+  .rv.in {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Outline heart that draws itself (hero + donate band). */
@@ -292,8 +296,10 @@ html[dir="rtl"] .more:hover::after {
   stroke-dashoffset: 1;
   animation: draw 3.2s var(--ease) 0.6s forwards;
 }
-html:not(.js) .heart-draw {
-  stroke-dashoffset: 0;
+@media (scripting: none) {
+  .heart-draw {
+    stroke-dashoffset: 0;
+  }
 }
 @keyframes draw {
   to {
@@ -325,7 +331,7 @@ html:not(.js) .heart-draw {
     animation: none !important;
     transition: none !important;
   }
-  .js .rv {
+  .rv {
     opacity: 1;
     transform: none;
   }

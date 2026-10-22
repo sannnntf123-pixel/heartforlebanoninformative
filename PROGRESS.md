@@ -256,3 +256,4 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 - New page /[locale]/ppc (EN/AR) with its own logo: hero (logo tile), intro + roll-up banner, 5 key activities, podcast studio photo, vision + motto. Copy in src/i18n/dictionaries/ppc, images in public/images/ppc. Link previews use the project logo.
 - Proxy: /ppc redirects to /en/ppc or /ar/ppc by browser language (matcher ["/", "/ppc"]). Not linked from the nav yet.
 - Domain: apex now valid (308 → www, TLS ok).
+- Fix React 19 warning "Encountered a script tag while rendering": removed the inline script that set html.js; reveal/hero/heart-draw styles now use @media (scripting: enabled|none). Also dropped suppressHydrationWarning on <html>.
