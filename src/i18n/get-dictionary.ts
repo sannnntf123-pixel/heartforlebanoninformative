@@ -2,6 +2,7 @@ import "server-only";
 import type { Locale } from "./config";
 import type { AboutDictionary } from "./dictionaries/about/en";
 import type { Dictionary } from "./dictionaries/en";
+import type { PpcDictionary } from "./dictionaries/ppc/en";
 
 // Each locale (and each page's copy) is its own chunk, so a page only loads
 // the language and the sections it renders.
@@ -15,6 +16,11 @@ const aboutDictionaries: Record<Locale, () => Promise<AboutDictionary>> = {
   ar: () => import("./dictionaries/about/ar").then((m) => m.default),
 };
 
+const ppcDictionaries: Record<Locale, () => Promise<PpcDictionary>> = {
+  en: () => import("./dictionaries/ppc/en").then((m) => m.default),
+  ar: () => import("./dictionaries/ppc/ar").then((m) => m.default),
+};
+
 /** Shared site copy: navigation, header, footer and the home page. */
 export const getDictionary = (locale: Locale): Promise<Dictionary> => dictionaries[locale]();
 
@@ -22,4 +28,7 @@ export const getDictionary = (locale: Locale): Promise<Dictionary> => dictionari
 export const getAboutDictionary = (locale: Locale): Promise<AboutDictionary> =>
   aboutDictionaries[locale]();
 
-export type { AboutDictionary, Dictionary };
+/** "Peace Protects the Shia" project page copy. */
+export const getPpcDictionary = (locale: Locale): Promise<PpcDictionary> => ppcDictionaries[locale]();
+
+export type { AboutDictionary, Dictionary, PpcDictionary };

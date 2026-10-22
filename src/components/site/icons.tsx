@@ -160,3 +160,17 @@ export const MegaphoneIcon = (props: IconProps) => (
     <path d="M17 9a4 4 0 010 6M6 15l1 5h3l-1-4" />
   </Outline>
 );
+
+export const MicIcon = (props: IconProps) => (
+  <Outline {...props}>
+    <rect x="9" y="3" width="6" height="11" rx="3" />
+    <path d="M5 11a7 7 0 0014 0M12 18v3M8.5 21h7" />
+  </Outline>
+);
+
+export const DocIcon = (props: IconProps) => (
+  <Outline {...props}>
+    <path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z" />
+    <path d="M14 3v5h5M9 13h6M9 17h6" />
+  </Outline>
+);

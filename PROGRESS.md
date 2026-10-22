@@ -251,3 +251,8 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 - SEO fix: canonical/hreflang/OG used http://localhost:3000 in production (NEXT_PUBLIC_SITE_URL unset on Vercel). New src/config/site.ts falls back to https://www.myheartforlebanon.org on Vercel.
 - Domain: apex A record pointed at Namecheap redirect (162.255.119.201, no TLS) → user to set A @ 216.150.1.1 and delete URL Redirect.
 - Link previews (WhatsApp etc.): every page shares public/images/og-logo.png (1200x630, white logo on #123f2e, logo inside the centre square for WhatsApp crops) via `shareImage` in src/config/site.ts. Previously inner pages had no og:image.
+
+## Peace Protects the Shia page (2026-10-22)
+- New page /[locale]/ppc (EN/AR) with its own logo: hero (logo tile), intro + roll-up banner, 5 key activities, podcast studio photo, vision + motto. Copy in src/i18n/dictionaries/ppc, images in public/images/ppc. Link previews use the project logo.
+- Proxy: /ppc redirects to /en/ppc or /ar/ppc by browser language (matcher ["/", "/ppc"]). Not linked from the nav yet.
+- Domain: apex now valid (308 → www, TLS ok).

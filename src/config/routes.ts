@@ -8,6 +8,7 @@ export const routes = (locale: Locale) => ({
   events: `/${locale}/events`,
   event: (slug: string) => `/${locale}/events/${slug}`,
   contact: `/${locale}/contact`,
+  ppc: `/${locale}/ppc`,
 });
 
 export type Routes = ReturnType<typeof routes>;

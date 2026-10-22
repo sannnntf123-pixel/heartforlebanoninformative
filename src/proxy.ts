@@ -16,13 +16,17 @@ function preferredLocale(request: NextRequest): Locale {
   return (match?.lang as Locale | undefined) ?? defaultLocale;
 }
 
-/** `/` has no page of its own: send visitors to their language's home page. */
+/**
+ * `/` and short links like `/ppc` have no page of their own: send visitors to
+ * the same page in their language (`/en`, `/ar/ppc`, …).
+ */
 export function proxy(request: NextRequest) {
   const url = request.nextUrl.clone();
-  url.pathname = `/${preferredLocale(request)}`;
+  const path = url.pathname === "/" ? "" : url.pathname;
+  url.pathname = `/${preferredLocale(request)}${path}`;
   return NextResponse.redirect(url);
 }
 
 export const config = {
-  matcher: "/",
+  matcher: ["/", "/ppc"],
 };
