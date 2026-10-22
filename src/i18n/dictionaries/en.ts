@@ -27,6 +27,7 @@ const en = {
     about: "About",
     activities: "Activities",
     events: "Events",
+    ppc: "Peace Protects the Shia",
     contact: "Contact",
   },
   hero: {

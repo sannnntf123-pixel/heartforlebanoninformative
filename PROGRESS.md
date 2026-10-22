@@ -257,3 +257,4 @@ Measured live first: HTML cached at the edge (fine), ~190 KB br JS (mostly frame
 - Proxy: /ppc redirects to /en/ppc or /ar/ppc by browser language (matcher ["/", "/ppc"]). Not linked from the nav yet.
 - Domain: apex now valid (308 → www, TLS ok).
 - Fix React 19 warning "Encountered a script tag while rendering": removed the inline script that set html.js; reveal/hero/heart-draw styles now use @media (scripting: enabled|none). Also dropped suppressHydrationWarning on <html>.
+- PPC page added to the header menu (before Contact) and footer links.

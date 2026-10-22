@@ -24,6 +24,7 @@ const ar: Dictionary = {
     about: "من نحن",
     activities: "أنشطتنا",
     events: "الفعاليات",
+    ppc: "السلام يحمي الشيعة",
     contact: "تواصل معنا",
   },
   hero: {

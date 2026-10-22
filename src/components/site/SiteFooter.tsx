@@ -62,6 +62,9 @@ const SiteFooter = ({ locale, t }: SiteFooterProps) => {
                 <Link href={r.events}>{t.nav.events}</Link>
               </li>
               <li>
+                <Link href={r.ppc}>{t.nav.ppc}</Link>
+              </li>
+              <li>
                 <Link href={r.contact}>{t.nav.contact}</Link>
               </li>
             </ul>
